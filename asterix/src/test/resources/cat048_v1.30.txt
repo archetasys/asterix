@@ -1,0 +1,698 @@
+ASTERIX Category 048 Version 1.30 Transmission of Monoroadar Target Reports
+
+==== Data Items:
+Data Item I048/010 Data Source Identifier
+  Definition: Identification of the radar station from which the data are received
+  Format    : Two-octet fixed length Data Item
+Data Item I048/020 Target Report Descriptor
+  Definition: Type and properties of the target report
+  Format    : Variable length Data Item comprising a first part of one-octet, followed by one-octet extents as necessary
+Data Item I048/030 Warning/Error Conditions and Target Classification
+  Definition: Warning/error conditions detected by a radar station for the target report involved. Target Classification information for the target involved
+  Format    : Variable length Data Item comprising a first part of one-octet, followed by one-octet extents as necessary
+Data Item I048/040 Measured Position in Polar Co-ordinates
+  Definition: Measured position of an aircraft in local polar co-ordinates
+  Format    : Four-octet fixed length Data Item
+Data Item I048/042 Calculated Position in Cartesian Co-ordinates
+  Definition: Calculated position of an aircraft in Cartesian co-ordinates
+  Format    : Four-octet fixed length Data Item
+Data Item I048/050 Mode-2 Code in Octal Representation
+  Definition: Reply to Mode-2 interrogation
+  Format    : Two-octet fixed length Data Item
+Data Item I048/055 Mode-1 Code in Octal Representation
+  Definition: Reply to Mode-1 interrogation
+  Format    : One-octet fixed length Data Item
+Data Item I048/060 Mode-2 Code Confidence Indicator
+  Definition: Confidence level for each bit of a Mode-2 reply as provided by a monopulse SSR station
+  Format    : Two-octet fixed length Data Item
+Data Item I048/065 Mode-1 Code Confidence Indicator
+  Definition: Confidence level for each bit of a Mode-1 reply as provided by a monopulse SSR station
+  Format    : One-octet fixed length Data Item
+Data Item I048/070 Mode-3/A Code in Octal Representation
+  Definition: Mode-3/A code converted into octal representation
+  Format    : Two-octet fixed length Data Item
+Data Item I048/080 Mode-3/A Code Confidence Indicator
+  Definition: Confidence level for each bit of a Mode-3/A reply as provided by a monopulse SSR station
+  Format    : Two-octet fixed length Data Item
+Data Item I048/090 Flight Level in Binary Representation
+  Definition: Flight Level converted into binary representation
+  Format    : Two-octet fixed length Data Item
+Data Item I048/100 Mode-C Code and Code Confidence Indicator
+  Definition: Mode-C height in Gray notation as received from the transponder together with the confidence level for each reply bit as provided by a MSSR/Mode-S station
+  Format    : Four-octet fixed length Data Item
+Data Item I048/110 Height Measured by a 3D Radar
+  Definition: Height of a target as measured by a 3D radar. The height shall use mean sea level as the zero reference level
+  Format    : Two-octet fixed length Data Item
+Data Item I048/120 Radial Doppler Speed
+  Definition: Information on the Doppler Speed of the target report
+  Format    : Compound Data Item, comprising a primary subfield of one-octet, followed by the indicated subfields
+Data Item I048/130 Radar Plot Characteristics
+  Definition: Additional information on the quality of the target report
+  Format    : Compound Data Item, comprising a primary subfield of one-octet, followed by the indicated subfields
+Data Item I048/140 Time of Day
+  Definition: Absolute time stamping expressed as Co-ordinated Universal Time (UTC)
+  Format    : Three-octet fixed length Data Item
+Data Item I048/161 Track Number
+  Definition: An integer value representing a unique reference to a track record within a particular track file
+  Format    : Two-octet fixed length Data Item
+Data Item I048/170 Track Status
+  Definition: Status of monoradar track (PSR and/or SSR updated)
+  Format    : Variable length Data Item comprising a first part of one-octet, followed by one-octet extents as necessary
+Data Item I048/200 Calculated Track Velocity in Polar Co-ordinates
+  Definition: Calculated track velocity expressed in polar co-ordinates
+  Format    : Four-octet fixed length Data Item
+Data Item I048/210 Track Quality
+  Definition: Track quality in the form of a vector of standard deviations
+  Format    : Four-octet fixed length Data Item
+Data Item I048/220 Aircraft Address
+  Definition: Aircraft address (24-bits Mode-S address) assigned uniquely to each aircraft
+  Format    : Three-octet fixed length Data Item
+Data Item I048/230 Communications/ACAS Capability and Flight Status
+  Definition: Communications capability of the transponder, capability of the on-board ACAS equipment and flight status
+  Format    : Two-octet fixed length Data Item
+Data Item I048/240 Aircraft Identification
+  Definition: Aircraft identification (in 8 characters) obtained from an aircraft equipped with a Mode-S transponder
+  Format    : Six-octet fixed length Data Item
+Data Item I048/250 Mode-S MB Data
+  Definition: Mode-S Comm B Data as extracted from the aircraft transponder
+  Format    : Repetitive Data Item starting with a one-octet Field Repetition Indicator (REP) followed by at least one BDS report comprising one seven octet BDS register and one octet BDS code
+Data Item I048/260 ACAS Resolution Advisory Report
+  Definition: Currently active Resolution Advisory (RA), if any, generated by the ACAS associated with the transponder transmitting the report and threat identity data
+  Format    : Seven-octet fixed length Data Item
+Data Item I048/SP Special Purpose Field
+  Definition: Special Purpose Field
+  Format    : Explicit format
+Data Item I048/RE Reserved Expansion Field
+  Definition: Explicit format Version 1.10
+  Format    : Explicit format Version 1.10
+
+==== Bits:
+I048/010/SAC             System Area Code                           16  9 unsigned  N/A
+I048/010/SIC             System Identification Code                  8  1 unsigned  N/A
+I048/020/TYP             Type of detection                           8  6 values    0 No detection
+                                                                                    1 Single PSR detection
+                                                                                    2 Single SSR detection
+                                                                                    3 SSR + PSR detection
+                                                                                    4 Single Mode-S All-Call
+                                                                                    5 Single Mode-S Roll-Call
+                                                                                    6 Mode-S All-Call + PSR
+                                                                                    7 Mode-S Roll-Call + PSR
+I048/020/SIM             Actual vs. Simulated target report          5  5 value     0 Actual target report
+                                                                                    1 Simulated target report
+I048/020/RDP             Report from RDP Chain                       4  4 value     0 Report from RDP Chain 1
+                                                                                    1 Report from RDP Chain 2
+I048/020/SPI             Special Position Identification             3  3 value     0 Absence of SPI
+                                                                                    1 Special Position Identification
+I048/020/RAB             Target Report Source                        2  2 value     0 Report from aircraft transponder
+                                                                                    1 Report from field monitor (fixed tran...
+I048/020/FX              Field Extension                             1  1 fx        0 End of Data Item
+                                                                                    1 Extension into next extent
+I048/020/TST             Real vs. Test target report                 8  8 value     0 Real target report
+                                                                                    1 Test target report
+I048/020/ERR             Extended Range                              7  7 value     0 No Extended Range
+                                                                                    1 Extended Range present
+I048/020/XPP             X-Pulse                                     6  6 value     0 No X-Pulse present
+                                                                                    1 X-Pulse present
+I048/020/ME              Military Emergency                          5  5 value     0 No military emergency
+                                                                                    1 Military emergency
+I048/020/MI              Military Identification                     4  4 value     0 No military identification
+                                                                                    1 Military identification
+I048/020/FOEFRI          Mode-4 interrogation                        3  2 values    0 No Mode-4 interrogation
+                                                                                    1 Friendly target
+                                                                                    2 Unknown target
+                                                                                    3 No reply
+I048/020/FX              Field Extension                             1  1 fx        0 End of Data Item
+                                                                                    1 Extension into next extent
+I048/030/CODE            Warning/error condition value               8  2 values    0 Not defined; never used
+                                                                                    1 Multipath Reply (Reflection)
+                                                                                    2 Reply due to sidelobe interrogation/r...
+                                                                                    3 Split plot
+                                                                                    4 Second time around reply
+                                                                                    5 Angel
+                                                                                    6 Slow moving target correlated with ro...
+                                                                                    7 Fixed PSR plot
+                                                                                    8 Slow PSR plot
+                                                                                    9 Low quality PSR plot
+                                                                                    10 Phantom SSR plot
+                                                                                    11 Non-Matching Mode-3/A Code
+                                                                                    12 Mode-C code/Mode-S altitude code abno...
+                                                                                    13 Target in Clutter Area
+                                                                                    14 Maximum doppler Response in Zero Filter
+                                                                                    15 Transponder anomaly detected
+                                                                                    16 Duplicated or Illegal Mode-S Aircraft...
+                                                                                    17 Mode-S error correction applied
+                                                                                    18 Undecodable Mode-C code / Mode-S alti...
+                                                                                    19 Birds
+                                                                                    20 Flock of Birds
+                                                                                    21 Mode-1 was present in original reply
+                                                                                    22 Mode-2 was present in original reply
+                                                                                    23 Plot potentially caused by Wind Turbine
+                                                                                    24 Helicopter
+                                                                                    25 Maximum number of re-interrogations r...
+                                                                                    26 Maximum number of re-interrogations r...
+                                                                                    27 BDS Overlay Incoherence
+                                                                                    28 Potential BDS Swap Detected
+                                                                                    29 Track Update in the Zenithal Gap
+                                                                                    30 Mode-S Track re-acquired
+                                                                                    31 Duplicated Mode-5 Pair NO/PIN detected
+                                                                                    32 Wrong DF reply format detected
+                                                                                    33 Transponder anomaly (MS XPD replies w...
+                                                                                    34 Transponder anomaly (SI capability re...
+I048/030/FX              Field Extension                             1  1 fx        0 End of Data Item
+                                                                                    1 Extension into next extent
+I048/040/RHO             Rho                                        32 17 umeasure  LSB = 0.00390625NM, Range = [0.0, 255.99609375]NM
+I048/040/THETA           Theta                                      16  1 umeasure  LSB = 0.0054931640625°, Range = [0.0, 359.9945068359375]°
+I048/042/X               X                                          32 17 smeasure  LSB = 0.0078125NM, Range = [-256.0, 255.9921875]NM
+I048/042/Y               Y                                          16  1 smeasure  LSB = 0.0078125NM, Range = [-256.0, 255.9921875]NM
+I048/050/V               Validated                                  16 16 value     0 Code validated
+                                                                                    1 Code not validated
+I048/050/G               Garbled                                    15 15 value     0 Default
+                                                                                    1 Garbled code
+I048/050/L               Reply                                      14 14 value     0 Mode-2 code as derived from the reply...
+                                                                                    1 Smoothed Mode-2 code as provided by a...
+I048/050/SPARE           Spare bit set to 0                         13 13 spare     Spare bit set to 0
+I048/050/MODE2           Mode-2 Code                                12  1 octal     N/A
+I048/055/V               Validated                                   8  8 value     0 Code validated
+                                                                                    1 Code not validated
+I048/055/G               Garbled                                     7  7 value     0 Default
+                                                                                    1 Garbled code
+I048/055/L               Reply                                       6  6 value     0 Mode-1 code as derived from the reply...
+                                                                                    1 Smoothed Mode-1 code as provided by a...
+I048/055/MODE1           Mode-1 Code                                 5  1 octal     N/A
+I048/060/SPARE           Spare bit set to 0                         16 16 spare     Spare bit set to 0
+I048/060/SPARE           Spare bit set to 0                         15 15 spare     Spare bit set to 0
+I048/060/SPARE           Spare bit set to 0                         14 14 spare     Spare bit set to 0
+I048/060/SPARE           Spare bit set to 0                         13 13 spare     Spare bit set to 0
+I048/060/QA4             Quality pulse A4                           12 12 value     0 High quality pulse A4
+                                                                                    1 Low quality pulse A4
+I048/060/QA2             Quality pulse A2                           11 11 value     0 High quality pulse A2
+                                                                                    1 Low quality pulse A2
+I048/060/QA1             Quality pulse A1                           10 10 value     0 High quality pulse A1
+                                                                                    1 Low quality pulse A1
+I048/060/QB4             Quality pulse B4                            9  9 value     0 High quality pulse B4
+                                                                                    1 Low quality pulse B4
+I048/060/QB2             Quality pulse B2                            8  8 value     0 High quality pulse B2
+                                                                                    1 Low quality pulse B2
+I048/060/QB1             Quality pulse B1                            7  7 value     0 High quality pulse B1
+                                                                                    1 Low quality pulse B1
+I048/060/QC4             Quality pulse C4                            6  6 value     0 High quality pulse C4
+                                                                                    1 Low quality pulse C4
+I048/060/QC2             Quality pulse C2                            5  5 value     0 High quality pulse C2
+                                                                                    1 Low quality pulse C2
+I048/060/QC1             Quality pulse C1                            4  4 value     0 High quality pulse C1
+                                                                                    1 Low quality pulse C1
+I048/060/QD4             Quality pulse D4                            3  3 value     0 High quality pulse D4
+                                                                                    1 Low quality pulse D4
+I048/060/QD2             Quality pulse D2                            2  2 value     0 High quality pulse D2
+                                                                                    1 Low quality pulse D2
+I048/060/QD1             Quality pulse D1                            1  1 value     0 High quality pulse D1
+                                                                                    1 Low quality pulse D1
+I048/065/SPARE           Spare bit set to 0                          8  8 spare     Spare bit set to 0
+I048/065/SPARE           Spare bit set to 0                          7  7 spare     Spare bit set to 0
+I048/065/SPARE           Spare bit set to 0                          6  6 spare     Spare bit set to 0
+I048/065/QA4             Quality pulse A4                            5  5 value     0 High quality pulse A4
+                                                                                    1 Low quality pulse A4
+I048/065/QA2             Quality pulse A2                            4  4 value     0 High quality pulse A2
+                                                                                    1 Low quality pulse A2
+I048/065/QA1             Quality pulse A1                            3  3 value     0 High quality pulse A1
+                                                                                    1 Low quality pulse A1
+I048/065/QB2             Quality pulse B2                            2  2 value     0 High quality pulse B2
+                                                                                    1 Low quality pulse B2
+I048/065/QB1             Quality pulse B1                            1  1 value     0 High quality pulse B1
+                                                                                    1 Low quality pulse B1
+I048/070/V               Validated                                  16 16 value     0 Code validated
+                                                                                    1 Code not validated
+I048/070/G               Garbled                                    15 15 value     0 Default
+                                                                                    1 Garbled code
+I048/070/L               Reply                                      14 14 value     0 Mode-3/A code as derived from the rep...
+                                                                                    1 Mode-3/A code not extracted during th...
+I048/070/SPARE           Spare bit set to 0                         13 13 spare     Spare bit set to 0
+I048/070/MODE3A          Mode-3/A Code                              12  1 octal     N/A
+I048/080/SPARE           Spare bit set to 0                         16 16 spare     Spare bit set to 0
+I048/080/SPARE           Spare bit set to 0                         15 15 spare     Spare bit set to 0
+I048/080/SPARE           Spare bit set to 0                         14 14 spare     Spare bit set to 0
+I048/080/SPARE           Spare bit set to 0                         13 13 spare     Spare bit set to 0
+I048/080/QA4             Quality pulse A4                           12 12 value     0 High quality pulse A4
+                                                                                    1 Low quality pulse A4
+I048/080/QA2             Quality pulse A2                           11 11 value     0 High quality pulse A2
+                                                                                    1 Low quality pulse A2
+I048/080/QA1             Quality pulse A1                           10 10 value     0 High quality pulse A1
+                                                                                    1 Low quality pulse A1
+I048/080/QB4             Quality pulse B4                            9  9 value     0 High quality pulse B4
+                                                                                    1 Low quality pulse B4
+I048/080/QB2             Quality pulse B2                            8  8 value     0 High quality pulse B2
+                                                                                    1 Low quality pulse B2
+I048/080/QB1             Quality pulse B1                            7  7 value     0 High quality pulse B1
+                                                                                    1 Low quality pulse B1
+I048/080/QC4             Quality pulse C4                            6  6 value     0 High quality pulse C4
+                                                                                    1 Low quality pulse C4
+I048/080/QC2             Quality pulse C2                            5  5 value     0 High quality pulse C2
+                                                                                    1 Low quality pulse C2
+I048/080/QC1             Quality pulse C1                            4  4 value     0 High quality pulse C1
+                                                                                    1 Low quality pulse C1
+I048/080/QD4             Quality pulse D4                            3  3 value     0 High quality pulse D4
+                                                                                    1 Low quality pulse D4
+I048/080/QD2             Quality pulse D2                            2  2 value     0 High quality pulse D2
+                                                                                    1 Low quality pulse D2
+I048/080/QD1             Quality pulse D1                            1  1 value     0 High quality pulse D1
+                                                                                    1 Low quality pulse D1
+I048/090/V               Validated                                  16 16 value     0 Code validated
+                                                                                    1 Code not validated
+I048/090/G               Garbled                                    15 15 value     0 Default
+                                                                                    1 Garbled code
+I048/090/FL              Flight Level                               14  1 umeasure  LSB = 0.25FL, Range = [0.0, 4095.75]FL
+I048/100/V               Validated                                  32 32 value     0 Code validated
+                                                                                    1 Code not validated
+I048/100/G               Garbled                                    31 31 value     0 Default
+                                                                                    1 Garbled code
+I048/100/SPARE           Spare bit set to 0                         30 30 spare     Spare bit set to 0
+I048/100/SPARE           Spare bit set to 0                         29 29 spare     Spare bit set to 0
+I048/100/MODEC           Mode-C reply in Gray notation              28 17 graycode  LSB = 100.0ft, Range = [-1200.0, 126700.0]ft
+I048/100/SPARE           Spare bit set to 0                         16 16 spare     Spare bit set to 0
+I048/100/SPARE           Spare bit set to 0                         15 15 spare     Spare bit set to 0
+I048/100/SPARE           Spare bit set to 0                         14 14 spare     Spare bit set to 0
+I048/100/SPARE           Spare bit set to 0                         13 13 spare     Spare bit set to 0
+I048/100/QC1             Quality pulse C1                           12 12 value     0 High quality pulse C1
+                                                                                    1 Low quality pulse C1
+I048/100/QA1             Quality pulse A1                           11 11 value     0 High quality pulse A1
+                                                                                    1 Low quality pulse A1
+I048/100/QC2             Quality pulse C2                           10 10 value     0 High quality pulse C2
+                                                                                    1 Low quality pulse C2
+I048/100/QA2             Quality pulse A2                            9  9 value     0 High quality pulse A2
+                                                                                    1 Low quality pulse A2
+I048/100/QC4             Quality pulse C4                            8  8 value     0 High quality pulse C4
+                                                                                    1 Low quality pulse C4
+I048/100/QA4             Quality pulse A4                            7  7 value     0 High quality pulse A4
+                                                                                    1 Low quality pulse A4
+I048/100/QB1             Quality pulse B1                            6  6 value     0 High quality pulse B1
+                                                                                    1 Low quality pulse B1
+I048/100/QD1             Quality pulse D1                            5  5 value     0 High quality pulse D1
+                                                                                    1 Low quality pulse D1
+I048/100/QB2             Quality pulse B2                            4  4 value     0 High quality pulse B2
+                                                                                    1 Low quality pulse B2
+I048/100/QD2             Quality pulse D2                            3  3 value     0 High quality pulse D2
+                                                                                    1 Low quality pulse D2
+I048/100/QB4             Quality pulse B4                            2  2 value     0 High quality pulse B4
+                                                                                    1 Low quality pulse B4
+I048/100/QD4             Quality pulse D4                            1  1 value     0 High quality pulse D4
+                                                                                    1 Low quality pulse D4
+I048/110/SPARE           Spare bit set to 0                         16 16 spare     Spare bit set to 0
+I048/110/SPARE           Spare bit set to 0                         15 15 spare     Spare bit set to 0
+I048/110/3DH             Height measured by 3D radar                14  1 smeasure  LSB = 25.0ft, Range = [-204800.0, 204775.0]ft
+I048/120/CAL             Subfield #1 : Calculated Doppler Speed      8  8 value     0 Absence of Subfield #1
+                                                                                    1 Presence of Subfield #1
+I048/120/RDS             Subfield #2 : Raw Doppler Speed             7  7 value     0 Absence of Subfield #2
+                                                                                    1 Presence of Subfield #2
+I048/120/SPARE           Subfield #3 : Spare Subfield                6  6 value     0 Absence of Subfield #3
+                                                                                    1 Presence of Subfield #3
+I048/120/SPARE           Subfield #4 : Spare Subfield                5  5 value     0 Absence of Subfield #4
+                                                                                    1 Presence of Subfield #4
+I048/120/SPARE           Subfield #5 : Spare Subfield                4  4 value     0 Absence of Subfield #5
+                                                                                    1 Presence of Subfield #5
+I048/120/SPARE           Subfield #6 : Spare Subfield                3  3 value     0 Absence of Subfield #6
+                                                                                    1 Presence of Subfield #6
+I048/120/SPARE           Subfield #7 : Spare Subfield                2  2 value     0 Absence of Subfield #7
+                                                                                    1 Presence of Subfield #7
+I048/120/FX              Subfield #8 : FX                            1  1 value     0 Absence of Subfield #8
+                                                                                    1 Presence of Subfield #8
+I048/120/CAL/D           Doppler speed valid vs. doubtful           16 16 value     0 Doppler speed is valid
+                                                                                    1 Doppler speed is doubtful
+I048/120/CAL/SPARE       Spare bit set to 0                         15 15 spare     Spare bit set to 0
+I048/120/CAL/SPARE       Spare bit set to 0                         14 14 spare     Spare bit set to 0
+I048/120/CAL/SPARE       Spare bit set to 0                         13 13 spare     Spare bit set to 0
+I048/120/CAL/SPARE       Spare bit set to 0                         12 12 spare     Spare bit set to 0
+I048/120/CAL/SPARE       Spare bit set to 0                         11 11 spare     Spare bit set to 0
+I048/120/CAL/CAL         Calculated Doppler Speed                   10  1 smeasure  LSB = 1.0m/s, Range = [-512.0, 511.0]m/s
+I048/120/RDS/DOP         Doppler Speed                              48 33 umeasure  LSB = 1.0m/s, Range = [0.0, 65535.0]m/s
+I048/120/RDS/AMB         Ambiguity Range                            32 17 umeasure  LSB = 1.0m/s, Range = [0.0, 65535.0]m/s
+I048/120/RDS/FRQ         Transmitter Frequency                      16  1 umeasure  LSB = 1.0MHz, Range = [0.0, 65535.0]MHz
+I048/130/SRL             Subfield #1 : SSR Plot Runlength            8  8 value     0 Absence of Subfield #1
+                                                                                    1 Presence of Subfield #1
+I048/130/SRR             Subfield #2 : Number of received repl...    7  7 value     0 Absence of Subfield #2
+                                                                                    1 Presence of Subfield #2
+I048/130/SAM             Subfield #3 : Amplitude of received r...    6  6 value     0 Absence of Subfield #3
+                                                                                    1 Presence of Subfield #3
+I048/130/PRL             Subfield #4 : PSR Plot Runlength            5  5 value     0 Absence of Subfield #4
+                                                                                    1 Presence of Subfield #4
+I048/130/PAM             Subfield #5 : PSR amplitude                 4  4 value     0 Absence of Subfield #5
+                                                                                    1 Presence of Subfield #5
+I048/130/RPD             Subfield #6 : Difference in Range           3  3 value     0 Absence of Subfield #6
+                                                                                    1 Presence of Subfield #6
+I048/130/APD             Subfield #7 : Difference in Azimuth         2  2 value     0 Absence of Subfield #7
+                                                                                    1 Presence of Subfield #7
+I048/130/FX              Subfield #8 : FX                            1  1 value     0 Absence of Subfield #8
+                                                                                    1 Presence of Subfield #8
+I048/130/SRL/SRL         SSR Plot Runlength                          8  1 umeasure  LSB = 0.0439453125°, Range = [0.0, 11.2060546875]°
+I048/130/SRR/SRR         Number of received replies for (M)SSR       8  1 unsigned  N/A
+I048/130/SAM/SAM         Amplitude of (M)SSR reply                   8  1 smeasure  LSB = 1.0dBm, Range = [-128.0, 127.0]dBm
+I048/130/PRL/PRL         Primary Plot Runlength                      8  1 umeasure  LSB = 0.0439453125°, Range = [0.0, 11.2060546875]°
+I048/130/PAM/PAM         Amplitude of Primary Plot                   8  1 smeasure  LSB = 1.0dBm, Range = [-128.0, 127.0]dBm
+I048/130/RPD/RPD         Difference in Range between PSR and S...    8  1 smeasure  LSB = 0.00390625NM, Range = [-0.5, 0.49609375]NM
+I048/130/APD/APD         Difference in Azimuth between PSR and...    8  1 smeasure  LSB = 0.02197265625°, Range = [-2.8125, 2.79052734375]°
+I048/140/TOD             Time of Day                                24  1 umeasure  LSB = 0.0078125s, Range = [0.0, 131071.9921875]s
+I048/161/SPARE           Spare bit set to 0                         16 16 spare     Spare bit set to 0
+I048/161/SPARE           Spare bit set to 0                         15 15 spare     Spare bit set to 0
+I048/161/SPARE           Spare bit set to 0                         14 14 spare     Spare bit set to 0
+I048/161/SPARE           Spare bit set to 0                         13 13 spare     Spare bit set to 0
+I048/161/TRN             Track Number                               12  1 unsigned  N/A
+I048/170/CNF             Confirmed vs. Tentative Track               8  8 value     0 Confirmed Track
+                                                                                    1 Tentative Track
+I048/170/RAD             Type of Sensor(s) maintaining Track         7  6 values    0 Combined Track
+                                                                                    1 PSR Track
+                                                                                    2 SSR/Mode-S Track
+                                                                                    3 Invalid
+I048/170/DOU             Signals level of confidence in plot t...    5  5 value     0 Normal confidence
+                                                                                    1 Low confidence in plot to track assoc...
+I048/170/MAH             Manoeuvre detection in Horizontal Sense     4  4 value     0 No horizontal manoeuvre sensed
+                                                                                    1 Horizontal manoeuvre sensed
+I048/170/CDM             Climbing/Descending Mode                    3  2 values    0 Maintaining
+                                                                                    1 Climbing
+                                                                                    2 Descending
+                                                                                    3 Unknown
+I048/170/FX              Field Extension                             1  1 fx        0 End of Data Item
+                                                                                    1 Extension into next extent
+I048/170/TRE             Signal for End of Track                     8  8 value     0 Track still alive
+                                                                                    1 End of track lifetime (last report fo...
+I048/170/GHO             Ghost vs. true target                       7  7 value     0 True target track
+                                                                                    1 Ghost target track
+I048/170/SUP             Track maintained with track informati...    6  6 value     0 No
+                                                                                    1 Yes
+I048/170/TCC             Type of plot coordinate transformatio...    5  5 value     0 Tracking performed in so-called 'Rada...
+                                                                                    1 Slant range correction and a suitable...
+I048/170/SPARE           Spare bit set to 0                          4  4 spare     Spare bit set to 0
+I048/170/SPARE           Spare bit set to 0                          3  3 spare     Spare bit set to 0
+I048/170/SPARE           Spare bit set to 0                          2  2 spare     Spare bit set to 0
+I048/170/FX              Field Extension                             1  1 fx        0 End of Data Item
+                                                                                    1 Extension into next extent
+I048/200/GSP             Calculated Groundspeed                     32 17 umeasure  LSB = 6.103515625E-5NM/s, Range = [0.0, 2.0]NM/s
+I048/200/HDG             Calculated Heading                         16  1 umeasure  LSB = 0.0054931640625°, Range = [0.0, 359.9945068359375]°
+I048/210/SIGX            Standard Deviation on the horizontal ...   32 25 umeasure  LSB = 0.0078125NM, Range = [0.0, 1.9921875]NM
+I048/210/SIGY            Standard Deviation on the vertical ax...   24 17 umeasure  LSB = 0.0078125NM, Range = [0.0, 1.9921875]NM
+I048/210/SIGV            Standard Deviation on the groundspeed...   16  9 umeasure  LSB = 6.103515625E-5NM/s, Range = [0.0, 0.01556396484375]NM/s
+I048/210/SIGH            Standard Deviation on the heading wit...    8  1 umeasure  LSB = 0.087890625°, Range = [0.0, 22.412109375]°
+I048/220/ADDR            Aircraft Address                           24  1 hex       N/A
+I048/230/COM             Communications capability of the tran...   16 14 values    0 No communications capability (surveil...
+                                                                                    1 Comm. A and Comm. B capability
+                                                                                    2 Comm. A, Comm. B and Uplink ELM
+                                                                                    3 Comm. A, Comm. B, Uplink ELM and Down...
+                                                                                    4 Level 5 Transponder capability
+I048/230/STAT            Flight Status                              13 11 values    0 No alert, no SPI, aircraft airborne
+                                                                                    1 No alert, no SPI, aircraft on ground
+                                                                                    2 Alert, no SPI, aircraft airborne
+                                                                                    3 Alert, no SPI, aircraft on ground
+                                                                                    4 Alert, SPI, aircraft airborne or on g...
+                                                                                    5 No alert, SPI, aircraft airborne or o...
+                                                                                    6 Not assigned
+                                                                                    7 Unknown
+I048/230/SI              SI/II Transponder Capability               10 10 value     0 SI-Code Capable
+                                                                                    1 II-Code Capable
+I048/230/SPARE           Spare bit set to 0                          9  9 spare     Spare bit set to 0
+I048/230/MSSC            Mode-S Specific Service Capability          8  8 value     0 No
+                                                                                    1 Yes
+I048/230/ARC             Altitude reporting capability               7  7 value     0 100 ft resolution
+                                                                                    1 25 ft resolution
+I048/230/AIC             Aircraft identification capability          6  6 value     0 No
+                                                                                    1 Yes
+I048/230/B1A             BDS 1,0 bit 16                              5  5 value     0 Not active
+                                                                                    1 Active
+I048/230/B1B             BDS 1,0 bits 37/40                          4  1 unsigned  N/A
+I048/240/IDENT           Aircraft Identification                    48  1 ia5       N/A
+I048/250/MBDATA          Mode S Comm B Message Data                 64  9 hex       N/A
+I048/250/BDS1            Comm B Data Buffer Store 1 Address          8  5 unsigned  N/A
+I048/250/BDS2            Comm B Data Buffer Store 2 Address          4  1 unsigned  N/A
+I048/260/BDS30           BDS Code 3,0                               56 49 hex       N/A
+I048/260/ARA41           Active Resolution Advisories bit 41        48 48 value     0 There is more than one threat and the...
+                                                                                    1 Either there is only one threat or th...
+I048/260/ARA42           Active Resolution Advisories bit 42        47 47 value     0 RA is preventive or RA does not requi...
+                                                                                    1 RA is corrective or RA requires a cor...
+I048/260/ARA43           Active Resolution Advisories bit 43        46 46 value     0 Upward sense RA has been generated or...
+                                                                                    1 Downward sense RA has been generated ...
+I048/260/ARA44           Active Resolution Advisories bit 44        45 45 value     0 RA is not increased rate or RA does n...
+                                                                                    1 RA is increased rate or RA requires a...
+I048/260/ARA45           Active Resolution Advisories bit 45        44 44 value     0 RA is not a sense reversal or RA does...
+                                                                                    1 RA is a sense reversal or RA requires...
+I048/260/ARA46           Active Resolution Advisories bit 46        43 43 value     0 RA is not altitude crossing or RA doe...
+                                                                                    1 RA is altitude crossing or RA require...
+I048/260/ARA47           Active Resolution Advisories bit 47        42 42 value     0 RA is vertical speed limit or RA is n...
+                                                                                    1 RA is positive or RA is a sense reversal
+I048/260/ACAS3           Reserved for ACAS III                      41 35 unsigned  N/A
+I048/260/RAC55           Resolution Advisory Complement bit 55      34 34 value     0 Not active
+                                                                                    1 Active Do not pass below
+I048/260/RAC56           Resolution Advisory Complement bit 56      33 33 value     0 Not active
+                                                                                    1 Active Do not pass above
+I048/260/RAC57           Resolution Advisory Complement bit 57      32 32 value     0 Not active
+                                                                                    1 Active Do not turn left
+I048/260/RAC58           Resolution Advisory Complement bit 58      31 31 value     0 Not active
+                                                                                    1 Active Do not turn right
+I048/260/RAT             RA Terminated                              30 30 value     0 No
+                                                                                    1 Yes
+I048/260/MTE             Multiple Threat Encounter                  29 29 value     0 No
+                                                                                    1 Yes
+I048/260/TTI             Threat Type Indicator                      28 27 values    0 No identity data in TID
+                                                                                    1 TID contains a Mode-S transponder add...
+                                                                                    2 TID contains altitude, range and bear...
+                                                                                    3 Not assigned
+I048/260/TID             Threat Identity Data                       26  1 unsigned  N/A
+I048/RE/MD5              Subitem #1 : Mode-5 Reports                 8  8 value     0 Absence of Subitem #1
+                                                                                    1 Presence of Subitem #1
+I048/RE/M5N              Subitem #2 : Mode-5 Reports New Format      7  7 value     0 Absence of Subitem #2
+                                                                                    1 Presence of Subitem #2
+I048/RE/M4E              Subitem #3 : Extended Mode-4 Report         6  6 value     0 Absence of Subitem #3
+                                                                                    1 Presence of Subitem #3
+I048/RE/RPC              Subitem #4 : Radar Plot Characteristics     5  5 value     0 Absence of Subitem #4
+                                                                                    1 Presence of Subitem #4
+I048/RE/ERR              Subitem #5 : Extended Range Report          4  4 value     0 Absence of Subitem #5
+                                                                                    1 Presence of Subitem #5
+I048/RE/SPARE            Subitem #6 : Spare Subitem                  3  3 value     0 Absence of Subitem #6
+                                                                                    1 Presence of Subitem #6
+I048/RE/SPARE            Subitem #7 : Spare Subitem                  2  2 value     0 Absence of Subitem #7
+                                                                                    1 Presence of Subitem #7
+I048/RE/SPARE            Subitem #8 : Spare Subitem                  1  1 value     0 Absence of Subitem #8
+                                                                                    1 Presence of Subitem #8
+I048/RE/MD5/SUM          Subfield #1 : Mode-5 Summary                8  8 value     0 Absence of Subfield #1
+                                                                                    1 Presence of Subfield #1
+I048/RE/MD5/PMN          Subfield #2 : Mode-5 PIN/ National          7  7 value     0 Absence of Subfield #2
+                                                                                    1 Presence of Subfield #2
+I048/RE/MD5/POS          Subfield #3 : Mode-5 Reported Position      6  6 value     0 Absence of Subfield #3
+                                                                                    1 Presence of Subfield #3
+I048/RE/MD5/GA           Subfield #4 : Mode-5 GNSS-derived Alt...    5  5 value     0 Absence of Subfield #4
+                                                                                    1 Presence of Subfield #4
+I048/RE/MD5/EM1          Subfield #5 : Extended Mode-1 Code in...    4  4 value     0 Absence of Subfield #5
+                                                                                    1 Presence of Subfield #5
+I048/RE/MD5/TOS          Subfield #6 : Time Offset for POS and GA    3  3 value     0 Absence of Subfield #6
+                                                                                    1 Presence of Subfield #6
+I048/RE/MD5/XP           Subfield #7 :  Pulse Presence               2  2 value     0 Absence of Subfield #7
+                                                                                    1 Presence of Subfield #7
+I048/RE/MD5/FX           Subfield #8 : FX                            1  1 value     0 Absence of Subfield #8
+                                                                                    1 Presence of Subfield #8
+I048/RE/MD5/SUM/M5       Mode-5 interrogation                        8  8 value     0 No Mode-5 interrogation
+                                                                                    1 Mode-5 interrogation
+I048/RE/MD5/SUM/ID       Authenticated Mode-5 ID reply               7  7 value     0 No authenticated Mode-5 ID reply
+                                                                                    1 Authenticated Mode-5 ID reply
+I048/RE/MD5/SUM/DA       Authenticated Mode-5 Data reply or re...    6  6 value     0 No authenticated Mode-5 Data reply or...
+                                                                                    1 Authenticated Mode-5 Data reply or re...
+I048/RE/MD5/SUM/M1       Mode-1 code from Mode-5 reply               5  5 value     0 Mode-1 code not present or not from M...
+                                                                                    1 Mode-1 code from Mode-5 reply
+I048/RE/MD5/SUM/M2       Mode-2 code from Mode-5 reply               4  4 value     0 Mode-2 code not present or not from M...
+                                                                                    1 Mode-2 code from Mode-5 reply
+I048/RE/MD5/SUM/M3       Mode-3 code from Mode-5 reply               3  3 value     0 Mode-3 code not present or not from M...
+                                                                                    1 Mode-3 code from Mode-5 reply
+I048/RE/MD5/SUM/MC       Mode-C altitude from Mode-5 reply           2  2 value     0 Mode-C altitude not present or not fr...
+                                                                                    1 Mode-C altitude from Mode-5 reply
+I048/RE/MD5/SUM/SPARE    Spare bit set to 0                          1  1 spare     Spare bit set to 0
+I048/RE/MD5/PMN/SPARE    Spare bit set to 0                         32 32 spare     Spare bit set to 0
+I048/RE/MD5/PMN/SPARE    Spare bit set to 0                         31 31 spare     Spare bit set to 0
+I048/RE/MD5/PMN/PIN      PIN Code                                   30 17 unsigned  N/A
+I048/RE/MD5/PMN/SPARE    Spare bit set to 0                         16 16 spare     Spare bit set to 0
+I048/RE/MD5/PMN/SPARE    Spare bit set to 0                         15 15 spare     Spare bit set to 0
+I048/RE/MD5/PMN/NAV      Validity of National Origin                14 14 value     0 National Origin is valid
+                                                                                    1 National Origin is invalid
+I048/RE/MD5/PMN/NAT      National Origin                            13  9 unsigned  N/A
+I048/RE/MD5/PMN/SPARE    Spare bit set to 0                          8  8 spare     Spare bit set to 0
+I048/RE/MD5/PMN/SPARE    Spare bit set to 0                          7  7 spare     Spare bit set to 0
+I048/RE/MD5/PMN/MIS      Mission Code                                6  1 unsigned  N/A
+I048/RE/MD5/POS/LAT      Latitude                                   48 25 smeasure  LSB = 2.1457672119140625E-5°, Range = [-90.0, 90.0]°
+I048/RE/MD5/POS/LON      Longitude                                  24  1 smeasure  LSB = 2.1457672119140625E-5°, Range = [-180.0, 179.99997854232788]°
+I048/RE/MD5/GA/SPARE     Spare bit set to 0                         16 16 spare     Spare bit set to 0
+I048/RE/MD5/GA/RES       Resolution with which the GNSS-derive...   15 15 value     0 GA reported in 100 ft increments
+                                                                                    1 GA reported in 25 ft increments
+I048/RE/MD5/GA/ALT       GNSS-derived Altitude of target            14  1 smeasure  LSB = 25.0ft, Range = [-1000.0, 150000.0]ft
+I048/RE/MD5/EM1/V        Validated                                  16 16 value     0 Code not validated
+                                                                                    1 Code validated
+I048/RE/MD5/EM1/G        Garbled                                    15 15 value     0 Default
+                                                                                    1 Garbled code
+I048/RE/MD5/EM1/L        Reply                                      14 14 value     0 Mode-1 code derived from the reply of...
+                                                                                    1 Mode-1 code not extracted during the ...
+I048/RE/MD5/EM1/SPARE    Spare bit set to 0                         13 13 spare     Spare bit set to 0
+I048/RE/MD5/EM1/MODE1    Extended Mode-1 Code in octal represe...   12  1 octal     N/A
+I048/RE/MD5/TOS/TOS      Time Offset                                 8  1 smeasure  LSB = 0.0078125s, Range = [-1.0, 0.9921875]s
+I048/RE/MD5/XP/SPARE     Spare bit set to 0                          8  8 spare     Spare bit set to 0
+I048/RE/MD5/XP/SPARE     Spare bit set to 0                          7  7 spare     Spare bit set to 0
+I048/RE/MD5/XP/XP        X-pulse from Mode-5 PIN reply/report        6  6 value     0 X-pulse not present
+                                                                                    1 X-pulse present
+I048/RE/MD5/XP/X5        X-pulse from Mode-5 Data reply or report    5  5 value     0 X-pulse set to zero or no authenticat...
+                                                                                    1 X-pulse set to one (present)
+I048/RE/MD5/XP/XC        X-pulse from Mode-C reply                   4  4 value     0 X-pulse set to zero or no Mode-C reply
+                                                                                    1 X-pulse set to one (present)
+I048/RE/MD5/XP/X3        X-pulse from Mode-3/A reply                 3  3 value     0 X-pulse set to zero or no Mode-3/A reply
+                                                                                    1 X-pulse set to one (present)
+I048/RE/MD5/XP/X2        X-pulse from Mode-2 reply                   2  2 value     0 X-pulse set to zero or no Mode-2 reply
+                                                                                    1 X-pulse set to one (present)
+I048/RE/MD5/XP/X1        X-pulse from Mode-1 reply                   1  1 value     0 X-pulse set to zero or no Mode-1 reply
+                                                                                    1 X-pulse set to one (present)
+I048/RE/M5N/SUM          Subfield #1 : Mode-5 Summary               16 16 value     0 Absence of Subfield #1
+                                                                                    1 Presence of Subfield #1
+I048/RE/M5N/PMN          Subfield #2 : Mode-5 PIN/ National         15 15 value     0 Absence of Subfield #2
+                                                                                    1 Presence of Subfield #2
+I048/RE/M5N/POS          Subfield #3 : Mode-5 Reported Position     14 14 value     0 Absence of Subfield #3
+                                                                                    1 Presence of Subfield #3
+I048/RE/M5N/GA           Subfield #4 : Mode-5 GNSS-derived Alt...   13 13 value     0 Absence of Subfield #4
+                                                                                    1 Presence of Subfield #4
+I048/RE/M5N/EM1          Subfield #5 : Extended Mode-1 Code in...   12 12 value     0 Absence of Subfield #5
+                                                                                    1 Presence of Subfield #5
+I048/RE/M5N/TOS          Subfield #6 : Time Offset for POS and GA   11 11 value     0 Absence of Subfield #6
+                                                                                    1 Presence of Subfield #6
+I048/RE/M5N/XP           Subfield #7 :  Pulse Presence              10 10 value     0 Absence of Subfield #7
+                                                                                    1 Presence of Subfield #7
+I048/RE/M5N/FX           Subfield #8 : FX                            9  9 value     0 Absence of Subfield #8
+                                                                                    1 Presence of Subfield #8
+I048/RE/M5N/FOM          Subfield #9 : Figure of Merit               8  8 value     0 Absence of Subfield #9
+                                                                                    1 Presence of Subfield #9
+I048/RE/M5N/SPARE        Subfield #10: Spare Subfield                7  7 value     0 Absence of Subfield #10
+                                                                                    1 Presence of Subfield #10
+I048/RE/M5N/SPARE        Subfield #11: Spare Subfield                6  6 value     0 Absence of Subfield #11
+                                                                                    1 Presence of Subfield #11
+I048/RE/M5N/SPARE        Subfield #12: Spare Subfield                5  5 value     0 Absence of Subfield #12
+                                                                                    1 Presence of Subfield #12
+I048/RE/M5N/SPARE        Subfield #13: Spare Subfield                4  4 value     0 Absence of Subfield #13
+                                                                                    1 Presence of Subfield #13
+I048/RE/M5N/SPARE        Subfield #14: Spare Subfield                3  3 value     0 Absence of Subfield #14
+                                                                                    1 Presence of Subfield #14
+I048/RE/M5N/SPARE        Subfield #15: Spare Subfield                2  2 value     0 Absence of Subfield #15
+                                                                                    1 Presence of Subfield #15
+I048/RE/M5N/FX           Subfield #16: FX                            1  1 value     0 Absence of Subfield #16
+                                                                                    1 Presence of Subfield #16
+I048/RE/M5N/SUM/M5       Mode-5 interrogation                        8  8 value     0 No Mode-5 interrogation
+                                                                                    1 Mode-5 interrogation
+I048/RE/M5N/SUM/ID       Authenticated Mode-5 ID reply               7  7 value     0 No authenticated Mode-5 ID reply
+                                                                                    1 Authenticated Mode-5 ID reply
+I048/RE/M5N/SUM/DA       Authenticated Mode-5 Data reply or re...    6  6 value     0 No authenticated Mode-5 Data reply or...
+                                                                                    1 Authenticated Mode-5 Data reply or re...
+I048/RE/M5N/SUM/M1       Mode-1 code from Mode-5 reply               5  5 value     0 Mode-1 code not present or not from M...
+                                                                                    1 Mode-1 code from Mode-5 reply
+I048/RE/M5N/SUM/M2       Mode-2 code from Mode-5 reply               4  4 value     0 Mode-2 code not present or not from M...
+                                                                                    1 Mode-2 code from Mode-5 reply
+I048/RE/M5N/SUM/M3       Mode-3 code from Mode-5 reply               3  3 value     0 Mode-3 code not present or not from M...
+                                                                                    1 Mode-3 code from Mode-5 reply
+I048/RE/M5N/SUM/MC       Mode-C altitude from Mode-5 reply           2  2 value     0 Mode-C altitude not present or not fr...
+                                                                                    1 Mode-C altitude from Mode-5 reply
+I048/RE/M5N/SUM/SPARE    Spare bit set to 0                          1  1 spare     Spare bit set to 0
+I048/RE/M5N/PMN/SPARE    Spare bit set to 0                         32 32 spare     Spare bit set to 0
+I048/RE/M5N/PMN/SPARE    Spare bit set to 0                         31 31 spare     Spare bit set to 0
+I048/RE/M5N/PMN/PIN      PIN Code                                   30 17 unsigned  N/A
+I048/RE/M5N/PMN/SPARE    Spare bit set to 0                         16 16 spare     Spare bit set to 0
+I048/RE/M5N/PMN/SPARE    Spare bit set to 0                         15 15 spare     Spare bit set to 0
+I048/RE/M5N/PMN/SPARE    Spare bit set to 0                         14 14 spare     Spare bit set to 0
+I048/RE/M5N/PMN/SPARE    Spare bit set to 0                         13 13 spare     Spare bit set to 0
+I048/RE/M5N/PMN/NOV      Validity of National Origin                12 12 value     0 National Origin is valid
+                                                                                    1 National Origin is invalid
+I048/RE/M5N/PMN/NO       National Origin                            11  1 unsigned  N/A
+I048/RE/M5N/POS/LAT      Latitude                                   48 25 smeasure  LSB = 2.1457672119140625E-5°, Range = [-90.0, 90.0]°
+I048/RE/M5N/POS/LON      Longitude                                  24  1 smeasure  LSB = 2.1457672119140625E-5°, Range = [-180.0, 179.99997854232788]°
+I048/RE/M5N/GA/SPARE     Spare bit set to 0                         16 16 spare     Spare bit set to 0
+I048/RE/M5N/GA/RES       Resolution with which the GNSS-derive...   15 15 value     0 GA reported in 100 ft increments
+                                                                                    1 GA reported in 25 ft increments
+I048/RE/M5N/GA/ALT       GNSS-derived Altitude of target            14  1 smeasure  LSB = 25.0ft, Range = [-1000.0, 150000.0]ft
+I048/RE/M5N/EM1/V        Validated                                  16 16 value     0 Code not validated
+                                                                                    1 Code validated
+I048/RE/M5N/EM1/G        Garbled                                    15 15 value     0 Default
+                                                                                    1 Garbled code
+I048/RE/M5N/EM1/L        Reply                                      14 14 value     0 Mode-1 code derived from the reply of...
+                                                                                    1 Mode-1 code not extracted during the ...
+I048/RE/M5N/EM1/SPARE    Spare bit set to 0                         13 13 spare     Spare bit set to 0
+I048/RE/M5N/EM1/MODE1    Extended Mode-1 Code in octal represe...   12  1 octal     N/A
+I048/RE/M5N/TOS/TOS      Time Offset                                 8  1 smeasure  LSB = 0.0078125s, Range = [-1.0, 0.9921875]s
+I048/RE/M5N/XP/SPARE     Spare bit set to 0                          8  8 spare     Spare bit set to 0
+I048/RE/M5N/XP/SPARE     Spare bit set to 0                          7  7 spare     Spare bit set to 0
+I048/RE/M5N/XP/XP        X-pulse from Mode-5 PIN reply/report        6  6 value     0 X-pulse not present
+                                                                                    1 X-pulse present
+I048/RE/M5N/XP/X5        X-pulse from Mode-5 Data reply or report    5  5 value     0 X-pulse set to zero or no authenticat...
+                                                                                    1 X-pulse set to one (present)
+I048/RE/M5N/XP/XC        X-pulse from Mode-C reply                   4  4 value     0 X-pulse set to zero or no Mode-C reply
+                                                                                    1 X-pulse set to one (present)
+I048/RE/M5N/XP/X3        X-pulse from Mode-3/A reply                 3  3 value     0 X-pulse set to zero or no Mode-3/A reply
+                                                                                    1 X-pulse set to one (present)
+I048/RE/M5N/XP/X2        X-pulse from Mode-2 reply                   2  2 value     0 X-pulse set to zero or no Mode-2 reply
+                                                                                    1 X-pulse set to one (present)
+I048/RE/M5N/XP/X1        X-pulse from Mode-1 reply                   1  1 value     0 X-pulse set to zero or no Mode-1 reply
+                                                                                    1 X-pulse set to one (present)
+I048/RE/M5N/FOM/SPARE    Spare bit set to 0                          8  8 spare     Spare bit set to 0
+I048/RE/M5N/FOM/SPARE    Spare bit set to 0                          7  7 spare     Spare bit set to 0
+I048/RE/M5N/FOM/SPARE    Spare bit set to 0                          6  6 spare     Spare bit set to 0
+I048/RE/M5N/FOM/FOM      Figure of Merit Position Accuracy as ...    5  1 unsigned  N/A
+I048/RE/M4E/SPARE        Spare bit set to 0                          8  8 spare     Spare bit set to 0
+I048/RE/M4E/SPARE        Spare bit set to 0                          7  7 spare     Spare bit set to 0
+I048/RE/M4E/SPARE        Spare bit set to 0                          6  6 spare     Spare bit set to 0
+I048/RE/M4E/SPARE        Spare bit set to 0                          5  5 spare     Spare bit set to 0
+I048/RE/M4E/SPARE        Spare bit set to 0                          4  4 spare     Spare bit set to 0
+I048/RE/M4E/FOEFRI       Mode-4 interrogation                        3  2 values    0 No Mode-4 interrogation
+                                                                                    1 Friendly target
+                                                                                    2 Unknown target
+                                                                                    3 No reply
+I048/RE/M4E/FX           Field Extension                             1  1 fx        0 End of Data Item
+                                                                                    1 Extension into next extent
+I048/RE/RPC/SCO          Subfield #1 : Score                         8  8 value     0 Absence of Subfield #1
+                                                                                    1 Presence of Subfield #1
+I048/RE/RPC/SCR          Subfield #2 : Signal/Clutter Ratio          7  7 value     0 Absence of Subfield #2
+                                                                                    1 Presence of Subfield #2
+I048/RE/RPC/RW           Subfield #3 : Range Width                   6  6 value     0 Absence of Subfield #3
+                                                                                    1 Presence of Subfield #3
+I048/RE/RPC/AR           Subfield #4 : Ambiguous Range               5  5 value     0 Absence of Subfield #4
+                                                                                    1 Presence of Subfield #4
+I048/RE/RPC/SPARE        Subfield #5 : Spare Subfield                4  4 value     0 Absence of Subfield #5
+                                                                                    1 Presence of Subfield #5
+I048/RE/RPC/SPARE        Subfield #6 : Spare Subfield                3  3 value     0 Absence of Subfield #6
+                                                                                    1 Presence of Subfield #6
+I048/RE/RPC/SPARE        Subfield #7 : Spare Subfield                2  2 value     0 Absence of Subfield #7
+                                                                                    1 Presence of Subfield #7
+I048/RE/RPC/FX           Subfield #8 : FX                            1  1 value     0 Absence of Subfield #8
+                                                                                    1 Presence of Subfield #8
+I048/RE/RPC/SCO/SCO      Score                                       8  1 unsigned  N/A
+I048/RE/RPC/SCR/SCR      Signal to Clutter Ratio                    16  1 umeasure  LSB = 0.1dB, Range = [0.0, 2550.0]dB
+I048/RE/RPC/RW/RW        Range Width                                16  1 umeasure  LSB = 0.00390625NM, Range = [0.0, 255.99609375]NM
+I048/RE/RPC/AR/AR        Ambiguous Range                            16  1 umeasure  LSB = 0.00390625NM, Range = [0.0, 255.99609375]NM
+I048/RE/ERR/RHO          Rho                                        24  1 umeasure  LSB = 0.00390625NM, Range = [0.0, 65535.99609375]NM
+
+UAP
+ 1 I048/010 Data Source Identifier                              M 2
+ 2 I048/140 Time of Day                                         M 3
+ 3 I048/020 Target Report Descriptor                            M 1+
+ 4 I048/040 Measured Position in Polar Co-ordinates             O 4
+ 5 I048/070 Mode-3/A Code in Octal Representation               O 2
+ 6 I048/090 Flight Level in Binary Representation               O 2
+ 7 I048/130 Radar Plot Characteristics                          O 1+
+FX -        Field Extension Indicator                           - -
+ 8 I048/220 Aircraft Address                                    O 3
+ 9 I048/240 Aircraft Identification                             O 6
+10 I048/250 Mode-S MB Data                                      O 1+8*n
+11 I048/161 Track Number                                        O 2
+12 I048/042 Calculated Position in Cartesian Co-ordinates       O 4
+13 I048/200 Calculated Track Velocity in Polar Co-ordinates     O 4
+14 I048/170 Track Status                                        O 1+
+FX -        Field Extension Indicator                           - -
+15 I048/210 Track Quality                                       O 4
+16 I048/030 Warning/Error Conditions and Target Classification  O 1+
+17 I048/080 Mode-3/A Code Confidence Indicator                  O 2
+18 I048/100 Mode-C Code and Code Confidence Indicator           O 4
+19 I048/110 Height Measured by a 3D Radar                       O 2
+20 I048/120 Radial Doppler Speed                                O 1+
+21 I048/230 Communications/ACAS Capability and Flight Status    O 2
+FX -        Field Extension Indicator                           - -
+22 I048/260 ACAS Resolution Advisory Report                     O 7
+23 I048/055 Mode-1 Code in Octal Representation                 O 1
+24 I048/050 Mode-2 Code in Octal Representation                 O 2
+25 I048/065 Mode-1 Code Confidence Indicator                    O 1
+26 I048/060 Mode-2 Code Confidence Indicator                    O 2
+27 I048/SP  Special Purpose Field                               O +1
+28 I048/RE  Reserved Expansion Field                            O +1
+FX -        Field Extension Indicator                           - -

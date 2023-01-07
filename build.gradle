@@ -1,0 +1,214 @@
+plugins {
+    id 'java-library'
+    id 'com.github.johnrengelman.shadow' version '7.1.2' apply false
+    id "com.github.ben-manes.versions" version "0.43.0"
+}
+
+defaultTasks 'clean', 'build'
+
+static def getBuildJavaVersion() {
+    def buildJavaVersion = System.getenv('BUILD_JAVA_VERSION') ?: JavaVersion.current().getMajorVersion()
+
+    if (buildJavaVersion.indexOf('.') > 0) {
+        buildJavaVersion = buildJavaVersion.substring(0, buildJavaVersion.indexOf('.'))
+    }
+
+    if (buildJavaVersion.indexOf('-') > 0) {
+        buildJavaVersion = buildJavaVersion.substring(0, buildJavaVersion.indexOf('-'))
+    }
+
+    Integer.parseInt(buildJavaVersion)
+}
+
+int buildJavaVersion = getBuildJavaVersion()
+
+def toolchainCompiler = javaToolchains.compilerFor {
+    languageVersion = JavaLanguageVersion.of(buildJavaVersion)
+}
+
+def toolchainLauncher = javaToolchains.launcherFor {
+    languageVersion = JavaLanguageVersion.of(buildJavaVersion)
+}
+
+def asterixGroup = "com.archeta.asterix"
+def asterixVersion = file('version.txt').text.trim()
+def junitVersion = '5.9.1'
+def mockitoVersion = '4.10.0'
+def jmhVersion = '1.36'
+def hdrHistogramVersion = '2.1.12'
+def mflVersion = '0.5.11'
+
+ext {
+    isReleaseVersion = !version.endsWith('-SNAPSHOT')
+    if (!project.hasProperty('repsyUsername')) {
+        repsyUsername = ''
+    }
+
+    if (!project.hasProperty('repsyPassword')) {
+        repsyPassword = ''
+    }
+}
+
+def projectPom = {
+    name = 'asterix'
+    packaging = 'pom'
+    // Optionally artifactId can be defined here
+    description = 'ASTERIX.'
+    url = 'http://www.archeta.com'
+}
+
+jar.enabled = false
+
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            failOnVersionConflict()
+        }
+    }
+
+    tasks.withType(JavaExec).configureEach {
+        javaLauncher.set(toolchainLauncher)
+    }
+}
+
+subprojects {
+    apply plugin: 'java-library'
+
+    dependencies {
+        testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+        testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(buildJavaVersion)
+        }
+    }
+
+    group = asterixGroup
+    version = asterixVersion
+
+    tasks.withType(Jar) {
+        enabled = true
+        includeEmptyDirs = false
+    }
+
+    tasks.withType(JavaCompile) {
+        if (buildJavaVersion >= 9) {
+            javaCompiler.set(toolchainCompiler)
+        }
+        else {
+            options.fork = true
+            def javaHome = toolchainCompiler.get().metadata.installationPath.asFile.toPath().toAbsolutePath()
+            options.forkOptions.javaHome = javaHome.toFile()
+        }
+        // Enable all warnings and treat them as errors.
+        options.compilerArgs.addAll(['-Xlint:all', '-Werror'])
+        // Suppress warnings about using Unsafe.
+        options.compilerArgs.add('-XDignore.symbol.file')
+        options.encoding = 'UTF-8'
+        options.deprecation = true
+    }
+
+    tasks.withType(Test) {
+        if (buildJavaVersion >= 9) {
+            jvmArgs('--add-opens', 'java.base/sun.nio.ch=ALL-UNNAMED')
+            jvmArgs('--add-opens', 'java.base/java.util.zip=ALL-UNNAMED')
+            jvmArgs('-Xmx2048M')
+        }
+
+        useJUnitPlatform {
+        }
+
+        testLogging {
+            for (def level : LogLevel.values()) {
+                def testLogging = get(level)
+                testLogging.exceptionFormat = 'full'
+                testLogging.events = ["FAILED", "STANDARD_OUT", "STANDARD_ERROR"]
+            }
+        }
+
+        javaLauncher.set(toolchainLauncher)
+    }
+
+    task testJar(type: Jar, dependsOn: testClasses) {
+        archiveClassifier.set("test-${project.archivesBaseName}")
+        from sourceSets.test.output
+    }
+
+    configurations {
+        tests
+    }
+
+    artifacts {
+        tests testJar
+    }
+}
+
+project(':asterix') {
+    apply plugin: 'maven-publish'
+    dependencies {
+        testImplementation "org.mockito:mockito-inline:${mockitoVersion}"
+        testImplementation "org.hdrhistogram:HdrHistogram:${hdrHistogramVersion}"
+    }
+
+    publishing {
+        publications {
+            asterix(MavenPublication) {
+                from components.java
+                pom(projectPom)
+            }
+        }
+
+        repositories {
+            maven {
+                url repsyUrl
+                credentials {
+                    username repsyUsername
+                    password repsyPassword
+                }
+            }
+        }
+    }
+}
+
+project(':asterix-benchmarks') {
+    apply plugin: 'com.github.johnrengelman.shadow'
+
+    dependencies {
+        implementation "org.openjdk.jmh:jmh-core:${jmhVersion}"
+        annotationProcessor "org.openjdk.jmh:jmh-generator-annprocess:${jmhVersion}"
+        implementation project(':asterix')
+    }
+
+    shadowJar {
+        archiveFileName = 'benchmarks.jar'
+        archiveClassifier.set('benchmarks')
+        manifest.attributes('Main-Class': 'org.openjdk.jmh.Main')
+    }
+
+    jar.finalizedBy shadowJar
+}
+
+project(':asterix-tools') {
+    apply plugin: 'com.github.johnrengelman.shadow'
+
+    dependencies {
+        implementation project(':asterix')
+        implementation "us.hebi.matlab.mat:mfl-core:${mflVersion}"
+    }
+
+    shadowJar {
+        archiveFileName = 'asterix-tools.jar'
+        archiveClassifier.set('asterix-tools')
+        manifest.attributes('Main-Class': 'com.archeta.asterix.tools.Main')
+    }
+
+    jar.finalizedBy shadowJar
+}

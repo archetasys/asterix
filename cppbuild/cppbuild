@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+
+#
+# Copyright (c) 2014-2023 Archeta All Rights Reserved.
+# Unauthorized copying of this file, via any medium is strictly prohibited.
+# Proprietary and confidential.
+#
+
+set -euo pipefail
+
+SOURCE_DIR="$(pwd)"
+export BUILD_DIR="${SOURCE_DIR}/cppbuild/Release"
+export BUILD_CONFIG=Release
+EXTRA_CMAKE_ARGS=""
+BUILD_PACKAGE=false
+
+ncpus=1
+case "$(uname)" in
+  Darwin* )
+    ncpus=$(sysctl -n hw.ncpu)
+    ;;
+  Linux*)
+    ncpus=$(lscpu -p | grep -c -E -v '^#')
+    ;;
+esac
+
+while [[ $# -gt 0 ]]
+do
+  option="${1}"
+  case ${option} in
+    --c-warnings-as-errors)
+      EXTRA_CMAKE_ARGS="${EXTRA_CMAKE_ARGS} -DC_WARNINGS_AS_ERRORS=ON"
+      echo "Enabling warnings as errors for c"
+      shift
+      ;;
+    --cxx-warnings-as-errors)
+      EXTRA_CMAKE_ARGS="${EXTRA_CMAKE_ARGS} -DCXX_WARNINGS_AS_ERRORS=ON"
+      echo "Enabling warnings as errors for c++"
+      shift
+      ;;
+    -d|--debug-build)
+      EXTRA_CMAKE_ARGS="${EXTRA_CMAKE_ARGS} -DCMAKE_BUILD_TYPE=Debug"
+      export BUILD_DIR="${SOURCE_DIR}/cppbuild/Debug"
+      export BUILD_CONFIG=Debug
+      echo "Enabling debug build"
+      shift
+      ;;
+    --relwithdebinfo-build)
+      EXTRA_CMAKE_ARGS="${EXTRA_CMAKE_ARGS} -DCMAKE_BUILD_TYPE=RelWithDebInfo"
+      export BUILD_DIR="${SOURCE_DIR}/cppbuild/RelWithDebInfo"
+      echo "Enabling release with debug info build"
+      shift
+      ;;
+    --no-parallel)
+      ncpus=1
+      echo "Disabling parallel build"
+      shift
+      ;;
+    --parallel-cpus)
+      ncpus=${2}
+      shift
+      shift
+      ;;
+    --no-tests)
+      EXTRA_CMAKE_ARGS="${EXTRA_CMAKE_ARGS} -ASTERIX_TESTS=OFF"
+      echo "Disabling all tests"
+      shift
+      ;;
+    --sanitise-build)
+      EXTRA_CMAKE_ARGS="${EXTRA_CMAKE_ARGS} -DSANITISE_BUILD=ON"
+      echo "Enabling sanitise build"
+      shift
+      ;;
+    --gradle-wrapper)
+      EXTRA_CMAKE_ARGS="${EXTRA_CMAKE_ARGS} -DGRADLE_WRAPPER=${2}"
+      echo "Setting -DGRADLE_WRAPPER=${2}"
+      shift
+      shift
+      ;;
+    --package)
+      BUILD_PACKAGE=true
+      shift
+      ;;
+    -h|--help)
+      echo "${0} [--c-warnings-as-errors] [--cxx-warnings-as-errors] [--debug-build] [--relwithdebinfo-build] [--sanitise-build] [--no-parallel] [--gradle-wrapper path_to_gradle] [--package] [--help]"
+      exit
+      ;;
+    *)
+      echo "Unknown option ${option}"
+      echo "Use --help for help"
+      exit
+      ;;
+  esac
+done
+
+echo "Will make with \"-j ${ncpus}\"."
+
+if [[ -d "${BUILD_DIR}" ]] ; then
+  echo "Build directory (${BUILD_DIR}) exists, removing."
+  rm -rf "${BUILD_DIR}"
+fi
+
+mkdir -p "${BUILD_DIR}"
+
+cd "${BUILD_DIR}" || exit
+cmake -G "CodeBlocks - Unix Makefiles" ${EXTRA_CMAKE_ARGS} "${SOURCE_DIR}"
+make clean
+make -j ${ncpus} all
+ctest -C ${BUILD_CONFIG} --output-on-failure
+
+if [ true = "${BUILD_PACKAGE}" ]
+then
+  (
+    cd "${BUILD_DIR}"
+    make package
+  )
+fi

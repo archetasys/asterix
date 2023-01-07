@@ -1,0 +1,249 @@
+#ASTERIX Category 034 Version 1.29 Transmission of Monoradar Service Messages
+
+I034/000/TYP             # Message Type
+I034/010/SAC             # System Area Code
+I034/010/SIC             # System Identification Code
+I034/020/SNB             # Sector Number
+I034/030/TOD             # Time of Day
+I034/041/ARS             # Antenna Rotation Speed
+I034/050/COM/NOGO        # Operational Release Status of the System
+I034/050/COM/RDPC        # Radar Data Processor Chain Selection Status
+I034/050/COM/RDPR        # Event to signal a reset/restart of the selected Radar Data Processor Chain
+I034/050/COM/OVLRDP      # Radar Data Processor Overload Indicator
+I034/050/COM/OVLXMT      # Transmission Subsystem Overload Status
+I034/050/COM/MSC         # Monitoring System Connected Status
+I034/050/COM/TSV         # Time Source Validity
+I034/050/PSR/ANT         # Selected antenna
+I034/050/PSR/CHAB        # Channel A/B selection status
+I034/050/PSR/OVL         # Overload condition
+I034/050/PSR/MSC         # Monitoring System Connected Status
+I034/050/SSR/ANT         # Selected antenna
+I034/050/SSR/CHAB        # Channel A/B selection status
+I034/050/SSR/OVL         # Overload condition
+I034/050/SSR/MSC         # Monitoring System Connected Status
+I034/050/MDS/ANT         # Selected antenna
+I034/050/MDS/CHAB        # Channel A/B selection status
+I034/050/MDS/OVLSUR      # Overload condition
+I034/050/MDS/MSC         # Monitoring System Connected Status
+I034/050/MDS/SCF         # Channel A/B selection status for Surveillance Co-ordination Function
+I034/050/MDS/DLF         # Channel A/B selection status for Data Link Function
+I034/050/MDS/OVLSCF      # Overload in Surveillance Co-ordination Function
+I034/050/MDS/OVLDLF      # Overload in Data Link Function
+I034/060/COM/REDRDP      # Reduction Steps in use for an overload of the RDP
+I034/060/COM/REDXMT      # Reduction Steps in use for an overload of the Transmission subsystem
+I034/060/PSR/POL         # Polarization in use by PSR
+I034/060/PSR/REDRAD      # Reduction Steps in use as result of an overload within the PSR subsystem
+I034/060/PSR/STC         # Sensitivity Time Control Map in use
+I034/060/SSR/REDRAD      # Reduction Steps in use as result of an overload within the SSR subsystem
+I034/060/MDS/REDRAD      # Reduction Steps in use as result of an overload within the Mode-S subsystem
+I034/060/MDS/CLU         # Cluster State
+I034/070/TYP             # Type of message counter
+I034/070/COUNT           # 11-bit counter value
+I034/090/RNG             # Range Error
+I034/090/AZM             # Azimuth Error
+I034/100/RHOST           # Rho start
+I034/100/RHOEND          # Rho end
+I034/100/THETAST         # Theta start
+I034/100/THETAEND        # Theta end
+I034/110/FILTER          # Filter Type
+I034/120/HGT             # Height
+I034/120/LAT             # Latitude
+I034/120/LON             # Longitude
+
+#ASTERIX Category 048 Version 1.30 Transmission of Monoroadar Target Reports
+
+I048/010/SAC             # System Area Code
+I048/010/SIC             # System Identification Code
+I048/020/TYP             # Type of detection
+I048/020/SIM             # Actual vs. Simulated target report
+I048/020/RDP             # Report from RDP Chain
+I048/020/SPI             # Special Position Identification
+I048/020/RAB             # Target Report Source
+I048/020/TST             # Real vs. Test target report
+I048/020/ERR             # Extended Range
+I048/020/XPP             # X-Pulse
+I048/020/ME              # Military Emergency
+I048/020/MI              # Military Identification
+I048/020/FOEFRI          # Mode-4 interrogation
+#I048/030/CODE            # Warning/error condition value
+I048/040/RHO             # Rho
+I048/040/THETA           # Theta
+I048/042/X               # X
+I048/042/Y               # Y
+I048/050/V               # Validated
+I048/050/G               # Garbled
+I048/050/L               # Reply
+I048/050/MODE2           # Mode-2 Code
+I048/055/V               # Validated
+I048/055/G               # Garbled
+I048/055/L               # Reply
+I048/055/MODE1           # Mode-1 Code
+#I048/060/QA4             # Quality pulse A4
+#I048/060/QA2             # Quality pulse A2
+#I048/060/QA1             # Quality pulse A1
+#I048/060/QB4             # Quality pulse B4
+#I048/060/QB2             # Quality pulse B2
+#I048/060/QB1             # Quality pulse B1
+#I048/060/QC4             # Quality pulse C4
+#I048/060/QC2             # Quality pulse C2
+#I048/060/QC1             # Quality pulse C1
+#I048/060/QD4             # Quality pulse D4
+#I048/060/QD2             # Quality pulse D2
+#I048/060/QD1             # Quality pulse D1
+#I048/065/QA4             # Quality pulse A4
+#I048/065/QA2             # Quality pulse A2
+#I048/065/QA1             # Quality pulse A1
+#I048/065/QB2             # Quality pulse B2
+#I048/065/QB1             # Quality pulse B1
+I048/070/V               # Validated
+I048/070/G               # Garbled
+I048/070/L               # Reply
+I048/070/MODE3A          # Mode-3/A Code
+#I048/080/QA4             # Quality pulse A4
+#I048/080/QA2             # Quality pulse A2
+#I048/080/QA1             # Quality pulse A1
+#I048/080/QB4             # Quality pulse B4
+#I048/080/QB2             # Quality pulse B2
+#I048/080/QB1             # Quality pulse B1
+#I048/080/QC4             # Quality pulse C4
+#I048/080/QC2             # Quality pulse C2
+#I048/080/QC1             # Quality pulse C1
+#I048/080/QD4             # Quality pulse D4
+#I048/080/QD2             # Quality pulse D2
+#I048/080/QD1             # Quality pulse D1
+I048/090/V               # Validated
+I048/090/G               # Garbled
+I048/090/FL              # Flight Level
+I048/100/V               # Validated
+I048/100/G               # Garbled
+I048/100/MODEC           # Mode-C reply in Gray notation
+#I048/100/QC1             # Quality pulse C1
+#I048/100/QA1             # Quality pulse A1
+#I048/100/QC2             # Quality pulse C2
+#I048/100/QA2             # Quality pulse A2
+#I048/100/QC4             # Quality pulse C4
+#I048/100/QA4             # Quality pulse A4
+#I048/100/QB1             # Quality pulse B1
+#I048/100/QD1             # Quality pulse D1
+#I048/100/QB2             # Quality pulse B2
+#I048/100/QD2             # Quality pulse D2
+#I048/100/QB4             # Quality pulse B4
+#I048/100/QD4             # Quality pulse D4
+#I048/110/3DH             # Height measured by 3D radar
+#I048/120/CAL/D           # Doppler speed valid vs. doubtful
+#I048/120/CAL/CAL         # Calculated Doppler Speed
+#I048/120/RDS/DOP         # Doppler Speed
+#I048/120/RDS/AMB         # Ambiguity Range
+#I048/120/RDS/FRQ         # Transmitter Frequency
+#I048/130/SRL/SRL         # SSR Plot Runlength
+#I048/130/SRR/SRR         # Number of received replies for (M)SSR
+#I048/130/SAM/SAM         # Amplitude of (M)SSR reply
+#I048/130/PRL/PRL         # Primary Plot Runlength
+#I048/130/PAM/PAM         # Amplitude of Primary Plot
+#I048/130/RPD/RPD         # Difference in Range between PSR and SSR plot
+#I048/130/APD/APD         # Difference in Azimuth between PSR and SSR plot
+I048/140/TOD             # Time of Day
+I048/161/TRN             # Track Number
+I048/170/CNF             # Confirmed vs. Tentative Track
+I048/170/RAD             # Type of Sensor(s) maintaining Track
+I048/170/DOU             # Signals level of confidence in plot to track association process
+I048/170/MAH             # Manoeuvre detection in Horizontal Sense
+I048/170/CDM             # Climbing/Descending Mode
+I048/170/TRE             # Signal for End of Track
+I048/170/GHO             # Ghost vs. true target
+I048/170/SUP             # Track maintained with track information from neighbouring Node B on the cluster or network
+I048/170/TCC             # Type of plot coordinate transformation mechanism
+I048/200/GSP             # Calculated Groundspeed
+I048/200/HDG             # Calculated Heading
+I048/210/SIGX            # Standard Deviation on the horizontal axis of the local grid system
+I048/210/SIGY            # Standard Deviation on the vertical axis of the local grid system
+I048/210/SIGV            # Standard Deviation on the groundspeed within the local grid system
+I048/210/SIGH            # Standard Deviation on the heading within the local grid system
+I048/220/ADDR            # Aircraft Address
+#I048/230/COM             # Communications capability of the transponder
+#I048/230/STAT            # Flight Status
+#I048/230/SI              # SI/II Transponder Capability
+#I048/230/MSSC            # Mode-S Specific Service Capability
+#I048/230/ARC             # Altitude reporting capability
+#I048/230/AIC             # Aircraft identification capability
+#I048/230/B1A             # BDS 1,0 bit 16
+#I048/230/B1B             # BDS 1,0 bits 37/40
+I048/240/IDENT           # Aircraft Identification
+#I048/250/MBDATA          # Mode S Comm B Message Data
+#I048/250/BDS1            # Comm B Data Buffer Store 1 Address
+#I048/250/BDS2            # Comm B Data Buffer Store 2 Address
+#I048/260/BDS30           # BDS Code 3,0
+#I048/260/ARA41           # Active Resolution Advisories bit 41
+#I048/260/ARA42           # Active Resolution Advisories bit 42
+#I048/260/ARA43           # Active Resolution Advisories bit 43
+#I048/260/ARA44           # Active Resolution Advisories bit 44
+#I048/260/ARA45           # Active Resolution Advisories bit 45
+#I048/260/ARA46           # Active Resolution Advisories bit 46
+#I048/260/ARA47           # Active Resolution Advisories bit 47
+#I048/260/ACAS3           # Reserved for ACAS III
+#I048/260/RAC55           # Resolution Advisory Complement bit 55
+#I048/260/RAC56           # Resolution Advisory Complement bit 56
+#I048/260/RAC57           # Resolution Advisory Complement bit 57
+#I048/260/RAC58           # Resolution Advisory Complement bit 58
+#I048/260/RAT             # RA Terminated
+#I048/260/MTE             # Multiple Threat Encounter
+#I048/260/TTI             # Threat Type Indicator
+#I048/260/TID             # Threat Identity Data
+#I048/RE/MD5/SUM/M5       # Mode-5 interrogation
+#I048/RE/MD5/SUM/ID       # Authenticated Mode-5 ID reply
+#I048/RE/MD5/SUM/DA       # Authenticated Mode-5 Data reply or report (i.e any valid Mode-5 reply type other than ID
+#I048/RE/MD5/SUM/M1       # Mode-1 code from Mode-5 reply
+#I048/RE/MD5/SUM/M2       # Mode-2 code from Mode-5 reply
+#I048/RE/MD5/SUM/M3       # Mode-3 code from Mode-5 reply
+#I048/RE/MD5/SUM/MC       # Mode-C altitude from Mode-5 reply
+#I048/RE/MD5/PMN/PIN      # PIN Code
+#I048/RE/MD5/PMN/NAV      # Validity of National Origin
+#I048/RE/MD5/PMN/NAT      # National Origin
+#I048/RE/MD5/PMN/MIS      # Mission Code
+#I048/RE/MD5/POS/LAT      # Latitude
+#I048/RE/MD5/POS/LON      # Longitude
+#I048/RE/MD5/GA/RES       # Resolution with which the GNSS-derived Altitude (GA) is reported
+#I048/RE/MD5/GA/ALT       # GNSS-derived Altitude of target
+#I048/RE/MD5/EM1/V        # Validated
+#I048/RE/MD5/EM1/G        # Garbled
+#I048/RE/MD5/EM1/L        # Reply
+#I048/RE/MD5/EM1/MODE1    # Extended Mode-1 Code in octal representation
+#I048/RE/MD5/TOS/TOS      # Time Offset
+#I048/RE/MD5/XP/XP        # X-pulse from Mode-5 PIN reply/report
+#I048/RE/MD5/XP/X5        # X-pulse from Mode-5 Data reply or report
+#I048/RE/MD5/XP/XC        # X-pulse from Mode-C reply
+#I048/RE/MD5/XP/X3        # X-pulse from Mode-3/A reply
+#I048/RE/MD5/XP/X2        # X-pulse from Mode-2 reply
+#I048/RE/MD5/XP/X1        # X-pulse from Mode-1 reply
+#I048/RE/M5N/SUM/M5       # Mode-5 interrogation
+#I048/RE/M5N/SUM/ID       # Authenticated Mode-5 ID reply
+#I048/RE/M5N/SUM/DA       # Authenticated Mode-5 Data reply or report (i.e any valid Mode-5 reply type other than ID
+#I048/RE/M5N/SUM/M1       # Mode-1 code from Mode-5 reply
+#I048/RE/M5N/SUM/M2       # Mode-2 code from Mode-5 reply
+#I048/RE/M5N/SUM/M3       # Mode-3 code from Mode-5 reply
+#I048/RE/M5N/SUM/MC       # Mode-C altitude from Mode-5 reply
+#I048/RE/M5N/PMN/PIN      # PIN Code
+#I048/RE/M5N/PMN/NOV      # Validity of National Origin
+#I048/RE/M5N/PMN/NO       # National Origin
+#I048/RE/M5N/POS/LAT      # Latitude
+#I048/RE/M5N/POS/LON      # Longitude
+#I048/RE/M5N/GA/RES       # Resolution with which the GNSS-derived Altitude (GA) is reported
+#I048/RE/M5N/GA/ALT       # GNSS-derived Altitude of target
+#I048/RE/M5N/EM1/V        # Validated
+#I048/RE/M5N/EM1/G        # Garbled
+#I048/RE/M5N/EM1/L        # Reply
+#I048/RE/M5N/EM1/MODE1    # Extended Mode-1 Code in octal representation
+#I048/RE/M5N/TOS/TOS      # Time Offset
+#I048/RE/M5N/XP/XP        # X-pulse from Mode-5 PIN reply/report
+#I048/RE/M5N/XP/X5        # X-pulse from Mode-5 Data reply or report
+#I048/RE/M5N/XP/XC        # X-pulse from Mode-C reply
+#I048/RE/M5N/XP/X3        # X-pulse from Mode-3/A reply
+#I048/RE/M5N/XP/X2        # X-pulse from Mode-2 reply
+#I048/RE/M5N/XP/X1        # X-pulse from Mode-1 reply
+#I048/RE/M5N/FOM/FOM      # Figure of Merit Position Accuracy as extracted and provided by a Mode-5 transponder
+#I048/RE/M4E/FOEFRI       # Mode-4 interrogation
+#I048/RE/RPC/SCO/SCO      # Score
+#I048/RE/RPC/SCR/SCR      # Signal to Clutter Ratio
+#I048/RE/RPC/RW/RW        # Range Width
+#I048/RE/RPC/AR/AR        # Ambiguous Range
+#I048/RE/ERR/RHO          # Rho
