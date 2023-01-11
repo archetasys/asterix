@@ -7,19 +7,19 @@
 package com.archeta.asterix;
 
 /**
- * Callback interface for handling a decoded {@link Record} when decoding from a file.
+ * Callback interface for handling a decoded {@link DataRecord} when decoding from a file.
  */
 @FunctionalInterface
-public interface RecordConsumer {
+public interface DataRecordConsumer {
     /**
-     * Callback to notify of a decoded {@link Record} when decoding from a file
+     * Callback to notify of a decoded {@link DataRecord} when decoding from a file
      *
-     * @param record       the decoded {@link Record}
+     * @param record       the decoded {@link DataRecord}
      * @param recordNumber the record number
      * @param blockNumber  the data block number
      * @param packetNumber the packet number
      * @param timestamp    the timestamp when the packet was captured in microseconds since
      *                     January 1, 1970 00:00:00 GMT
      */
-    void accept(Record record, int recordNumber, int blockNumber, int packetNumber, long timestamp);
+    void accept(DataRecord record, int recordNumber, int blockNumber, int packetNumber, long timestamp);
 }

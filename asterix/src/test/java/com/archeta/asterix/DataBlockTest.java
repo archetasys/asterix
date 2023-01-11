@@ -26,7 +26,7 @@ final class DataBlockTest {
     @Test
     void shouldExpandWhenAddRecord() {
         final DataBlock block = new DataBlock();
-        final List<Record> records = new ArrayList<>();
+        final List<DataRecord> records = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             records.add(block.addRecord());
             assertEmptyRecord(records.get(i));
@@ -40,7 +40,7 @@ final class DataBlockTest {
             assertSame(records.get(i), block.getRecord(i));
         }
 
-        final Record record = block.addRecord();
+        final DataRecord record = block.addRecord();
         records.add(record);
 
         assertEmptyRecord(record);
@@ -74,7 +74,7 @@ final class DataBlockTest {
         assertEquals(2, block.getCategoryNumber());
     }
 
-    private static void assertEmptyRecord(final Record record) {
+    private static void assertEmptyRecord(final DataRecord record) {
         assertEquals(0L, record.getCategoryId());
         assertEquals(0, record.getCategoryNumber());
         assertEquals(0, record.getLength());

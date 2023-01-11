@@ -12,7 +12,7 @@ import java.util.Arrays;
 import static com.archeta.asterix.ASTERIXConstants.*;
 import static com.archeta.asterix.ASTERIXIds.getCategoryNumberString;
 
-public final class Record {
+public final class DataRecord {
     private static final String BORDER = "-----------------------------------------------------------------------------";
     private static final String LF = System.lineSeparator();
 
@@ -24,11 +24,11 @@ public final class Record {
     private int dataItemsNumOctets = 0;
     private long fspec = 0L;
 
-    Record() {
+    DataRecord() {
         Arrays.fill(fspecIndex2Offsets, -1);
     }
 
-    private Record(final Record other) {
+    private DataRecord(final DataRecord other) {
         System.arraycopy(other.fspecIndex2Offsets, 0, fspecIndex2Offsets, 0, FSPEC_MAX_LENGTH);
         categoryId = other.categoryId;
         fspecOffset = CAT_LEN_NUM_OCTETS;
@@ -71,8 +71,8 @@ public final class Record {
         return fspecIndex2Offsets[fspecIndex];
     }
 
-    public Record copy() {
-        return new Record(this);
+    public DataRecord copy() {
+        return new DataRecord(this);
     }
 
     public Buffer getData(final Buffer buffer) {

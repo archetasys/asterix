@@ -99,7 +99,7 @@ public final class ASTERIXParser {
         this.categories = categories;
     }
 
-    public int parsePCAP(final File pcapFile, final DataBlockConsumer blockConsumer, final RecordConsumer recordConsumer) throws IOException {
+    public int parsePCAP(final File pcapFile, final DataBlockConsumer blockConsumer, final DataRecordConsumer recordConsumer) throws IOException {
         return PcapParser.parse(pcapFile, new PacketHandlerImpl(blockConsumer, recordConsumer));
     }
 
@@ -109,7 +109,7 @@ public final class ASTERIXParser {
             final int length,
             final DataBlock block,
             final Consumer<DataBlock> blockConsumer,
-            final Consumer<Record> recordConsumer) {
+            final Consumer<DataRecord> recordConsumer) {
 
         if (offset < 0) {
             return ERR_OFFSET;
@@ -204,7 +204,7 @@ public final class ASTERIXParser {
     }
 
     public void appendRecord(
-            final Record record,
+            final DataRecord record,
             final boolean withHeader,
             final boolean line,
             final boolean valueOnly,
@@ -222,11 +222,11 @@ public final class ASTERIXParser {
         return null != category && category.id == categoryId;
     }
 
-    public boolean hasDataItem(final long dataItemId, final Record record) {
+    public boolean hasDataItem(final long dataItemId, final DataRecord record) {
         return findDataItemOffset(dataItemId, record) != -1;
     }
 
-    public int findDataItemOffset(final long dataItemId, final Record record) {
+    public int findDataItemOffset(final long dataItemId, final DataRecord record) {
         final ASTERIXCategory category = findCategory(dataItemId, record.getCategoryId());
         final int fspecIndex;
         if (null == category || (fspecIndex = category.uap.findDataItemFSPECIndex(dataItemId)) < 0) {
@@ -236,19 +236,19 @@ public final class ASTERIXParser {
         return record.getDataItemOffset(fspecIndex);
     }
 
-    public boolean hasDataField(final long bitsFieldId, final Record record) {
+    public boolean hasDataField(final long bitsFieldId, final DataRecord record) {
         return hasDataField(bitsFieldId, 0, record);
     }
 
-    public boolean hasDataField(final long bitsFieldId, final int repIndex, final Record record) {
+    public boolean hasDataField(final long bitsFieldId, final int repIndex, final DataRecord record) {
         return findDataFieldOffset(bitsFieldId, repIndex, record) != -1;
     }
 
-    public int findDataFieldOffset(final long bitsFieldId, final Record record) {
+    public int findDataFieldOffset(final long bitsFieldId, final DataRecord record) {
         return findDataFieldOffset(bitsFieldId, 0, record);
     }
 
-    public int findDataFieldOffset(final long bitsFieldId, final int repIndex, final Record record) {
+    public int findDataFieldOffset(final long bitsFieldId, final int repIndex, final DataRecord record) {
         final ASTERIXCategory category = findCategory(bitsFieldId, record.getCategoryId());
         if (null == category) {
             return -1;
@@ -257,63 +257,63 @@ public final class ASTERIXParser {
         return category.uap.findDataFieldOffset(bitsFieldId, repIndex, record);
     }
 
-    public boolean getBoolean(final long bitsFieldId, final Record record) {
+    public boolean getBoolean(final long bitsFieldId, final DataRecord record) {
         return getBitsField(bitsFieldId, record.getCategoryId()).getBoolean(record.getData(), findDataFieldOffset(bitsFieldId, record));
     }
 
-    public boolean getBoolean(final long bitsFieldId, final int dataFieldOffset, final Record record) {
+    public boolean getBoolean(final long bitsFieldId, final int dataFieldOffset, final DataRecord record) {
         return getBitsField(bitsFieldId, record.getCategoryId()).getBoolean(record.getData(), dataFieldOffset);
     }
 
-    public byte getByte(final long bitsFieldId, final Record record) {
+    public byte getByte(final long bitsFieldId, final DataRecord record) {
         return getBitsField(bitsFieldId, record.getCategoryId()).getByte(record.getData(), findDataFieldOffset(bitsFieldId, record));
     }
 
-    public byte getByte(final long bitsFieldId, final int dataFieldOffset, final Record record) {
+    public byte getByte(final long bitsFieldId, final int dataFieldOffset, final DataRecord record) {
         return getBitsField(bitsFieldId, record.getCategoryId()).getByte(record.getData(), dataFieldOffset);
     }
 
-    public long getLong(final long bitsFieldId, final Record record) {
+    public long getLong(final long bitsFieldId, final DataRecord record) {
         return getBitsField(bitsFieldId, record.getCategoryId()).getLong(record.getData(), findDataFieldOffset(bitsFieldId, record));
     }
 
-    public long getLong(final long bitsFieldId, final int dataFieldOffset, final Record record) {
+    public long getLong(final long bitsFieldId, final int dataFieldOffset, final DataRecord record) {
         return getBitsField(bitsFieldId, record.getCategoryId()).getLong(record.getData(), dataFieldOffset);
     }
 
-    public double getDouble(final long bitsFieldId, final Record record) {
+    public double getDouble(final long bitsFieldId, final DataRecord record) {
         return getBitsField(bitsFieldId, record.getCategoryId()).getDouble(record.getData(), findDataFieldOffset(bitsFieldId, record));
     }
 
-    public double getDouble(final long bitsFieldId, final int dataFieldOffset, final Record record) {
+    public double getDouble(final long bitsFieldId, final int dataFieldOffset, final DataRecord record) {
         return getBitsField(bitsFieldId, record.getCategoryId()).getDouble(record.getData(), dataFieldOffset);
     }
 
-    public BitsValue getBitsValue(final long bitsFieldId, final Record record) {
+    public BitsValue getBitsValue(final long bitsFieldId, final DataRecord record) {
         return getBitsField(bitsFieldId, record.getCategoryId()).getBitsValue(record.getData(), findDataFieldOffset(bitsFieldId, record));
     }
 
-    public BitsValue getBitsValue(final long bitsFieldId, final int dataFieldOffset, final Record record) {
+    public BitsValue getBitsValue(final long bitsFieldId, final int dataFieldOffset, final DataRecord record) {
         return getBitsField(bitsFieldId, record.getCategoryId()).getBitsValue(record.getData(), dataFieldOffset);
     }
 
-    public String getString(final long bitsFieldId, final Record record) {
+    public String getString(final long bitsFieldId, final DataRecord record) {
         return getBitsField(bitsFieldId, record.getCategoryId()).getString(record.getData(), findDataFieldOffset(bitsFieldId, record));
     }
 
-    public String getString(final long bitsFieldId, final int dataFieldOffset, final Record record) {
+    public String getString(final long bitsFieldId, final int dataFieldOffset, final DataRecord record) {
         return getBitsField(bitsFieldId, record.getCategoryId()).getString(record.getData(), dataFieldOffset);
     }
 
-    public Appendable getString(final long bitsFieldId, final Record record, final Appendable out) throws IOException {
+    public Appendable getString(final long bitsFieldId, final DataRecord record, final Appendable out) throws IOException {
         return getBitsField(bitsFieldId, record.getCategoryId()).getString(record.getData(), findDataFieldOffset(bitsFieldId, record), out);
     }
 
-    public Appendable getString(final long bitsFieldId, final int dataFieldOffset, final Record record, final Appendable out) throws IOException {
+    public Appendable getString(final long bitsFieldId, final int dataFieldOffset, final DataRecord record, final Appendable out) throws IOException {
         return getBitsField(bitsFieldId, record.getCategoryId()).getString(record.getData(), dataFieldOffset, out);
     }
 
-    public int getAllDataItemFields(final long dataItemId, final Record record, final DataFieldValueConsumer consumer) {
+    public int getAllDataItemFields(final long dataItemId, final DataRecord record, final DataFieldValueConsumer consumer) {
         final long categoryId = record.getCategoryId();
         final ASTERIXCategory category = categories[getCategoryNumber(categoryId)];
         if (null == category || category.id != categoryId) {
@@ -333,7 +333,7 @@ public final class ASTERIXParser {
         return item.format.getAllDataFields(record.getData(), offset, item, null, null, 0, consumer);
     }
 
-    public int getAllDataFields(final Record record, final DataFieldValueConsumer consumer) {
+    public int getAllDataFields(final DataRecord record, final DataFieldValueConsumer consumer) {
         final long categoryId = record.getCategoryId();
         final ASTERIXCategory cat = categories[getCategoryNumber(categoryId)];
         if (null == cat || cat.id != categoryId) {
@@ -390,13 +390,13 @@ public final class ASTERIXParser {
     private final class PacketHandlerImpl implements PcapParser.PacketHandler {
         private final DataBlock block = new DataBlock();
         private final Consumer<DataBlock> blockConsumer;
-        private final Consumer<Record> recordConsumer;
+        private final Consumer<DataRecord> recordConsumer;
         private int blockNumber = 0;
         private int recordNumber = 0;
         private int packetNumber = 0;
         private long ts = 0L;
 
-        private PacketHandlerImpl(final DataBlockConsumer blockConsumer, final RecordConsumer recordConsumer) {
+        private PacketHandlerImpl(final DataBlockConsumer blockConsumer, final DataRecordConsumer recordConsumer) {
             this.blockConsumer = null == blockConsumer ? null : (b) -> {
                 blockNumber++;
                 blockConsumer.accept(b, blockNumber, packetNumber, ts);

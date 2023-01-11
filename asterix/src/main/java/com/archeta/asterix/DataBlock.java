@@ -12,15 +12,15 @@ public final class DataBlock {
     private static final int INITIAL_CAPACITY = 10;
     private static final int MAX_CAPACITY = Integer.MAX_VALUE - 8;
 
-    private Record[] records;
+    private DataRecord[] records;
     private int numRecords = 0;
     private long categoryId = NULL_CATEGORY_ID;
     private int length = 0;
 
     public DataBlock() {
-        records = new Record[INITIAL_CAPACITY];
+        records = new DataRecord[INITIAL_CAPACITY];
         for (int i = 0; i < INITIAL_CAPACITY; i++) {
-            records[i] = new Record();
+            records[i] = new DataRecord();
         }
     }
 
@@ -44,7 +44,7 @@ public final class DataBlock {
         return numRecords;
     }
 
-    public Record getRecord(final int index) {
+    public DataRecord getRecord(final int index) {
         return records[index];
     }
 
@@ -54,7 +54,7 @@ public final class DataBlock {
         numRecords = 0;
     }
 
-    Record addRecord() {
+    DataRecord addRecord() {
         ensureCapacity(numRecords + 1);
         return records[numRecords++];
     }
@@ -74,10 +74,10 @@ public final class DataBlock {
                 }
             }
 
-            final Record[] newRecords = new Record[newCapacity];
+            final DataRecord[] newRecords = new DataRecord[newCapacity];
             System.arraycopy(records, 0, newRecords, 0, currentCapacity);
             for (int i = currentCapacity; i < newCapacity; i++) {
-                newRecords[i] = new Record();
+                newRecords[i] = new DataRecord();
             }
 
             records = newRecords;

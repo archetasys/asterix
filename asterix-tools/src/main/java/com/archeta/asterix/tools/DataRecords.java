@@ -8,16 +8,16 @@ package com.archeta.asterix.tools;
 
 import com.archeta.asterix.ASTERIXParser;
 import com.archeta.asterix.DataBlockConsumer;
-import com.archeta.asterix.RecordConsumer;
+import com.archeta.asterix.DataRecordConsumer;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicLong;
 
-final class Records {
+final class DataRecords {
     private static final long MISSING_CATEGORY_ID = 0;
 
-    static Records parse(final File infile, final LongList categoryIds) throws IOException {
+    static DataRecords parse(final File infile, final LongList categoryIds) throws IOException {
         final AtomicLong packetCount = new AtomicLong();
         final AtomicLong blockCount = new AtomicLong();
         final AtomicLong recordCount = new AtomicLong();
@@ -29,12 +29,12 @@ final class Records {
             categoryIdsMap.put(categoryId, categoryId);
         };
 
-        final RecordConsumer recordConsumer = (r, n, b, p, t) -> recordCount.set(n);
+        final DataRecordConsumer recordConsumer = (r, n, b, p, t) -> recordCount.set(n);
         final ASTERIXParser parser = ASTERIXParser.create(categoryIds.copyElements());
         final long t0 = System.nanoTime();
         parser.parsePCAP(infile, blockConsumer, recordConsumer);
         final long e0 = System.nanoTime() - t0;
-        return new Records(packetCount.get(), blockCount.get(), recordCount.get(), LongList.fromKeys(categoryIdsMap.build()), e0);
+        return new DataRecords(packetCount.get(), blockCount.get(), recordCount.get(), LongList.fromKeys(categoryIdsMap.build()), e0);
     }
 
     final long packetCount;
@@ -43,7 +43,7 @@ final class Records {
     final long parseDurationNs;
     final LongList categoryIds;
 
-    private Records(
+    private DataRecords(
             final long packetCount,
             final long blockCount,
             final long recordCount,

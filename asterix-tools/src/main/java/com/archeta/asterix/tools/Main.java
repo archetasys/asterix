@@ -291,7 +291,7 @@ public final class Main {
         final FileWriter writer = null == outfile ? null : new FileWriter(outfile);
         final Appendable output = null == outfile ? System.out : new BufferedWriter(writer);
         final DataBlock block = new DataBlock();
-        final RecordConsumer recordConsumer = (r, n, b, p, t) -> {
+        final DataRecordConsumer recordConsumer = (r, n, b, p, t) -> {
             try {
                 parser.appendRecord(r, withHeader, line, valueOnly, output);
             } catch (final IOException ex) {
@@ -317,7 +317,7 @@ public final class Main {
 
         System.out.println("Parsing file " + infile);
 
-        final Records records = Records.parse(infile, filteredDataFields.categoryIds);
+        final DataRecords records = DataRecords.parse(infile, filteredDataFields.categoryIds);
         final LongList categoryIds = records.categoryIds;
         final int numRecords = (int) records.recordCount;
         final int numCategories = categoryIds.size();
@@ -340,7 +340,7 @@ public final class Main {
 
         final ASTERIXParser parser = ASTERIXParser.create(categoryIds.copyElements());
         final DataFields[] dataFieldsByCategoryNumber = DataFields.from(filteredDataFields, numRecords, parser);
-        final RecordConsumer recordConsumer = (r, n, b, p, t) -> {
+        final DataRecordConsumer recordConsumer = (r, n, b, p, t) -> {
             final int catno = ASTERIXIds.getCategoryNumber(r.getCategoryId());
             final DataFields dataFields = dataFieldsByCategoryNumber[catno];
             if (dataFields != null) {

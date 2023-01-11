@@ -26,7 +26,7 @@ public class ASTERIXCategory048ParserBenchmark {
     private DataBlock block;
     private ASTERIXParser parser;
     private Buffer buf;
-    private Record record;
+    private DataRecord record;
     private int offset;
     private int length;
     private int dataFieldOffset;

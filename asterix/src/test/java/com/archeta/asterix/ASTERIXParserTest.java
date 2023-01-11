@@ -180,7 +180,7 @@ final class ASTERIXParserTest {
         final Appendable output = new StringBuilder(1024);
         final DataFieldValueConsumer consumer = new DefaultDataFieldValueConsumer(output, false, false);
         final int numRecords = block.getNumRecords();
-        Record record;
+        DataRecord record;
         int length;
         for (int i = 0; i < numRecords; i++) {
             record = block.getRecord(i);
@@ -221,7 +221,7 @@ final class ASTERIXParserTest {
         assertEquals(72, block.getLength());
         assertEquals(1, block.getNumRecords());
 
-        final Record record = block.getRecord(0);
+        final DataRecord record = block.getRecord(0);
         assertEquals(cat048, record.getCategoryId());
         assertEquals(69, record.getLength());
         assertEquals(3, record.getFSPECOffset());
@@ -231,7 +231,7 @@ final class ASTERIXParserTest {
         record.getData(buffer);
         assertTrue(Buffers.equals(CAT048_RECORD, 0, buffer, 0, 72));
 
-        final Record copy = record.copy();
+        final DataRecord copy = record.copy();
         assertNotSame(record.getData(), copy.getData());
         assertEquals(cat048, copy.getCategoryId());
         assertEquals(69, copy.getLength());
@@ -330,7 +330,7 @@ final class ASTERIXParserTest {
         assertEquals(14, block.getLength());
         assertEquals(1, block.getNumRecords());
 
-        final Record record = block.getRecord(0);
+        final DataRecord record = block.getRecord(0);
         assertEquals(cat034, record.getCategoryId());
         assertEquals(11, record.getLength());
         assertEquals(3, record.getFSPECOffset());

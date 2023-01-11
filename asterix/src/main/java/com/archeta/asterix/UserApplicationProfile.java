@@ -239,7 +239,7 @@ final class UserApplicationProfile {
         }
     }
 
-    int findDataFieldOffset(final long bitsFieldId, final int repIndex, final Record record) {
+    int findDataFieldOffset(final long bitsFieldId, final int repIndex, final DataRecord record) {
         if (getCategoryId(bitsFieldId) != categoryId) {
             return -1;
         }
@@ -328,7 +328,7 @@ final class UserApplicationProfile {
         }
     }
 
-    int parse(final Buffer buffer, final int blockOffset, final int end, final DataBlock block, final Consumer<Record> consumer) {
+    int parse(final Buffer buffer, final int blockOffset, final int end, final DataBlock block, final Consumer<DataRecord> consumer) {
         if (blockOffset < 0 || end < 0) {
             return ERR_OFFSET;
         }
@@ -390,7 +390,7 @@ final class UserApplicationProfile {
             // Initialize the Data Item offset to begin parsing each Data Item.
             int dataItemOffset = fspecOffset + fspecNumOctets;
 
-            final Record record;
+            final DataRecord record;
             if (block != null) {
                 record = block.addRecord();
                 record.reset(categoryId, buffer, fspecOffset, fspecNumOctets, fspecMaxNumOctets, fspec);
