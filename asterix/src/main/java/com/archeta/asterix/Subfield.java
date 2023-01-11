@@ -26,16 +26,11 @@ public final class Subfield {
         checkPrimarySubfieldNumOctets(numOctets, id);
         checkName(name, id, true);
         checkSubfieldFormat(format);
+        checkNumber(number, name, id);
         if (Strings.isBlank(description)) {
             throw new ASTERIXFormatException(Fmt.sprintf(
                     "%s description must not null nor blank",
                     getDataFieldIdString(id)));
-        }
-
-        if (((number - 1) & 0x7) == 7) {
-            throw new ASTERIXFormatException(Fmt.sprintf(
-                    "%s number must not multiple of 8, number=%s",
-                    getDataFieldIdString(id, name), number));
         }
 
         return new Subfield(number, name, description, format);
@@ -44,25 +39,22 @@ public final class Subfield {
     static Subfield sp(final long id, final int numOctets, final int number) {
         checkCompoundFormatId(id);
         checkPrimarySubfieldNumOctets(numOctets, id);
-        if (((number - 1) & 0x7) == 7) {
-            throw new ASTERIXFormatException(Fmt.sprintf(
-                    "%s spare subfield number must not multiple of 8, number=%s",
-                    getDataFieldIdString(id), number));
-        }
-
+        checkNumber(number, SPARE, id);
         return new Subfield(number, SPARE, SPARE_DESCRIPTION, empty(id));
     }
 
-    static Subfield fx(final long id, final int numOctets, final int number) {
+    static Subfield fx(final long id, final int numOctets) {
         checkCompoundFormatId(id);
         checkPrimarySubfieldNumOctets(numOctets, id);
-        if (((number - 1) & 0x7) != 7) {
-            throw new ASTERIXFormatException(Fmt.sprintf(
-                    "%s FX number must be multiple of 8, number=%s",
-                    getDataFieldIdString(id), number));
-        }
+        return new Subfield(0, FX, FX, empty(id));
+    }
 
-        return new Subfield(number, FX, FX, empty(id));
+    private static void checkNumber(final int number, final String name, final long id) {
+        if (number < 0) {
+            throw new ASTERIXFormatException(Fmt.sprintf(
+                    "%s number must not negative, number=%s",
+                    getDataFieldIdString(id, name), number));
+        }
     }
 
     public final int number;

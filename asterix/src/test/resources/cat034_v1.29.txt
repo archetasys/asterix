@@ -45,219 +45,219 @@ Data Item I034/RE Reserved Expansion Field
   Format    : Explicit format
 
 ==== Bits:
-I034/000/TYP             Message Type                                8  1 values    0 Not defined; never used
-                                                                                    1 North Marker Message
-                                                                                    2 Sector Crossing Message
-                                                                                    3 Geographical Filtering Message
-                                                                                    4 Jamming Strobe Message
-                                                                                    5 Solar Storm Message
-                                                                                    6 SSR Jamming Strobe Message
-                                                                                    7 Mode S Jamming Strobe Message
-I034/010/SAC             System Area Code                           16  9 unsigned  N/A
-I034/010/SIC             System Identification Code                  8  1 unsigned  N/A
-I034/020/SNB             Sector Number                               8  1 umeasure  LSB = 1.40625°, Range = [0.0, 358.59375]°
-I034/030/TOD             Time of Day                                24  1 umeasure  LSB = 0.0078125s, Range = [0.0, 131071.9921875]s
-I034/041/ARS             Antenna Rotation Speed                     16  1 umeasure  LSB = 0.0078125s, Range = [0.0, 511.9921875]s
-I034/050/COM             Subfield #1 : Common Part                   8  8 value     0 Absence of Subfield #1
-                                                                                    1 Presence of Subfield #1
-I034/050/SPARE           Subfield #2 : Spare Subfield                7  7 value     0 Absence of Subfield #2
-                                                                                    1 Presence of Subfield #2
-I034/050/SPARE           Subfield #3 : Spare Subfield                6  6 value     0 Absence of Subfield #3
-                                                                                    1 Presence of Subfield #3
-I034/050/PSR             Subfield #4 : Specific Status Informa...    5  5 value     0 Absence of Subfield #4
-                                                                                    1 Presence of Subfield #4
-I034/050/SSR             Subfield #5 : Specific Status Informa...    4  4 value     0 Absence of Subfield #5
-                                                                                    1 Presence of Subfield #5
-I034/050/MDS             Subfield #6 : Specific Status Informa...    3  3 value     0 Absence of Subfield #6
-                                                                                    1 Presence of Subfield #6
-I034/050/SPARE           Subfield #7 : Spare Subfield                2  2 value     0 Absence of Subfield #7
-                                                                                    1 Presence of Subfield #7
-I034/050/FX              Subfield #8 : FX                            1  1 value     0 Absence of Subfield #8
-                                                                                    1 Presence of Subfield #8
-I034/050/COM/NOGO        Operational Release Status of the System    8  8 value     0 System is released for operational use
-                                                                                    1 Operational use of System is inhibite...
-I034/050/COM/RDPC        Radar Data Processor Chain Selection ...    7  7 value     0 RDPC-1 selected
-                                                                                    1 RDPC-2 selected
-I034/050/COM/RDPR        Event to signal a reset/restart of th...    6  6 value     0 Default Situation
-                                                                                    1 Reset of RDPC
-I034/050/COM/OVLRDP      Radar Data Processor Overload Indicator     5  5 value     0 Default, no overload
-                                                                                    1 Overload in RDP
-I034/050/COM/OVLXMT      Transmission Subsystem Overload Status      4  4 value     0 Default, no overload
-                                                                                    1 Overload in Transmission Subsystem
-I034/050/COM/MSC         Monitoring System Connected Status          3  3 value     0 Monitoring System connected
-                                                                                    1 Monitoring System disconnected
-I034/050/COM/TSV         Time Source Validity                        2  2 value     0 Valid
-                                                                                    1 Invalid
-I034/050/COM/SPARE       Spare bit set to 0                          1  1 spare     Spare bit set to 0
-I034/050/PSR/ANT         Selected antenna                            8  8 value     0 Antenna 1
-                                                                                    1 Antenna 2
-I034/050/PSR/CHAB        Channel A/B selection status                7  6 values    0 No channel selected
-                                                                                    1 Channel A only selected
-                                                                                    2 Channel B only selected
-                                                                                    3 Diversity mode; Channel A and B selected
-I034/050/PSR/OVL         Overload condition                          5  5 value     0 No overload
-                                                                                    1 Overload
-I034/050/PSR/MSC         Monitoring System Connected Status          4  4 value     0 Monitoring System connected
-                                                                                    1 Monitoring System disconnected
-I034/050/PSR/SPARE       Spare bit set to 0                          3  3 spare     Spare bit set to 0
-I034/050/PSR/SPARE       Spare bit set to 0                          2  2 spare     Spare bit set to 0
-I034/050/PSR/SPARE       Spare bit set to 0                          1  1 spare     Spare bit set to 0
-I034/050/SSR/ANT         Selected antenna                            8  8 value     0 Antenna 1
-                                                                                    1 Antenna 2
-I034/050/SSR/CHAB        Channel A/B selection status                7  6 values    0 No channel selected
-                                                                                    1 Channel A only selected
-                                                                                    2 Channel B only selected
-                                                                                    3 Invalid combination
-I034/050/SSR/OVL         Overload condition                          5  5 value     0 No overload
-                                                                                    1 Overload
-I034/050/SSR/MSC         Monitoring System Connected Status          4  4 value     0 Monitoring System connected
-                                                                                    1 Monitoring System disconnected
-I034/050/SSR/SPARE       Spare bit set to 0                          3  3 spare     Spare bit set to 0
-I034/050/SSR/SPARE       Spare bit set to 0                          2  2 spare     Spare bit set to 0
-I034/050/SSR/SPARE       Spare bit set to 0                          1  1 spare     Spare bit set to 0
-I034/050/MDS/ANT         Selected antenna                           16 16 value     0 Antenna 1
-                                                                                    1 Antenna 2
-I034/050/MDS/CHAB        Channel A/B selection status               15 14 values    0 No channel selected
-                                                                                    1 Channel A only selected
-                                                                                    2 Channel B only selected
-                                                                                    3 Invalid combination
-I034/050/MDS/OVLSUR      Overload condition                         13 13 value     0 No overload
-                                                                                    1 Overload
-I034/050/MDS/MSC         Monitoring System Connected Status         12 12 value     0 Monitoring System connected
-                                                                                    1 Monitoring System disconnected
-I034/050/MDS/SCF         Channel A/B selection status for Surv...   11 11 value     0 Channel A in use
-                                                                                    1 Channel B in use
-I034/050/MDS/DLF         Channel A/B selection status for Data...   10 10 value     0 Channel A in use
-                                                                                    1 Channel B in use
-I034/050/MDS/OVLSCF      Overload in Surveillance Co-ordinatio...    9  9 value     0 No overload
-                                                                                    1 Overload
-I034/050/MDS/OVLDLF      Overload in Data Link Function              8  8 value     0 No overload
-                                                                                    1 Overload
-I034/050/MDS/SPARE       Spare bit set to 0                          7  7 spare     Spare bit set to 0
-I034/050/MDS/SPARE       Spare bit set to 0                          6  6 spare     Spare bit set to 0
-I034/050/MDS/SPARE       Spare bit set to 0                          5  5 spare     Spare bit set to 0
-I034/050/MDS/SPARE       Spare bit set to 0                          4  4 spare     Spare bit set to 0
-I034/050/MDS/SPARE       Spare bit set to 0                          3  3 spare     Spare bit set to 0
-I034/050/MDS/SPARE       Spare bit set to 0                          2  2 spare     Spare bit set to 0
-I034/050/MDS/SPARE       Spare bit set to 0                          1  1 spare     Spare bit set to 0
-I034/060/COM             Subfield #1 : Common Part                   8  8 value     0 Absence of Subfield #1
-                                                                                    1 Presence of Subfield #1
-I034/060/SPARE           Subfield #2 : Spare Subfield                7  7 value     0 Absence of Subfield #2
-                                                                                    1 Presence of Subfield #2
-I034/060/SPARE           Subfield #3 : Spare Subfield                6  6 value     0 Absence of Subfield #3
-                                                                                    1 Presence of Subfield #3
-I034/060/PSR             Subfield #4 : Specific Processing Mod...    5  5 value     0 Absence of Subfield #4
-                                                                                    1 Presence of Subfield #4
-I034/060/SSR             Subfield #5 : Specific Processing Mod...    4  4 value     0 Absence of Subfield #5
-                                                                                    1 Presence of Subfield #5
-I034/060/MDS             Subfield #6 : Specific Processing Mod...    3  3 value     0 Absence of Subfield #6
-                                                                                    1 Presence of Subfield #6
-I034/060/SPARE           Subfield #7 : Spare Subfield                2  2 value     0 Absence of Subfield #7
-                                                                                    1 Presence of Subfield #7
-I034/060/FX              Subfield #8 : FX                            1  1 value     0 Absence of Subfield #8
-                                                                                    1 Presence of Subfield #8
-I034/060/COM/SPARE       Spare bit set to 0                          8  8 spare     Spare bit set to 0
-I034/060/COM/REDRDP      Reduction Steps in use for an overloa...    7  5 values    0 No reduction active
-                                                                                    1 Reduction step 1 active
-                                                                                    2 Reduction step 2 active
-                                                                                    3 Reduction step 3 active
-                                                                                    4 Reduction step 4 active
-                                                                                    5 Reduction step 5 active
-                                                                                    6 Reduction step 6 active
-                                                                                    7 Reduction step 7 active
-I034/060/COM/REDXMT      Reduction Steps in use for an overloa...    4  2 values    0 No reduction active
-                                                                                    1 Reduction step 1 active
-                                                                                    2 Reduction step 2 active
-                                                                                    3 Reduction step 3 active
-                                                                                    4 Reduction step 4 active
-                                                                                    5 Reduction step 5 active
-                                                                                    6 Reduction step 6 active
-                                                                                    7 Reduction step 7 active
-I034/060/COM/SPARE       Spare bit set to 0                          1  1 spare     Spare bit set to 0
-I034/060/PSR/POL         Polarization in use by PSR                  8  8 value     0 Linear Polarization
-                                                                                    1 Circular Polarization
-I034/060/PSR/REDRAD      Reduction Steps in use as result of a...    7  5 values    0 No reduction active
-                                                                                    1 Reduction step 1 active
-                                                                                    2 Reduction step 2 active
-                                                                                    3 Reduction step 3 active
-                                                                                    4 Reduction step 4 active
-                                                                                    5 Reduction step 5 active
-                                                                                    6 Reduction step 6 active
-                                                                                    7 Reduction step 7 active
-I034/060/PSR/STC         Sensitivity Time Control Map in use         4  3 values    0 STC Map-1
-                                                                                    1 STC Map-2
-                                                                                    2 STC Map-3
-                                                                                    3 STC Map-4
-I034/060/PSR/SPARE       Spare bit set to 0                          2  2 spare     Spare bit set to 0
-I034/060/PSR/SPARE       Spare bit set to 0                          1  1 spare     Spare bit set to 0
-I034/060/SSR/REDRAD      Reduction Steps in use as result of a...    8  6 values    0 No reduction active
-                                                                                    1 Reduction step 1 active
-                                                                                    2 Reduction step 2 active
-                                                                                    3 Reduction step 3 active
-                                                                                    4 Reduction step 4 active
-                                                                                    5 Reduction step 5 active
-                                                                                    6 Reduction step 6 active
-                                                                                    7 Reduction step 7 active
-I034/060/SSR/SPARE       Spare bit set to 0                          5  5 spare     Spare bit set to 0
-I034/060/SSR/SPARE       Spare bit set to 0                          4  4 spare     Spare bit set to 0
-I034/060/SSR/SPARE       Spare bit set to 0                          3  3 spare     Spare bit set to 0
-I034/060/SSR/SPARE       Spare bit set to 0                          2  2 spare     Spare bit set to 0
-I034/060/SSR/SPARE       Spare bit set to 0                          1  1 spare     Spare bit set to 0
-I034/060/MDS/REDRAD      Reduction Steps in use as result of a...    8  6 values    0 No reduction active
-                                                                                    1 Reduction step 1 active
-                                                                                    2 Reduction step 2 active
-                                                                                    3 Reduction step 3 active
-                                                                                    4 Reduction step 4 active
-                                                                                    5 Reduction step 5 active
-                                                                                    6 Reduction step 6 active
-                                                                                    7 Reduction step 7 active
-I034/060/MDS/CLU         Cluster State                               5  5 value     0 Autonomous
-                                                                                    1 Not autonomous
-I034/060/MDS/SPARE       Spare bit set to 0                          4  4 spare     Spare bit set to 0
-I034/060/MDS/SPARE       Spare bit set to 0                          3  3 spare     Spare bit set to 0
-I034/060/MDS/SPARE       Spare bit set to 0                          2  2 spare     Spare bit set to 0
-I034/060/MDS/SPARE       Spare bit set to 0                          1  1 spare     Spare bit set to 0
-I034/070/TYP             Type of message counter                    16 12 values    0 No detection (number of misses)
-                                                                                    1 Single PSR target reports
-                                                                                    2 Single SSR target reports (Non-Mode-S)
-                                                                                    3 SSR+PSR target reports (Non-Mode-S)
-                                                                                    4 Single All-Call target reports (Mode-S)
-                                                                                    5 Single Roll-Call target reports (Mode-S)
-                                                                                    6 All-Call + PSR (Mode-S) target reports
-                                                                                    7 Roll-Call + PSR (Mode-S) target reports
-                                                                                    8 Filter for Weather data
-                                                                                    9 Filter for Jamming Strobe
-                                                                                    10 Filter for PSR data
-                                                                                    11 Filter for SSR/Mode-S data
-                                                                                    12 Filter for SSR/Mode-S+PSR data
-                                                                                    13 Filter for Enhanced Surveillance data
-                                                                                    14 Filter for PSR+Enhanced Surveillance
-                                                                                    15 Filter for PSR+Enhanced Surveillance ...
-                                                                                    16 Filter for PSR+Enhanced Surveillance ...
-                                                                                    17 Re-Interrogations (per sector)
-                                                                                    18 BDS Swap and wrong DF replies (per se...
-                                                                                    19 Mode-A/C FRUIT (per sector
-                                                                                    20 Mode-S FRUIT (per sector)
-I034/070/COUNT           11-bit counter value                       11  1 unsigned  N/A
-I034/090/RNG             Range Error                                16  9 smeasure  LSB = 0.0078125NM, Range = [-1.0, 0.9921875]NM
-I034/090/AZM             Azimuth Error                               8  1 smeasure  LSB = 0.02197265625°, Range = [-2.8125, 2.79052734375]°
-I034/100/RHOST           Rho start                                  64 49 umeasure  LSB = 0.00390625NM, Range = [0.0, 255.99609375]NM
-I034/100/RHOEND          Rho end                                    48 33 umeasure  LSB = 0.00390625NM, Range = [0.0, 255.99609375]NM
-I034/100/THETAST         Theta start                                32 17 umeasure  LSB = 0.0054931640625°, Range = [0.0, 359.9945068359375]°
-I034/100/THETAEND        Theta end                                  16  1 umeasure  LSB = 0.0054931640625°, Range = [0.0, 359.9945068359375]°
-I034/110/FILTER          Filter Type                                 8  1 values    0 Invalid value
-                                                                                    1 Filter for Weather data
-                                                                                    2 Filter for Jamming Strobe
-                                                                                    3 Filter for PSR data
-                                                                                    4 Filter for SSR/Mode-S data
-                                                                                    5 Filter for SSR/Mode-S + PSR data
-                                                                                    6 Enhanced Surveillance data
-                                                                                    7 Filter for PSR+Enhanced Surveillance ...
-                                                                                    8 Filter for PSR+Enhanced Surveillance ...
-                                                                                    9 Filter for PSR+Enhanced Surveillance ...
-I034/120/HGT             Height                                     64 49 umeasure  LSB = 1.0m, Range = [0.0, 65535.0]m
-I034/120/LAT             Latitude                                   48 25 smeasure  LSB = 2.1457672119140625E-5°, Range = [-90.0, 90.0]°
-I034/120/LON             Longitude                                  24  1 smeasure  LSB = 2.1457672119140625E-5°, Range = [-180.0, 179.99997854232788]°
+I034/000/TYP             Message Type                                 8   1 values    0 Not defined; never used
+                                                                                      1 North Marker Message
+                                                                                      2 Sector Crossing Message
+                                                                                      3 Geographical Filtering Message
+                                                                                      4 Jamming Strobe Message
+                                                                                      5 Solar Storm Message
+                                                                                      6 SSR Jamming Strobe Message
+                                                                                      7 Mode S Jamming Strobe Message
+I034/010/SAC             System Area Code                            16   9 unsigned  N/A
+I034/010/SIC             System Identification Code                   8   1 unsigned  N/A
+I034/020/SNB             Sector Number                                8   1 umeasure  LSB=1.40625, Range=[0.0, 358.59375], Unit=degrees (°)
+I034/030/TOD             Time of Day                                 24   1 umeasure  LSB=0.0078125, Range=[0.0, 131071.9921875], Unit=seconds (s)
+I034/041/ARS             Antenna Rotation Speed                      16   1 umeasure  LSB=0.0078125, Range=[0.0, 511.9921875], Unit=seconds (s)
+I034/050/COM             Subfield #1 : Common Part                    8   8 value     0 Absence of Subfield #1
+                                                                                      1 Presence of Subfield #1
+I034/050/SPARE           Subfield #2 : Spare Subfield                 7   7 value     0 Absence of Subfield #2
+                                                                                      1 Presence of Subfield #2
+I034/050/SPARE           Subfield #3 : Spare Subfield                 6   6 value     0 Absence of Subfield #3
+                                                                                      1 Presence of Subfield #3
+I034/050/PSR             Subfield #4 : Specific Status Informa...     5   5 value     0 Absence of Subfield #4
+                                                                                      1 Presence of Subfield #4
+I034/050/SSR             Subfield #5 : Specific Status Informa...     4   4 value     0 Absence of Subfield #5
+                                                                                      1 Presence of Subfield #5
+I034/050/MDS             Subfield #6 : Specific Status Informa...     3   3 value     0 Absence of Subfield #6
+                                                                                      1 Presence of Subfield #6
+I034/050/SPARE           Subfield #7 : Spare Subfield                 2   2 value     0 Absence of Subfield #7
+                                                                                      1 Presence of Subfield #7
+I034/050/FX              FX                                           1   1 value     0 End of Primary Subfield
+                                                                                      1 Extension of Primary Subfield into next octet
+I034/050/COM/NOGO        Operational Release Status of the System     8   8 value     0 System is released for operational use
+                                                                                      1 Operational use of System is inhibited, i.e. the data shall be discarded by an operational SDPS
+I034/050/COM/RDPC        Radar Data Processor Chain Selection ...     7   7 value     0 RDPC-1 selected
+                                                                                      1 RDPC-2 selected
+I034/050/COM/RDPR        Event to signal a reset/restart of th...     6   6 value     0 Default Situation
+                                                                                      1 Reset of RDPC
+I034/050/COM/OVLRDP      Radar Data Processor Overload Indicator      5   5 value     0 Default, no overload
+                                                                                      1 Overload in RDP
+I034/050/COM/OVLXMT      Transmission Subsystem Overload Status       4   4 value     0 Default, no overload
+                                                                                      1 Overload in Transmission Subsystem
+I034/050/COM/MSC         Monitoring System Connected Status           3   3 value     0 Monitoring System connected
+                                                                                      1 Monitoring System disconnected
+I034/050/COM/TSV         Time Source Validity                         2   2 value     0 Valid
+                                                                                      1 Invalid
+I034/050/COM/SPARE       Spare bit set to 0                           1   1 spare     Spare bit set to 0
+I034/050/PSR/ANT         Selected antenna                             8   8 value     0 Antenna 1
+                                                                                      1 Antenna 2
+I034/050/PSR/CHAB        Channel A/B selection status                 7   6 values    0 No channel selected
+                                                                                      1 Channel A only selected
+                                                                                      2 Channel B only selected
+                                                                                      3 Diversity mode; Channel A and B selected
+I034/050/PSR/OVL         Overload condition                           5   5 value     0 No overload
+                                                                                      1 Overload
+I034/050/PSR/MSC         Monitoring System Connected Status           4   4 value     0 Monitoring System connected
+                                                                                      1 Monitoring System disconnected
+I034/050/PSR/SPARE       Spare bit set to 0                           3   3 spare     Spare bit set to 0
+I034/050/PSR/SPARE       Spare bit set to 0                           2   2 spare     Spare bit set to 0
+I034/050/PSR/SPARE       Spare bit set to 0                           1   1 spare     Spare bit set to 0
+I034/050/SSR/ANT         Selected antenna                             8   8 value     0 Antenna 1
+                                                                                      1 Antenna 2
+I034/050/SSR/CHAB        Channel A/B selection status                 7   6 values    0 No channel selected
+                                                                                      1 Channel A only selected
+                                                                                      2 Channel B only selected
+                                                                                      3 Invalid combination
+I034/050/SSR/OVL         Overload condition                           5   5 value     0 No overload
+                                                                                      1 Overload
+I034/050/SSR/MSC         Monitoring System Connected Status           4   4 value     0 Monitoring System connected
+                                                                                      1 Monitoring System disconnected
+I034/050/SSR/SPARE       Spare bit set to 0                           3   3 spare     Spare bit set to 0
+I034/050/SSR/SPARE       Spare bit set to 0                           2   2 spare     Spare bit set to 0
+I034/050/SSR/SPARE       Spare bit set to 0                           1   1 spare     Spare bit set to 0
+I034/050/MDS/ANT         Selected antenna                            16  16 value     0 Antenna 1
+                                                                                      1 Antenna 2
+I034/050/MDS/CHAB        Channel A/B selection status                15  14 values    0 No channel selected
+                                                                                      1 Channel A only selected
+                                                                                      2 Channel B only selected
+                                                                                      3 Invalid combination
+I034/050/MDS/OVLSUR      Overload condition                          13  13 value     0 No overload
+                                                                                      1 Overload
+I034/050/MDS/MSC         Monitoring System Connected Status          12  12 value     0 Monitoring System connected
+                                                                                      1 Monitoring System disconnected
+I034/050/MDS/SCF         Channel A/B selection status for Surv...    11  11 value     0 Channel A in use
+                                                                                      1 Channel B in use
+I034/050/MDS/DLF         Channel A/B selection status for Data...    10  10 value     0 Channel A in use
+                                                                                      1 Channel B in use
+I034/050/MDS/OVLSCF      Overload in Surveillance Co-ordinatio...     9   9 value     0 No overload
+                                                                                      1 Overload
+I034/050/MDS/OVLDLF      Overload in Data Link Function               8   8 value     0 No overload
+                                                                                      1 Overload
+I034/050/MDS/SPARE       Spare bit set to 0                           7   7 spare     Spare bit set to 0
+I034/050/MDS/SPARE       Spare bit set to 0                           6   6 spare     Spare bit set to 0
+I034/050/MDS/SPARE       Spare bit set to 0                           5   5 spare     Spare bit set to 0
+I034/050/MDS/SPARE       Spare bit set to 0                           4   4 spare     Spare bit set to 0
+I034/050/MDS/SPARE       Spare bit set to 0                           3   3 spare     Spare bit set to 0
+I034/050/MDS/SPARE       Spare bit set to 0                           2   2 spare     Spare bit set to 0
+I034/050/MDS/SPARE       Spare bit set to 0                           1   1 spare     Spare bit set to 0
+I034/060/COM             Subfield #1 : Common Part                    8   8 value     0 Absence of Subfield #1
+                                                                                      1 Presence of Subfield #1
+I034/060/SPARE           Subfield #2 : Spare Subfield                 7   7 value     0 Absence of Subfield #2
+                                                                                      1 Presence of Subfield #2
+I034/060/SPARE           Subfield #3 : Spare Subfield                 6   6 value     0 Absence of Subfield #3
+                                                                                      1 Presence of Subfield #3
+I034/060/PSR             Subfield #4 : Specific Processing Mod...     5   5 value     0 Absence of Subfield #4
+                                                                                      1 Presence of Subfield #4
+I034/060/SSR             Subfield #5 : Specific Processing Mod...     4   4 value     0 Absence of Subfield #5
+                                                                                      1 Presence of Subfield #5
+I034/060/MDS             Subfield #6 : Specific Processing Mod...     3   3 value     0 Absence of Subfield #6
+                                                                                      1 Presence of Subfield #6
+I034/060/SPARE           Subfield #7 : Spare Subfield                 2   2 value     0 Absence of Subfield #7
+                                                                                      1 Presence of Subfield #7
+I034/060/FX              FX                                           1   1 value     0 End of Primary Subfield
+                                                                                      1 Extension of Primary Subfield into next octet
+I034/060/COM/SPARE       Spare bit set to 0                           8   8 spare     Spare bit set to 0
+I034/060/COM/REDRDP      Reduction Steps in use for an overloa...     7   5 values    0 No reduction active
+                                                                                      1 Reduction step 1 active
+                                                                                      2 Reduction step 2 active
+                                                                                      3 Reduction step 3 active
+                                                                                      4 Reduction step 4 active
+                                                                                      5 Reduction step 5 active
+                                                                                      6 Reduction step 6 active
+                                                                                      7 Reduction step 7 active
+I034/060/COM/REDXMT      Reduction Steps in use for an overloa...     4   2 values    0 No reduction active
+                                                                                      1 Reduction step 1 active
+                                                                                      2 Reduction step 2 active
+                                                                                      3 Reduction step 3 active
+                                                                                      4 Reduction step 4 active
+                                                                                      5 Reduction step 5 active
+                                                                                      6 Reduction step 6 active
+                                                                                      7 Reduction step 7 active
+I034/060/COM/SPARE       Spare bit set to 0                           1   1 spare     Spare bit set to 0
+I034/060/PSR/POL         Polarization in use by PSR                   8   8 value     0 Linear Polarization
+                                                                                      1 Circular Polarization
+I034/060/PSR/REDRAD      Reduction Steps in use as result of a...     7   5 values    0 No reduction active
+                                                                                      1 Reduction step 1 active
+                                                                                      2 Reduction step 2 active
+                                                                                      3 Reduction step 3 active
+                                                                                      4 Reduction step 4 active
+                                                                                      5 Reduction step 5 active
+                                                                                      6 Reduction step 6 active
+                                                                                      7 Reduction step 7 active
+I034/060/PSR/STC         Sensitivity Time Control Map in use          4   3 values    0 STC Map-1
+                                                                                      1 STC Map-2
+                                                                                      2 STC Map-3
+                                                                                      3 STC Map-4
+I034/060/PSR/SPARE       Spare bit set to 0                           2   2 spare     Spare bit set to 0
+I034/060/PSR/SPARE       Spare bit set to 0                           1   1 spare     Spare bit set to 0
+I034/060/SSR/REDRAD      Reduction Steps in use as result of a...     8   6 values    0 No reduction active
+                                                                                      1 Reduction step 1 active
+                                                                                      2 Reduction step 2 active
+                                                                                      3 Reduction step 3 active
+                                                                                      4 Reduction step 4 active
+                                                                                      5 Reduction step 5 active
+                                                                                      6 Reduction step 6 active
+                                                                                      7 Reduction step 7 active
+I034/060/SSR/SPARE       Spare bit set to 0                           5   5 spare     Spare bit set to 0
+I034/060/SSR/SPARE       Spare bit set to 0                           4   4 spare     Spare bit set to 0
+I034/060/SSR/SPARE       Spare bit set to 0                           3   3 spare     Spare bit set to 0
+I034/060/SSR/SPARE       Spare bit set to 0                           2   2 spare     Spare bit set to 0
+I034/060/SSR/SPARE       Spare bit set to 0                           1   1 spare     Spare bit set to 0
+I034/060/MDS/REDRAD      Reduction Steps in use as result of a...     8   6 values    0 No reduction active
+                                                                                      1 Reduction step 1 active
+                                                                                      2 Reduction step 2 active
+                                                                                      3 Reduction step 3 active
+                                                                                      4 Reduction step 4 active
+                                                                                      5 Reduction step 5 active
+                                                                                      6 Reduction step 6 active
+                                                                                      7 Reduction step 7 active
+I034/060/MDS/CLU         Cluster State                                5   5 value     0 Autonomous
+                                                                                      1 Not autonomous
+I034/060/MDS/SPARE       Spare bit set to 0                           4   4 spare     Spare bit set to 0
+I034/060/MDS/SPARE       Spare bit set to 0                           3   3 spare     Spare bit set to 0
+I034/060/MDS/SPARE       Spare bit set to 0                           2   2 spare     Spare bit set to 0
+I034/060/MDS/SPARE       Spare bit set to 0                           1   1 spare     Spare bit set to 0
+I034/070/TYP             Type of message counter                     16  12 values    0 No detection (number of misses)
+                                                                                      1 Single PSR target reports
+                                                                                      2 Single SSR target reports (Non-Mode-S)
+                                                                                      3 SSR+PSR target reports (Non-Mode-S)
+                                                                                      4 Single All-Call target reports (Mode-S)
+                                                                                      5 Single Roll-Call target reports (Mode-S)
+                                                                                      6 All-Call + PSR (Mode-S) target reports
+                                                                                      7 Roll-Call + PSR (Mode-S) target reports
+                                                                                      8 Filter for Weather data
+                                                                                      9 Filter for Jamming Strobe
+                                                                                      10 Filter for PSR data
+                                                                                      11 Filter for SSR/Mode-S data
+                                                                                      12 Filter for SSR/Mode-S+PSR data
+                                                                                      13 Filter for Enhanced Surveillance data
+                                                                                      14 Filter for PSR+Enhanced Surveillance
+                                                                                      15 Filter for PSR+Enhanced Surveillance SSR/Mode-S data not in Area of Prime Interest
+                                                                                      16 Filter for PSR+Enhanced Surveillance all SSR/Mode-S data
+                                                                                      17 Re-Interrogations (per sector)
+                                                                                      18 BDS Swap and wrong DF replies (per sector)
+                                                                                      19 Mode-A/C FRUIT (per sector
+                                                                                      20 Mode-S FRUIT (per sector)
+I034/070/COUNT           11-bit counter value                        11   1 unsigned  N/A
+I034/090/RNG             Range Error                                 16   9 smeasure  LSB=0.0078125, Range=[-1.0, 0.9921875], Unit=Nautical Mile (NM)
+I034/090/AZM             Azimuth Error                                8   1 smeasure  LSB=0.02197265625, Range=[-2.8125, 2.79052734375], Unit=degrees (°)
+I034/100/RHOST           Rho start                                   64  49 umeasure  LSB=0.00390625, Range=[0.0, 255.99609375], Unit=Nautical Mile (NM)
+I034/100/RHOEND          Rho end                                     48  33 umeasure  LSB=0.00390625, Range=[0.0, 255.99609375], Unit=Nautical Mile (NM)
+I034/100/THETAST         Theta start                                 32  17 umeasure  LSB=0.0054931640625, Range=[0.0, 359.9945068359375], Unit=degrees (°)
+I034/100/THETAEND        Theta end                                   16   1 umeasure  LSB=0.0054931640625, Range=[0.0, 359.9945068359375], Unit=degrees (°)
+I034/110/FILTER          Filter Type                                  8   1 values    0 Invalid value
+                                                                                      1 Filter for Weather data
+                                                                                      2 Filter for Jamming Strobe
+                                                                                      3 Filter for PSR data
+                                                                                      4 Filter for SSR/Mode-S data
+                                                                                      5 Filter for SSR/Mode-S + PSR data
+                                                                                      6 Enhanced Surveillance data
+                                                                                      7 Filter for PSR+Enhanced Surveillance data
+                                                                                      8 Filter for PSR+Enhanced Surveillance SSR/Mode-S data not in Area of Prime Interest
+                                                                                      9 Filter for PSR+Enhanced Surveillance all SSR/Mode-S data
+I034/120/HGT             Height                                      64  49 umeasure  LSB=1.0, Range=[0.0, 65535.0], Unit=meter (m)
+I034/120/LAT             Latitude                                    48  25 smeasure  LSB=2.1457672119140625E-5, Range=[-90.0, 90.0], Unit=degrees (°)
+I034/120/LON             Longitude                                   24   1 smeasure  LSB=2.1457672119140625E-5, Range=[-180.0, 179.99997854232788], Unit=degrees (°)
 
 UAP
  1 I034/010 Data Source Identifier                              M 2

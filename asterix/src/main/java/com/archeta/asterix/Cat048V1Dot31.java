@@ -11,8 +11,8 @@ import static com.archeta.asterix.ASTERIXIds.*;
 import static com.archeta.asterix.BitsField.*;
 import static com.archeta.asterix.DataFormat.*;
 
-public final class Cat048V1Dot30 {
-    public static final long CAT048_ID = categoryId(48, 1, 30);
+public final class Cat048V1Dot31 {
+    public static final long CAT048_ID = categoryId(48, 1, 31);
     public static final long I048_010;
     public static final long I048_010_SAC;
     public static final long I048_010_SIC;
@@ -30,6 +30,14 @@ public final class Cat048V1Dot30 {
     public static final long I048_020_MI;
     public static final long I048_020_FOEFRI;
     public static final long I048_020_FX2;
+    public static final long I048_020_ADSB_EP;
+    public static final long I048_020_ADSB_VAL;
+    public static final long I048_020_SCN_EP;
+    public static final long I048_020_SCN_VAL;
+    public static final long I048_020_PAI_EP;
+    public static final long I048_020_PAI_VAL;
+    public static final long I048_020_X2_SP2;
+    public static final long I048_020_FX3;
     public static final long I048_030;
     public static final long I048_030_CODE;
     public static final long I048_030_FX1;
@@ -304,10 +312,75 @@ public final class Cat048V1Dot30 {
     public static final long I048_RE_RPC_SCR_SCR;
     public static final long I048_RE_RPC_RW_RW;
     public static final long I048_RE_RPC_AR_AR;
+    public static final long I048_RE_RTC_PTL_SP24;
+    public static final long I048_RE_RTC_PTL_SP23;
+    public static final long I048_RE_RTC_PTL_SP22;
+    public static final long I048_RE_RTC_PTL_SCN;
+    public static final long I048_RE_RTC_PTL_RC;
+    public static final long I048_RE_RTC_PTL_AC;
+    public static final long I048_RE_RTC_PTL_SSR;
+    public static final long I048_RE_RTC_PTL_PSR;
+    public static final long I048_RE_RTC_PTL_NBR;
+    public static final long I048_RE_RTC_ATL_NBR;
+    public static final long I048_RE_RTC_TRN_PROB;
+    public static final long I048_RE_RTC_NPP_PREDRHO;
+    public static final long I048_RE_RTC_NPP_PREDTHETA;
+    public static final long I048_RE_RTC_NPP_EVOLRHOSTART;
+    public static final long I048_RE_RTC_NPP_EVOLRHOEND;
+    public static final long I048_RE_RTC_NPP_EVOLTHETASTART;
+    public static final long I048_RE_RTC_NPP_EVOLTHETAEND;
+    public static final long I048_RE_RTC_NPP_NOISERHOSTART;
+    public static final long I048_RE_RTC_NPP_NOISERHOEND;
+    public static final long I048_RE_RTC_NPP_NOISETHETASTART;
+    public static final long I048_RE_RTC_NPP_NOISETHETAEND;
+    public static final long I048_RE_RTC_NPP_PREDTIME;
+    public static final long I048_RE_RTC_DLK_TYPE;
+    public static final long I048_RE_RTC_DLK_ORIGIN;
+    public static final long I048_RE_RTC_DLK_STATE;
+    public static final long I048_RE_RTC_LCK_LS;
+    public static final long I048_RE_RTC_LCK_LOCTIM;
+    public static final long I048_RE_RTC_TC_SP48;
+    public static final long I048_RE_RTC_TC_SP47;
+    public static final long I048_RE_RTC_TC_SP46;
+    public static final long I048_RE_RTC_TC_SP45;
+    public static final long I048_RE_RTC_TC_SP44;
+    public static final long I048_RE_RTC_TC_SP43;
+    public static final long I048_RE_RTC_TC_SP42;
+    public static final long I048_RE_RTC_TC_TCOUNT1;
+    public static final long I048_RE_RTC_TC_TCODE1;
+    public static final long I048_RE_RTC_TC_TCOUNT2;
+    public static final long I048_RE_RTC_TC_TCODE2;
+    public static final long I048_RE_RTC_TC_TCOUNT3;
+    public static final long I048_RE_RTC_TC_TCODE3;
+    public static final long I048_RE_RTC_TLC_ACQI;
+    public static final long I048_RE_RTC_TLC_TRKUPDCTR;
+    public static final long I048_RE_RTC_TLC_LASTTRKUPD;
+    public static final long I048_RE_RTC_ASI_SACADJS;
+    public static final long I048_RE_RTC_ASI_SICADJS;
+    public static final long I048_RE_RTC_ASI_TIMEOFDAYSCN;
+    public static final long I048_RE_RTC_ASI_DATAUSE;
+    public static final long I048_RE_RTC_ASI_DRNA;
+    public static final long I048_RE_RTC_ASI_DRN;
+    public static final long I048_RE_RTC_TES_TES;
+    public static final long I048_RE_RTC_IR_IR;
+    public static final long I048_RE_RTC_IR_M3A;
+    public static final long I048_RE_CPC_PNB_NBR;
+    public static final long I048_RE_CPC_RPL_TYPE;
+    public static final long I048_RE_CPC_RPL_NBR;
+    public static final long I048_RE_CPC_SNB_NBR;
+    public static final long I048_RE_CPC_DATE_Y1;
+    public static final long I048_RE_CPC_DATE_Y2;
+    public static final long I048_RE_CPC_DATE_Y3;
+    public static final long I048_RE_CPC_DATE_Y4;
+    public static final long I048_RE_CPC_DATE_M1;
+    public static final long I048_RE_CPC_DATE_M2;
+    public static final long I048_RE_CPC_DATE_D1;
+    public static final long I048_RE_CPC_DATE_D2;
     public static final long I048_SP;
 
     private static final long I048_020_FP;
     private static final long I048_020_X1;
+    private static final long I048_020_X2;
 
     private static final long I048_030_FP;
 
@@ -371,8 +444,32 @@ public final class Cat048V1Dot30 {
     private static final long I048_RE_RPC_FX1;
     private static final long I048_RE_ERR;
     private static final long I048_RE_ERR_RHO;
-    private static final long I048_RE_SP3;
-    private static final long I048_RE_SP2;
+    private static final long I048_RE_RTC;
+    private static final long I048_RE_RTC_PTL;
+    private static final long I048_RE_RTC_ATL;
+    private static final long I048_RE_RTC_TRN;
+    private static final long I048_RE_RTC_NPP;
+    private static final long I048_RE_RTC_DLK;
+    private static final long I048_RE_RTC_LCK;
+    private static final long I048_RE_RTC_TC;
+    private static final long I048_RE_RTC_FX1;
+    private static final long I048_RE_RTC_TLC;
+    private static final long I048_RE_RTC_ASI;
+    private static final long I048_RE_RTC_TES;
+    private static final long I048_RE_RTC_IR;
+    private static final long I048_RE_RTC_SP4;
+    private static final long I048_RE_RTC_SP3;
+    private static final long I048_RE_RTC_SP2;
+    private static final long I048_RE_RTC_FX2;
+    private static final long I048_RE_CPC;
+    private static final long I048_RE_CPC_PNB;
+    private static final long I048_RE_CPC_RPL;
+    private static final long I048_RE_CPC_SNB;
+    private static final long I048_RE_CPC_DATE;
+    private static final long I048_RE_CPC_SP4;
+    private static final long I048_RE_CPC_SP3;
+    private static final long I048_RE_CPC_SP2;
+    private static final long I048_RE_CPC_FX1;
     private static final long I048_RE_SP1;
 
     static {
@@ -395,6 +492,15 @@ public final class Cat048V1Dot30 {
         I048_020_MI = bitsFieldId(I048_020_X1, 4, BITS_FIELD_ENCODING_VALUE);
         I048_020_FOEFRI = bitsFieldId(I048_020_X1, 3, BITS_FIELD_ENCODING_VALUES);
         I048_020_FX2 = bitsFieldId(I048_020_X1, 1, BITS_FIELD_ENCODING_FX);
+        I048_020_X2 = subAId(I048_020, 2, DATA_FORMAT_FIXED);
+        I048_020_ADSB_EP = bitsFieldId(I048_020_X2, 8, BITS_FIELD_ENCODING_VALUE);
+        I048_020_ADSB_VAL = bitsFieldId(I048_020_X2, 7, BITS_FIELD_ENCODING_VALUE);
+        I048_020_SCN_EP = bitsFieldId(I048_020_X2, 6, BITS_FIELD_ENCODING_VALUE);
+        I048_020_SCN_VAL = bitsFieldId(I048_020_X2, 5, BITS_FIELD_ENCODING_VALUE);
+        I048_020_PAI_EP = bitsFieldId(I048_020_X2, 4, BITS_FIELD_ENCODING_VALUE);
+        I048_020_PAI_VAL = bitsFieldId(I048_020_X2, 3, BITS_FIELD_ENCODING_VALUE);
+        I048_020_X2_SP2 = bitsFieldId(I048_020_X2, 2, BITS_FIELD_ENCODING_SPARE);
+        I048_020_FX3 = bitsFieldId(I048_020_X2, 1, BITS_FIELD_ENCODING_FX);
         I048_030 = dataItemId(CAT048_ID, 30, DATA_FORMAT_EXTENDED);
         I048_030_FP = subAId(I048_030, 0, DATA_FORMAT_FIXED);
         I048_030_CODE = bitsFieldId(I048_030_FP, 8, BITS_FIELD_ENCODING_VALUES);
@@ -727,9 +833,97 @@ public final class Cat048V1Dot30 {
         I048_RE_RPC_FX1 = subBId(I048_RE_RPC, 1, DATA_FORMAT_EMPTY);
         I048_RE_ERR = subAId(I048_RE, 4, DATA_FORMAT_FIXED);
         I048_RE_ERR_RHO = bitsFieldId(I048_RE_ERR, 24, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
-        I048_RE_SP3 = subAId(I048_RE, 3, DATA_FORMAT_EMPTY);
-        I048_RE_SP2 = subAId(I048_RE, 2, DATA_FORMAT_EMPTY);
+        I048_RE_RTC = subAId(I048_RE, 3, DATA_FORMAT_COMPOUND);
+        I048_RE_RTC_PTL = subBId(I048_RE_RTC, 16, DATA_FORMAT_FIXED);
+        I048_RE_RTC_ATL = subBId(I048_RE_RTC, 15, DATA_FORMAT_REPETITIVE);
+        I048_RE_RTC_TRN = subBId(I048_RE_RTC, 14, DATA_FORMAT_FIXED);
+        I048_RE_RTC_NPP = subBId(I048_RE_RTC, 13, DATA_FORMAT_FIXED);
+        I048_RE_RTC_DLK = subBId(I048_RE_RTC, 12, DATA_FORMAT_REPETITIVE);
+        I048_RE_RTC_LCK = subBId(I048_RE_RTC, 11, DATA_FORMAT_FIXED);
+        I048_RE_RTC_TC = subBId(I048_RE_RTC, 10, DATA_FORMAT_FIXED);
+        I048_RE_RTC_FX1 = subBId(I048_RE_RTC, 9, DATA_FORMAT_EMPTY);
+        I048_RE_RTC_TLC = subBId(I048_RE_RTC, 8, DATA_FORMAT_FIXED);
+        I048_RE_RTC_ASI = subBId(I048_RE_RTC, 7, DATA_FORMAT_REPETITIVE);
+        I048_RE_RTC_TES = subBId(I048_RE_RTC, 6, DATA_FORMAT_FIXED);
+        I048_RE_RTC_IR = subBId(I048_RE_RTC, 5, DATA_FORMAT_FIXED);
+        I048_RE_RTC_SP4 = subBId(I048_RE_RTC, 4, DATA_FORMAT_EMPTY);
+        I048_RE_RTC_SP3 = subBId(I048_RE_RTC, 3, DATA_FORMAT_EMPTY);
+        I048_RE_RTC_SP2 = subBId(I048_RE_RTC, 2, DATA_FORMAT_EMPTY);
+        I048_RE_RTC_FX2 = subBId(I048_RE_RTC, 1, DATA_FORMAT_EMPTY);
+        I048_RE_RTC_PTL_SP24 = bitsFieldId(I048_RE_RTC_PTL, 24, BITS_FIELD_ENCODING_SPARE);
+        I048_RE_RTC_PTL_SP23 = bitsFieldId(I048_RE_RTC_PTL, 23, BITS_FIELD_ENCODING_SPARE);
+        I048_RE_RTC_PTL_SP22 = bitsFieldId(I048_RE_RTC_PTL, 22, BITS_FIELD_ENCODING_SPARE);
+        I048_RE_RTC_PTL_SCN = bitsFieldId(I048_RE_RTC_PTL, 21, BITS_FIELD_ENCODING_VALUE);
+        I048_RE_RTC_PTL_RC = bitsFieldId(I048_RE_RTC_PTL, 20, BITS_FIELD_ENCODING_VALUE);
+        I048_RE_RTC_PTL_AC = bitsFieldId(I048_RE_RTC_PTL, 19, BITS_FIELD_ENCODING_VALUE);
+        I048_RE_RTC_PTL_SSR = bitsFieldId(I048_RE_RTC_PTL, 18, BITS_FIELD_ENCODING_VALUE);
+        I048_RE_RTC_PTL_PSR = bitsFieldId(I048_RE_RTC_PTL, 17, BITS_FIELD_ENCODING_VALUE);
+        I048_RE_RTC_PTL_NBR = bitsFieldId(I048_RE_RTC_PTL, 16, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_RTC_ATL_NBR = bitsFieldId(I048_RE_RTC_ATL, 16, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_RTC_TRN_PROB = bitsFieldId(I048_RE_RTC_TRN, 8, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_NPP_PREDRHO = bitsFieldId(I048_RE_RTC_NPP, 176, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_NPP_PREDTHETA = bitsFieldId(I048_RE_RTC_NPP, 160, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_NPP_EVOLRHOSTART = bitsFieldId(I048_RE_RTC_NPP, 144, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_NPP_EVOLRHOEND = bitsFieldId(I048_RE_RTC_NPP, 128, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_NPP_EVOLTHETASTART = bitsFieldId(I048_RE_RTC_NPP, 112, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_NPP_EVOLTHETAEND = bitsFieldId(I048_RE_RTC_NPP, 96, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_NPP_NOISERHOSTART = bitsFieldId(I048_RE_RTC_NPP, 80, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_NPP_NOISERHOEND = bitsFieldId(I048_RE_RTC_NPP, 64, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_NPP_NOISETHETASTART = bitsFieldId(I048_RE_RTC_NPP, 48, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_NPP_NOISETHETAEND = bitsFieldId(I048_RE_RTC_NPP, 32, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_NPP_PREDTIME = bitsFieldId(I048_RE_RTC_NPP, 16, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_DLK_TYPE = bitsFieldId(I048_RE_RTC_DLK, 8, BITS_FIELD_ENCODING_VALUES);
+        I048_RE_RTC_DLK_ORIGIN = bitsFieldId(I048_RE_RTC_DLK, 4, BITS_FIELD_ENCODING_VALUES);
+        I048_RE_RTC_DLK_STATE = bitsFieldId(I048_RE_RTC_DLK, 2, BITS_FIELD_ENCODING_VALUES);
+        I048_RE_RTC_LCK_LS = bitsFieldId(I048_RE_RTC_LCK, 16, BITS_FIELD_ENCODING_VALUE);
+        I048_RE_RTC_LCK_LOCTIM = bitsFieldId(I048_RE_RTC_LCK, 15, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_TC_SP48 = bitsFieldId(I048_RE_RTC_TC, 48, BITS_FIELD_ENCODING_SPARE);
+        I048_RE_RTC_TC_SP47 = bitsFieldId(I048_RE_RTC_TC, 47, BITS_FIELD_ENCODING_SPARE);
+        I048_RE_RTC_TC_SP46 = bitsFieldId(I048_RE_RTC_TC, 46, BITS_FIELD_ENCODING_SPARE);
+        I048_RE_RTC_TC_SP45 = bitsFieldId(I048_RE_RTC_TC, 45, BITS_FIELD_ENCODING_SPARE);
+        I048_RE_RTC_TC_SP44 = bitsFieldId(I048_RE_RTC_TC, 44, BITS_FIELD_ENCODING_SPARE);
+        I048_RE_RTC_TC_SP43 = bitsFieldId(I048_RE_RTC_TC, 43, BITS_FIELD_ENCODING_SPARE);
+        I048_RE_RTC_TC_SP42 = bitsFieldId(I048_RE_RTC_TC, 42, BITS_FIELD_ENCODING_SPARE);
+        I048_RE_RTC_TC_TCOUNT1 = bitsFieldId(I048_RE_RTC_TC, 41, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_RTC_TC_TCODE1 = bitsFieldId(I048_RE_RTC_TC, 37, BITS_FIELD_ENCODING_OCTAL);
+        I048_RE_RTC_TC_TCOUNT2 = bitsFieldId(I048_RE_RTC_TC, 32, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_RTC_TC_TCODE2 = bitsFieldId(I048_RE_RTC_TC, 28, BITS_FIELD_ENCODING_OCTAL);
+        I048_RE_RTC_TC_TCOUNT3 = bitsFieldId(I048_RE_RTC_TC, 16, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_RTC_TC_TCODE3 = bitsFieldId(I048_RE_RTC_TC, 12, BITS_FIELD_ENCODING_OCTAL);
+        I048_RE_RTC_TLC_ACQI = bitsFieldId(I048_RE_RTC_TLC, 32, BITS_FIELD_ENCODING_VALUES);
+        I048_RE_RTC_TLC_TRKUPDCTR = bitsFieldId(I048_RE_RTC_TLC, 30, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_RTC_TLC_LASTTRKUPD = bitsFieldId(I048_RE_RTC_TLC, 16, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_ASI_SACADJS = bitsFieldId(I048_RE_RTC_ASI, 64, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_RTC_ASI_SICADJS = bitsFieldId(I048_RE_RTC_ASI, 56, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_RTC_ASI_TIMEOFDAYSCN = bitsFieldId(I048_RE_RTC_ASI, 48, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_RTC_ASI_DATAUSE = bitsFieldId(I048_RE_RTC_ASI, 24, BITS_FIELD_ENCODING_VALUES);
+        I048_RE_RTC_ASI_DRNA = bitsFieldId(I048_RE_RTC_ASI, 17, BITS_FIELD_ENCODING_VALUE);
+        I048_RE_RTC_ASI_DRN = bitsFieldId(I048_RE_RTC_ASI, 16, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_RTC_TES_TES = bitsFieldId(I048_RE_RTC_TES, 8, BITS_FIELD_ENCODING_VALUES);
+        I048_RE_RTC_IR_IR = bitsFieldId(I048_RE_RTC_IR, 8, BITS_FIELD_ENCODING_VALUE);
+        I048_RE_RTC_IR_M3A = bitsFieldId(I048_RE_RTC_IR, 7, BITS_FIELD_ENCODING_MEASURE_UNSIGNED);
+        I048_RE_CPC = subAId(I048_RE, 2, DATA_FORMAT_COMPOUND);
+        I048_RE_CPC_PNB = subBId(I048_RE_CPC, 8, DATA_FORMAT_FIXED);
+        I048_RE_CPC_RPL = subBId(I048_RE_CPC, 7, DATA_FORMAT_REPETITIVE);
+        I048_RE_CPC_SNB = subBId(I048_RE_CPC, 6, DATA_FORMAT_FIXED);
+        I048_RE_CPC_DATE = subBId(I048_RE_CPC, 5, DATA_FORMAT_FIXED);
+        I048_RE_CPC_SP4 = subBId(I048_RE_CPC, 4, DATA_FORMAT_EMPTY);
+        I048_RE_CPC_SP3 = subBId(I048_RE_CPC, 3, DATA_FORMAT_EMPTY);
+        I048_RE_CPC_SP2 = subBId(I048_RE_CPC, 2, DATA_FORMAT_EMPTY);
+        I048_RE_CPC_FX1 = subBId(I048_RE_CPC, 1, DATA_FORMAT_EMPTY);
         I048_RE_SP1 = subAId(I048_RE, 1, DATA_FORMAT_EMPTY);
+        I048_RE_CPC_PNB_NBR = bitsFieldId(I048_RE_CPC_PNB, 16, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_CPC_RPL_TYPE = bitsFieldId(I048_RE_CPC_RPL, 24, BITS_FIELD_ENCODING_VALUES);
+        I048_RE_CPC_RPL_NBR = bitsFieldId(I048_RE_CPC_RPL, 16, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_CPC_SNB_NBR = bitsFieldId(I048_RE_CPC_SNB, 8, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_CPC_DATE_Y1 = bitsFieldId(I048_RE_CPC_DATE, 32, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_CPC_DATE_Y2 = bitsFieldId(I048_RE_CPC_DATE, 28, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_CPC_DATE_Y3 = bitsFieldId(I048_RE_CPC_DATE, 24, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_CPC_DATE_Y4 = bitsFieldId(I048_RE_CPC_DATE, 20, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_CPC_DATE_M1 = bitsFieldId(I048_RE_CPC_DATE, 16, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_CPC_DATE_M2 = bitsFieldId(I048_RE_CPC_DATE, 12, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_CPC_DATE_D1 = bitsFieldId(I048_RE_CPC_DATE, 8, BITS_FIELD_ENCODING_UNSIGNED);
+        I048_RE_CPC_DATE_D2 = bitsFieldId(I048_RE_CPC_DATE, 4, BITS_FIELD_ENCODING_UNSIGNED);
         I048_SP = dataItemId(CAT048_ID, DATA_ITEM_SP, DATA_FORMAT_EXPLICIT);
     }
 
@@ -786,7 +980,28 @@ public final class Cat048V1Dot30 {
                                 BitsValue.of(1, "Friendly target"),
                                 BitsValue.of(2, "Unknown target"),
                                 BitsValue.of(3, "No reply")),
-                        fx(I048_020_FX2, position(1, 1, 1))));
+                        fx(I048_020_FX2, position(1, 1, 1))),
+                Part.of(I048_020_X2, 1,
+                        bit(I048_020_ADSB_EP, position(1, 8, 8), "ADSB_EP", "ADS-B Element Populated Bit",
+                                BitsValue.of(0, "ADS-B not populated"),
+                                BitsValue.of(1, "ADS-B populated")),
+                        bit(I048_020_ADSB_VAL, position(1, 7, 7), "ADSB_VAL", "On-Site ADS-B Information",
+                                BitsValue.of(0, "Not available"),
+                                BitsValue.of(1, "Available")),
+                        bit(I048_020_SCN_EP, position(1, 6, 6), "SCN_EP", "SCN Element Populated Bit",
+                                BitsValue.of(0, "SCN not populated"),
+                                BitsValue.of(1, "SCN populated")),
+                        bit(I048_020_SCN_VAL, position(1, 5, 5), "SCN_VAL", "Surveillance Cluster Network Information",
+                                BitsValue.of(0, "Not available"),
+                                BitsValue.of(1, "Available")),
+                        bit(I048_020_PAI_EP, position(1, 4, 4), "PAI_EP", "PAI Element Populated Bit",
+                                BitsValue.of(0, "PAI not populated"),
+                                BitsValue.of(1, "PAI populated")),
+                        bit(I048_020_PAI_VAL, position(1, 3, 3), "PAI_VAL", "Passive Acquisition Interface Information",
+                                BitsValue.of(0, "Not available"),
+                                BitsValue.of(1, "Available")),
+                        spare(I048_020_X2_SP2, position(1, 2, 2)),
+                        fx(I048_020_FX3, position(1, 1, 1))));
 
         final DataItem i048_020 = DataItem.from(f048_020, "Target Report Descriptor", true,
                 "Type and properties of the target report");
@@ -828,7 +1043,9 @@ public final class Cat048V1Dot30 {
                                 BitsValue.of(31, "Duplicated Mode-5 Pair NO/PIN detected"),
                                 BitsValue.of(32, "Wrong DF reply format detected"),
                                 BitsValue.of(33, "Transponder anomaly (MS XPD replies with Mode-A/C to Mode-A/C-only all-call"),
-                                BitsValue.of(34, "Transponder anomaly (SI capability report wrong)")),
+                                BitsValue.of(34, "Transponder anomaly (SI capability report wrong)"),
+                                BitsValue.of(35, "Potential IC Conflict"),
+                                BitsValue.of(36, "IC Conflict detection possible - no conflict currently detected")),
                         fx(I048_030_FX1, position(1, 1, 1))));
 
         final DataItem i048_030 = DataItem.from(f048_030, "Warning/Error Conditions and Target Classification", false,
@@ -1568,6 +1785,199 @@ public final class Cat048V1Dot30 {
         final DataFormat f048_RE_ERR = fixed(I048_RE_ERR, 3,
                 umeasure(I048_RE_ERR_RHO, position(3, 24, 1), "RHO", 1.0 / 256.0, UnitOfMeasure.DISTANCE_NM, "Rho"));
 
+        final DataFormat f048_RE_RTC_PTL = fixed(I048_RE_RTC_PTL, 3,
+                spare(I048_RE_RTC_PTL_SP24, position(3, 24, 24)),
+                spare(I048_RE_RTC_PTL_SP23, position(3, 23, 23)),
+                spare(I048_RE_RTC_PTL_SP22, position(3, 22, 22)),
+                bit(I048_RE_RTC_PTL_SCN, position(3, 21, 21), "SCN", "Track/SCN Association",
+                        BitsValue.of(0, "Track is not associated with an SCN Plot"),
+                        BitsValue.of(1, "Track is associated with an SCN Plot")),
+                bit(I048_RE_RTC_PTL_RC, position(3, 20, 20), "RC", "Roll Call Component",
+                        BitsValue.of(0, "Associated Plot does not contain an Roll Call component"),
+                        BitsValue.of(1, "Associated Plot contains at least an Roll Call component")),
+                bit(I048_RE_RTC_PTL_AC, position(3, 19, 19), "AC", "All Call Component",
+                        BitsValue.of(0, "Associated Plot does not contain an All Call component"),
+                        BitsValue.of(1, "Associated Plot contains at least an All Call component")),
+                bit(I048_RE_RTC_PTL_SSR, position(3, 18, 18), "SSR", "SSR Component",
+                        BitsValue.of(0, "Associated Plot does not contain an SSR component"),
+                        BitsValue.of(1, "Associated Plot contains at least an SSR component")),
+                bit(I048_RE_RTC_PTL_PSR, position(3, 17, 17), "PSR", "PSR Component",
+                        BitsValue.of(0, "Associated Plot does not contain an SSR component"),
+                        BitsValue.of(1, "Associated Plot contains at least an SSR component")),
+                unsigned(I048_RE_RTC_PTL_NBR, position(3, 16, 1), "PLOTNBR", "Unique reference to the associated plot record"));
+
+        final DataFormat f048_RE_RTC_ATL = repetitive(I048_RE_RTC_ATL, 2,
+                "Repetitive Data Item starting with a one-octet Field Repetition Indicator followed by at least one ADS-B Report Reference Number composed of two octets",
+                unsigned(I048_RE_RTC_ATL_NBR, position(2, 16, 1), "ADSBNBR", "Reference to an ADS-B Report"));
+
+        final DataFormat f048_RE_RTC_TRN = fixed(I048_RE_RTC_TRN, 1,
+                umeasure(I048_RE_RTC_TRN_PROB, position(1, 8, 1), "PROB", 1.0, UnitOfMeasure.RATIO_PERCENTAGE, "Turn State with probability with regards to track evolution hypothesis (Circular model)"));
+
+        final DataFormat f048_RE_RTC_NPP = fixed(I048_RE_RTC_NPP, 22,
+                umeasure(I048_RE_RTC_NPP_PREDRHO, position(22, 176, 161), "PRHO", 1.0 / (1 << 7), UnitOfMeasure.DISTANCE_NM, "Predicted Range"),
+                umeasure(I048_RE_RTC_NPP_PREDTHETA, position(22, 160, 145), "PTHETA", 360.0 / (1 << 16), UnitOfMeasure.ANGLE_DEGREE, "Predicted Azimuth"),
+                umeasure(I048_RE_RTC_NPP_EVOLRHOSTART, position(22, 144, 129), "ERHOS", 1.0 / (1 << 7), UnitOfMeasure.DISTANCE_NM, "Predicted Closest Range"),
+                umeasure(I048_RE_RTC_NPP_EVOLRHOEND, position(22, 128, 113), "ERHOE", 1.0 / (1 << 7), UnitOfMeasure.DISTANCE_NM, "Predicted Largest Range"),
+                umeasure(I048_RE_RTC_NPP_EVOLTHETASTART, position(22, 112, 97), "ETHETAS", 360.0 / (1 << 16), UnitOfMeasure.ANGLE_DEGREE, "Predicted Smallest Azimuth"),
+                umeasure(I048_RE_RTC_NPP_EVOLTHETAEND, position(22, 96, 81), "ETHETAE", 360.0 / (1 << 16), UnitOfMeasure.ANGLE_DEGREE, "Predicted Largest Azimuth"),
+                umeasure(I048_RE_RTC_NPP_NOISERHOSTART, position(22, 80, 65), "NRHOS", 1.0 / (1 << 7), UnitOfMeasure.DISTANCE_NM, "Predicted Closest Range"),
+                umeasure(I048_RE_RTC_NPP_NOISERHOEND, position(22, 64, 49), "NRHOE", 1.0 / (1 << 7), UnitOfMeasure.DISTANCE_NM, "Predicted Largest Range"),
+                umeasure(I048_RE_RTC_NPP_NOISETHETASTART, position(22, 48, 33), "NTHETAS", 360.0 / (1 << 16), UnitOfMeasure.ANGLE_DEGREE, "Predicted Smallest Azimuth"),
+                umeasure(I048_RE_RTC_NPP_NOISETHETAEND, position(22, 32, 17), "NTHETAE", 360.0 / (1 << 16), UnitOfMeasure.ANGLE_DEGREE, "Predicted Largest Azimuth"),
+                umeasure(I048_RE_RTC_NPP_PREDTIME, position(22, 16, 1), "PREDTIME", 1.0 / (1 << 7), UnitOfMeasure.TIME_SECONDS, "Predicted Detection Time"));
+
+        final DataFormat f048_RE_RTC_DLK = repetitive(I048_RE_RTC_DLK, 1,
+                "Repetitive Data Item consisting of a one-octet repetition factor followed by at least one octet of the relevant information",
+                bits(I048_RE_RTC_DLK_TYPE, position(1, 8, 5), "TYPE", "Type of Message Protocol",
+                        BitsValue.of(0, "Surveillance Mode A (alert bit or periodic)"),
+                        BitsValue.of(1, "Comm-A"),
+                        BitsValue.of(2, "Ground Initiated Comm-B"),
+                        BitsValue.of(3, "Air Initiated Comm-B"),
+                        BitsValue.of(4, "Broadcast Comm-B"),
+                        BitsValue.of(5, "Comm-C"),
+                        BitsValue.of(6, "Comm-D"),
+                        BitsValue.of(7, "Reserved"),
+                        BitsValue.of(8, "Reserved"),
+                        BitsValue.of(9, "Reserved"),
+                        BitsValue.of(10, "Reserved"),
+                        BitsValue.of(11, "Reserved"),
+                        BitsValue.of(12, "Reserved"),
+                        BitsValue.of(13, "Reserved"),
+                        BitsValue.of(14, "Reserved"),
+                        BitsValue.of(15, "Reserved")),
+                bits(I048_RE_RTC_DLK_ORIGIN, position(1, 4, 3), "ORIGIN", "Frame Detection",
+                        BitsValue.of(0, "From previous scan"),
+                        BitsValue.of(1, "New in current scan"),
+                        BitsValue.of(2, "Requested in the beam by transponder"),
+                        BitsValue.of(3, "Invalid ASTERIX value")),
+                bits(I048_RE_RTC_DLK_STATE, position(1, 2, 1), "STATE", "Frame state at aircraft release",
+                        BitsValue.of(0, "In progress"),
+                        BitsValue.of(1, "Completed"),
+                        BitsValue.of(2, "Cancelled"),
+                        BitsValue.of(3, "Invalid ASTERIX value")));
+
+        final DataFormat f048_RE_RTC_LCK = fixed(I048_RE_RTC_LCK, 2,
+                bit(I048_RE_RTC_LCK_LS, position(2, 16, 16), "LS", "Lockout state",
+                        BitsValue.of(0, "Target not locked out by this radar"),
+                        BitsValue.of(1, "Target locked out by this radar")),
+                umeasure(I048_RE_RTC_LCK_LOCTIM, position(2, 15, 1), "LOCTIM", 1, UnitOfMeasure.TIME_MILLISECONDS, "Lockout Time"));
+
+        final DataFormat f048_RE_RTC_TC = fixed(I048_RE_RTC_TC, 6,
+                spare(I048_RE_RTC_TC_SP48, position(6, 48, 48)),
+                spare(I048_RE_RTC_TC_SP47, position(6, 47, 47)),
+                spare(I048_RE_RTC_TC_SP46, position(6, 46, 46)),
+                spare(I048_RE_RTC_TC_SP45, position(6, 45, 45)),
+                spare(I048_RE_RTC_TC_SP44, position(6, 44, 44)),
+                spare(I048_RE_RTC_TC_SP43, position(6, 43, 43)),
+                spare(I048_RE_RTC_TC_SP42, position(6, 42, 42)),
+                unsigned(I048_RE_RTC_TC_TCOUNT1, position(6, 41, 38), "TCOUNT1", "Number of scans with transient Mode-1 Code"),
+                octal(I048_RE_RTC_TC_TCODE1, position(6, 37, 33), "TCODE1", "Transient Mode-1 Code"),
+                unsigned(I048_RE_RTC_TC_TCOUNT2, position(6, 32, 29), "TCOUNT2", "Number of scans with transient Mode-2 Code"),
+                octal(I048_RE_RTC_TC_TCODE2, position(6, 28, 17), "TCODE2", "Transient Mode-2 Code"),
+                unsigned(I048_RE_RTC_TC_TCOUNT3, position(6, 16, 13), "TCOUNT3", "Number of scans with transient Mode-3/A Code"),
+                octal(I048_RE_RTC_TC_TCODE3, position(6, 12, 1), "TCODE3", "Transient Mode-3/A Code"));
+
+        final DataFormat f048_RE_RTC_TLC = fixed(I048_RE_RTC_TLC, 4,
+                bits(I048_RE_RTC_TLC_ACQI, position(4, 32, 31), "ACQI", "Acquisition Status Indicator",
+                        BitsValue.of(0, "Tentative Track with One Plot"),
+                        BitsValue.of(1, "Tentative Track with at least Two Plots"),
+                        BitsValue.of(2, "Pre-Confirmed Track"),
+                        BitsValue.of(3, "Confirmed Track")),
+                unsigned(I048_RE_RTC_TLC_TRKUPDCTR, position(4, 30, 17), "COUNTER", "Track Update Counter"),
+                umeasure(I048_RE_RTC_TLC_LASTTRKUPD, position(4, 16, 1), "LASTUPD", 1, UnitOfMeasure.TIME_MILLISECONDS, "Time since last Track Update"));
+
+        final DataFormat f048_RE_RTC_ASI = repetitive(I048_RE_RTC_ASI, 8,
+                "Repetitive Data Item starting with a one-octet Field Repetition Indicator followed by at least one Adjacent Sensor Record composed of eight octets",
+                unsigned(I048_RE_RTC_ASI_SACADJS, position(8, 64, 57), "SACADJS", "SAC of the Adjacent Sensor"),
+                unsigned(I048_RE_RTC_ASI_SICADJS, position(8, 56, 49), "SICADJS", "SIC of the Adjacent Sensor"),
+                umeasure(I048_RE_RTC_ASI_TIMEOFDAYSCN, position(8, 48, 25), "TODSCN", 1.0 / (1 << 7), UnitOfMeasure.TIME_SECONDS, "Absolute Timestamp in UTC provided by the SCN"),
+                bits(I048_RE_RTC_ASI_DATAUSE, position(8, 24, 18), "DATAUSE", "Use of Adjacent Sensor Data",
+                        BitsValue.of(0, "Data used by Tracker"),
+                        BitsValue.of(1, "Data not used by Tracker"),
+                        BitsValue.of(2, "Reserved"),
+                        BitsValue.of(3, "Reserved"),
+                        BitsValue.of(4, "Reserved"),
+                        BitsValue.of(5, "Reserved"),
+                        BitsValue.of(6, "Reserved"),
+                        BitsValue.of(7, "Reserved")),
+                bit(I048_RE_RTC_ASI_DRNA, position(8, 17, 17), "DRNA", "DRN Availability",
+                        BitsValue.of(0, "DRN not available"),
+                        BitsValue.of(1, "DRN available")),
+                unsigned(I048_RE_RTC_ASI_DRN, position(8, 16, 1), "DRN", "Duplicate Address Reference Number uniquely identifying the aircraft in case of a duplicate Mode-S Address"));
+
+        final DataFormat f048_RE_RTC_TES = fixed(I048_RE_RTC_TES, 1,
+                bits(I048_RE_RTC_TES_TES, position(1, 8, 1), "TES", "Track Extrapolation Source",
+                        BitsValue.of(0, "Radar tracker calculation"),
+                        BitsValue.of(1, "Integrated ADS-B"),
+                        BitsValue.of(2, "External ADS-B"),
+                        BitsValue.of(3, "SCN"),
+                        BitsValue.of(4, "Reserved"),
+                        BitsValue.of(5, "Reserved"),
+                        BitsValue.of(6, "Reserved"),
+                        BitsValue.of(7, "Reserved")));
+
+        final DataFormat f048_RE_RTC_IR = fixed(I048_RE_RTC_IR, 1,
+                bit(I048_RE_RTC_IR_IR, position(1, 8, 8), "IR", "Identity Requested during latest scan",
+                        BitsValue.of(0, "Identity not requested"),
+                        BitsValue.of(1, "Identity requester")),
+                umeasure(I048_RE_RTC_IR_M3A, position(1, 7, 1), "M3A", 1, UnitOfMeasure.TIME_SECONDS, "Age of Mode-3/A Code (I048/070)"));
+
+        final DataFormat f048_RE_RTC = compound(I048_RE_RTC,
+                Subfield.of(f048_RE_RTC_PTL, 2, 1, "PTL", "Plot/Track Link"),
+                Subfield.of(f048_RE_RTC_ATL, 2, 2, "ATL", "ADS-B/Track Link"),
+                Subfield.of(f048_RE_RTC_TRN, 2, 3, "TRN", "Turn State"),
+                Subfield.of(f048_RE_RTC_NPP, 2, 4, "NPP", "Next Predicted Position"),
+                Subfield.of(f048_RE_RTC_DLK, 2, 5, "DLK", "Data Link Characteristics"),
+                Subfield.of(f048_RE_RTC_LCK, 2, 6, "LCK", "Lockout Characteristics"),
+                Subfield.of(f048_RE_RTC_TC, 2, 7, "TC", "Transition Code"),
+                Subfield.fx(I048_RE_RTC_FX1, 2),
+                Subfield.of(f048_RE_RTC_TLC, 2, 8, "TC", "Track Life Cycle"),
+                Subfield.of(f048_RE_RTC_ASI, 2, 9, "AC", "Adjacent Sensor"),
+                Subfield.of(f048_RE_RTC_TES, 2, 10, "TES", "Track Extrapolation Source"),
+                Subfield.of(f048_RE_RTC_IR, 2, 11, "IR", "Identity Requested"),
+                Subfield.sp(I048_RE_RTC_SP4, 2, 12),
+                Subfield.sp(I048_RE_RTC_SP3, 2, 13),
+                Subfield.sp(I048_RE_RTC_SP2, 2, 14),
+                Subfield.fx(I048_RE_RTC_FX2, 2));
+
+        final DataFormat f048_RE_CPC_PNB = fixed(I048_RE_CPC_PNB, 2,
+                unsigned(I048_RE_CPC_PNB_NBR, position(2, 16, 1), "PLOTNBR", "Unique Identification of a Plot Record"));
+
+        final DataFormat f048_RE_CPC_RPL = repetitive(I048_RE_CPC_RPL, 3,
+                "Repetitive Data Item starting with a one-octet Field Repetition Indicator followed by at least one Plot/Link Record composed of three octets",
+                bits(I048_RE_CPC_RPL_TYPE, position(3, 24, 17), "TYPE", "Reply Type",
+                        BitsValue.of(0, "PSR Echo"),
+                        BitsValue.of(1, "SSR Reply"),
+                        BitsValue.of(2, "All Call Reply"),
+                        BitsValue.of(3, "Roll Call Reply"),
+                        BitsValue.of(4, "Reserved"),
+                        BitsValue.of(5, "Reserved"),
+                        BitsValue.of(6, "Reserved"),
+                        BitsValue.of(7, "Reserved")),
+                unsigned(I048_RE_CPC_RPL_NBR, position(3, 16, 1), "REPLYNBR", "Unique reference to a Plot Record"));
+
+        final DataFormat f048_RE_CPC_SNB = fixed(I048_RE_CPC_SNB, 1,
+                unsigned(I048_RE_CPC_SNB_NBR, position(1, 8, 1), "SCANNBR", "Scan Number"));
+
+        final DataFormat f048_RE_CPC_DATE = fixed(I048_RE_CPC_DATE, 4,
+                unsigned(I048_RE_CPC_DATE_Y1, position(4, 32, 29), "Y1", "First digit of year"),
+                unsigned(I048_RE_CPC_DATE_Y2, position(4, 28, 25), "Y2", "Second digit of year"),
+                unsigned(I048_RE_CPC_DATE_Y3, position(4, 24, 21), "Y3", "Third digit of year"),
+                unsigned(I048_RE_CPC_DATE_Y4, position(4, 20, 17), "Y4", "Fourth digit of year"),
+                unsigned(I048_RE_CPC_DATE_M1, position(4, 16, 13), "M1", "First digit of month"),
+                unsigned(I048_RE_CPC_DATE_M2, position(4, 12, 9), "M2", "Second digit of month"),
+                unsigned(I048_RE_CPC_DATE_D1, position(4, 8, 5), "D1", "First digit of day"),
+                unsigned(I048_RE_CPC_DATE_D2, position(4, 4, 1), "D2", "Second digit of day"));
+
+        final DataFormat f048_RE_CPC = compound(I048_RE_CPC,
+                Subfield.of(f048_RE_CPC_PNB, 1, 1, "PNB", "Plot Number"),
+                Subfield.of(f048_RE_CPC_RPL, 1, 2, "RPL", "Replies/Plot Link"),
+                Subfield.of(f048_RE_CPC_SNB, 1, 3, "SNB", "Scan Number"),
+                Subfield.of(f048_RE_CPC_DATE, 1, 4, "DATE", "Date"),
+                Subfield.sp(I048_RE_CPC_SP4, 1, 5),
+                Subfield.sp(I048_RE_CPC_SP3, 1, 6),
+                Subfield.sp(I048_RE_CPC_SP2, 1, 7),
+                Subfield.fx(I048_RE_CPC_FX1, 1));
 
         final DataFormat f048_RE = explicit(I048_RE, 1, 10,
                 Subitem.of(f048_RE_MD5, 1, 1, "MD5", "Mode-5 Reports"),
@@ -1575,8 +1985,8 @@ public final class Cat048V1Dot30 {
                 Subitem.of(f048_RE_M4E, 1, 3, "M4E", "Extended Mode-4 Report"),
                 Subitem.of(f048_RE_RPC, 1, 4, "RPC", "Radar Plot Characteristics"),
                 Subitem.of(f048_RE_ERR, 1, 5, "ERR", "Extended Range Report"),
-                Subitem.sp(I048_RE_SP3, 1, 6),
-                Subitem.sp(I048_RE_SP2, 1, 7),
+                Subitem.of(f048_RE_RTC, 1, 6, "RTC", "Radar Track Characteristics"),
+                Subitem.of(f048_RE_CPC, 1, 7, "CPC", "Common and Plot Characteristics"),
                 Subitem.sp(I048_RE_SP1, 1, 8));
 
         final DataItem i048_RE_ = DataItem.re(f048_RE);
@@ -1623,6 +2033,6 @@ public final class Cat048V1Dot30 {
         return new ASTERIXCategory("Transmission of Monoroadar Target Reports", uap);
     }
 
-    private Cat048V1Dot30() {
+    private Cat048V1Dot31() {
     }
 }

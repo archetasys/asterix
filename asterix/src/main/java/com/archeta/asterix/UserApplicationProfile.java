@@ -34,14 +34,14 @@ final class UserApplicationProfile {
     }
 
     private static long bit(final long categoryId, final int fspecMaxNumOctets, final int bit, final boolean fx) {
-        // Data Item identifier using reserved number DATA_ITEM_UFX/DATA_ITEM_USP and data format EMPTY.
+        // Data Item identifier using reserved number DATA_ITEM_UAP_FX or DATA_ITEM_UAP_SP with DATA_FORMAT_EMPTY.
         final long dataItemId = dataItemId(categoryId, fx ? DATA_ITEM_UAP_FX : DATA_ITEM_UAP_SP, DATA_FORMAT_EMPTY);
-        // Subfield1 identifier using number of octets in UAP FSPEC as the bit presence and data format EMPTY.
-        final long subfield1Id = subAId(dataItemId, fspecMaxNumOctets, DATA_FORMAT_EMPTY);
-        // Subfield2 identifier using 0 as the bit presence and data format EMPTY.
-        final long subfield2Id = subBId(subfield1Id, 0, DATA_FORMAT_EMPTY);
+        // Subfield identifier A using number of octets in UAP FSPEC as the bit presence with DATA_FORMAT_EMPTY.
+        final long subAId = subAId(dataItemId, fspecMaxNumOctets, DATA_FORMAT_EMPTY);
+        // Subfield identifier B using 0 as the bit presence with DATA_FORMAT_EMPTY.
+        final long subBId = subBId(subAId, 0, DATA_FORMAT_EMPTY);
         // The id is using bits field identifier with bit position in UAP and bits field encoding FX/SPARE.
-        return bitsFieldId(subfield2Id, bit, fx ? BITS_FIELD_ENCODING_FX : BITS_FIELD_ENCODING_SPARE);
+        return bitsFieldId(subBId, bit, fx ? BITS_FIELD_ENCODING_FX : BITS_FIELD_ENCODING_SPARE);
     }
 
     private static ImmutableLong2ObjectHashMap<BitsField> createBitsFields(final List<BitsFieldList> bfs, final long categoryId) {
@@ -153,18 +153,24 @@ final class UserApplicationProfile {
 
             final int fmt = getDataItemFormat(itemId);
             if (num == DATA_ITEM_UAP_FX) {
-                final long id = fx(categoryId, fspecMaxNumOctets, fspecLength - i);
-                if (id != itemId) {
+                final long expectedId = fx(categoryId, fspecMaxNumOctets, fspecLength - i);
+                if (expectedId != itemId) {
                     throw new ASTERIXFormatException(Fmt.sprintf(
-                            "%s invalid id for FX bit at %s in UAP",
-                            getCategoryIdString(categoryId), i));
+                            "%s invalid id %s for FX bit at %s in UAP, must be %s",
+                            getCategoryIdString(categoryId),
+                            getBitsFieldIdString(itemId),
+                            i,
+                            getBitsFieldIdString(expectedId)));
                 }
             } else if (num == DATA_ITEM_UAP_SP) {
-                final long id = sp(categoryId, fspecMaxNumOctets, fspecLength - i);
-                if (id != itemId) {
+                final long expectedId = sp(categoryId, fspecMaxNumOctets, fspecLength - i);
+                if (expectedId != itemId) {
                     throw new ASTERIXFormatException(Fmt.sprintf(
-                            "%s invalid id for Spare bit at %s in UAP",
-                            getCategoryIdString(categoryId), i));
+                            "%s invalid id %s for Spare bit at %s in UAP, must be %s",
+                            getCategoryIdString(categoryId),
+                            getBitsFieldIdString(itemId),
+                            i,
+                            getBitsFieldIdString(expectedId)));
                 }
             } else {
                 // Check for duplicate Data Item number, FX and SPARE are excluded.

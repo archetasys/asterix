@@ -96,7 +96,9 @@ final class DataFormat {
                         i, bitPresence, subfield.bitPresence));
             }
 
-            if (subfield.number != number) {
+            if (FX.equals(subfield.name)) {
+                number--;
+            } else if (subfield.number != number) {
                 throw new IllegalArgumentException(Fmt.sprintf(
                         "%s `subfield` at %s `number` must be %s, bit=%s",
                         getDataFieldIdString(id, subfield.name),
@@ -181,66 +183,88 @@ final class DataFormat {
         }
     }
 
-    static void checkFixedFormatId(final long id) {
+    private static void checkDataFieldId(final long id, final int expectedDataItemFormat) {
         final int dataItemFormat = getDataItemFormat(id);
-        if (dataItemFormat == DATA_FORMAT_FIXED) {
-            final long categoryId = getCategoryId(id);
-            final long dataItemId = dataItemId(categoryId, getDataItemNumber(id), DATA_FORMAT_FIXED);
-            final long subAId = subAId(dataItemId, 0, DATA_FORMAT_FIXED);
-            final long dataFieldId = subBId(subAId, 0, DATA_FORMAT_FIXED);
-            if (dataFieldId != getDataFieldId(id)) {
-                throw new ASTERIXFormatException("[FIXED] data field id");
-            }
-        }
-
-        if (dataItemFormat == DATA_FORMAT_COMPOUND) {
-            final int subAFmt = getSubAFormat(id);
-            if (subAFmt != DATA_FORMAT_FIXED) {
-                throw new ASTERIXFormatException("[COMPOUND] type must be FIXED");
-            }
-        } else if (dataItemFormat == DATA_FORMAT_EXPLICIT) {
-
-        }
-    }
-
-    static void checkRepetitiveFormatId(final long id) {
-        final int dataItemFormat = getDataItemFormat(id);
-        if (dataItemFormat == DATA_FORMAT_REPETITIVE) {
-            final long categoryId = getCategoryId(id);
-            final long dataItemId = dataItemId(categoryId, getDataItemNumber(id), DATA_FORMAT_REPETITIVE);
-            final long subAId = subAId(dataItemId, 0, DATA_FORMAT_FIXED);
-            final long dataFieldId = subBId(subAId, 0, DATA_FORMAT_FIXED);
-            if (dataFieldId != getDataFieldId(id)) {
-                throw new ASTERIXFormatException("[REPETITIVE] data field id");
-            }
-        }
-    }
-
-    static void checkExtendedFormatId(final long id) {
-        final int fmt = getDataItemFormat(id);
-        if (fmt != DATA_FORMAT_EXTENDED && fmt != DATA_FORMAT_COMPOUND && fmt != DATA_FORMAT_EXPLICIT) {
+        if (dataItemFormat != expectedDataItemFormat &&
+                dataItemFormat != DATA_FORMAT_COMPOUND &&
+                dataItemFormat != DATA_FORMAT_EXPLICIT) {
             throw new ASTERIXFormatException(Fmt.sprintf(
                     "%s data item format must be %s, %s, or %s, found: %s",
                     getDataFieldIdString(id),
-                    getDataFormatString(DATA_FORMAT_EXPLICIT),
+                    getDataFormatString(expectedDataItemFormat),
                     getDataFormatString(DATA_FORMAT_COMPOUND),
                     getDataFormatString(DATA_FORMAT_EXPLICIT),
-                    getDataFormatString(fmt)));
+                    getDataFormatString(dataItemFormat)));
+        }
+
+        final long categoryId = getCategoryId(id);
+        final int dataItemNumber = getDataItemNumber(id);
+        final long expectedDataFieldId;
+        if (dataItemFormat == DATA_FORMAT_COMPOUND) {
+            final long dataItemId = dataItemId(categoryId, dataItemNumber, DATA_FORMAT_COMPOUND);
+            final int bitPresence = getSubABitPresence(id);
+            expectedDataFieldId = subAId(dataItemId, bitPresence, expectedDataItemFormat);
+        } else if (dataItemFormat == DATA_FORMAT_EXPLICIT) {
+            final long dataItemId = dataItemId(categoryId, dataItemNumber, DATA_FORMAT_EXPLICIT);
+            final int bitPresence = getSubABitPresence(id);
+            final int subAFormat = getSubAFormat(id);
+            if (subAFormat == expectedDataItemFormat) {
+                expectedDataFieldId = subAId(dataItemId, bitPresence, expectedDataItemFormat);
+            } else if (subAFormat == DATA_FORMAT_COMPOUND) {
+                final long subAId = subAId(dataItemId, bitPresence, DATA_FORMAT_COMPOUND);
+                final int subBBitPresence = getSubBBitPresence(id);
+                expectedDataFieldId = subBId(subAId, subBBitPresence, expectedDataItemFormat);
+            } else {
+                throw new ASTERIXFormatException(Fmt.sprintf("Invalid data field format %s",
+                        getDataFormatString(subAFormat)));
+            }
+        } else {
+            final long dataItemId = dataItemId(categoryId, dataItemNumber, expectedDataItemFormat);
+            final long subAId = subAId(dataItemId, 0, 0);
+            expectedDataFieldId = subBId(subAId, 0, 0);
+        }
+
+        if (expectedDataFieldId != id) {
+            throw new ASTERIXFormatException(Fmt.sprintf("Invalid data field id %s, must be %s",
+                    getDataFieldIdString(id), getDataFieldIdString(expectedDataFieldId)));
+        }
+    }
+
+    static void checkFixedFormatId(final long id) {
+        checkDataFieldId(id, DATA_FORMAT_FIXED);
+    }
+
+    static void checkRepetitiveFormatId(final long id) {
+        checkDataFieldId(id, DATA_FORMAT_REPETITIVE);
+    }
+
+    static void checkExtendedFormatId(final long id) {
+        final int dataItemFormat = getDataItemFormat(id);
+        if (dataItemFormat != DATA_FORMAT_EXTENDED &&
+                dataItemFormat != DATA_FORMAT_COMPOUND &&
+                dataItemFormat != DATA_FORMAT_EXPLICIT) {
+            throw new ASTERIXFormatException(Fmt.sprintf(
+                    "%s data item format must be %s, %s, or %s, found: %s",
+                    getDataFieldIdString(id),
+                    getDataFormatString(DATA_FORMAT_EXTENDED),
+                    getDataFormatString(DATA_FORMAT_COMPOUND),
+                    getDataFormatString(DATA_FORMAT_EXPLICIT),
+                    getDataFormatString(dataItemFormat)));
         }
     }
 
     static void checkCompoundFormatId(final long id) {
-        final int fmt = getDataItemFormat(id);
-        if (fmt != DATA_FORMAT_COMPOUND && fmt != DATA_FORMAT_EXPLICIT) {
+        final int dataItemFormat = getDataItemFormat(id);
+        if (dataItemFormat != DATA_FORMAT_COMPOUND && dataItemFormat != DATA_FORMAT_EXPLICIT) {
             throw new ASTERIXFormatException(Fmt.sprintf(
                     "%s data item format must be %s or %s, found: %s",
                     getDataFieldIdString(id),
                     getDataFormatString(DATA_FORMAT_COMPOUND),
                     getDataFormatString(DATA_FORMAT_EXPLICIT),
-                    getDataFormatString(fmt)));
+                    getDataFormatString(dataItemFormat)));
         }
 
-        if (fmt == DATA_FORMAT_EXPLICIT && getSubAFormat(id) != DATA_FORMAT_COMPOUND) {
+        if (dataItemFormat == DATA_FORMAT_EXPLICIT && getSubAFormat(id) != DATA_FORMAT_COMPOUND) {
             throw new ASTERIXFormatException(Fmt.sprintf(
                     "%s subfield1 format must be %s, found: %s",
                     getDataFieldIdString(id),
@@ -250,17 +274,24 @@ final class DataFormat {
     }
 
     static void checkEmptyFormatId(final long id) {
-        // TODO
+//        final int dataItemFormat = getDataItemFormat(id);
+//        if (dataItemFormat != DATA_FORMAT_EMPTY) {
+//            throw new ASTERIXFormatException(Fmt.sprintf(
+//                    "%s data item format must be %s, found: %s",
+//                    getDataFieldIdString(id),
+//                    getDataFormatString(DATA_FORMAT_EMPTY),
+//                    getDataFormatString(dataItemFormat)));
+//        }
     }
 
     static void checkExplicitFormatId(final long id) {
-        final int fmt = getDataItemFormat(id);
-        if (fmt != DATA_FORMAT_EXPLICIT) {
+        final int dataItemFormat = getDataItemFormat(id);
+        if (dataItemFormat != DATA_FORMAT_EXPLICIT) {
             throw new ASTERIXFormatException(Fmt.sprintf(
                     "%s data item format must be %s, found: %s",
                     getDataFieldIdString(id),
                     getDataFormatString(DATA_FORMAT_EXPLICIT),
-                    getDataFormatString(fmt)));
+                    getDataFormatString(dataItemFormat)));
         }
     }
 
@@ -694,6 +725,9 @@ final class DataFormat {
     }
 
     static final class Compound {
+        private static final BitsValue FX0 = BitsValue.of(0, "End of Primary Subfield");
+        private static final BitsValue FX1 = BitsValue.of(1, "Extension of Primary Subfield into next octet");
+
         private final BitsField[] primarySubfieldBitPresences;
         private final int primarySubfieldNumOctets;
         private final Subfield[] subfields;
@@ -716,8 +750,15 @@ final class DataFormat {
                 final String desc = subfield.description;
                 final long bitsFieldId = bitsFieldId(getDataFieldId(subfield.getId()), from, BITS_FIELD_ENCODING_VALUE);
                 final BitsField.Position pos = BitsField.position(primarySubfieldNumOctets, from, from);
-                final BitsValue value0 = BitsValue.of(0, "Absence of Subfield #" + number);
-                final BitsValue value1 = BitsValue.of(1, "Presence of Subfield #" + number);
+                final BitsValue value0, value1;
+                if (FX.equals(name)) {
+                    value0 = FX0;
+                    value1 = FX1;
+                } else {
+                    value0 = BitsValue.of(0, "Absence of Subfield #" + number);
+                    value1 = BitsValue.of(1, "Presence of Subfield #" + number);
+                }
+
                 primarySubfieldBitPresences[i] = BitsField.bit(bitsFieldId, pos, name, desc, value0, value1);
                 subfieldsByBitPresences[j] = subfield;
                 subfield.format.addBitsFieldsTo(bfl);
@@ -921,9 +962,15 @@ final class DataFormat {
                 for (int i = 0; i < numPrimarySubfieldBitPresences; i++) {
                     final DataField bitsPresence = primarySubfieldBitPresences[i].field;
                     final Subfield subfield = subfieldsByBitPresences[bitsPresence.fromBitPosition - 1];
-                    out.append(String.format(FMT_FIXED, prefix + '/' + bitsPresence.name,
-                            String.format("Subfield #%-2d: %s", subfield.number,
-                                    Strings.abbreviate(bitsPresence.description, MAX_WIDTH - 14))));
+                    final String desc;
+                    if (FX.equals(subfield.name)) {
+                        desc = "FX";
+                    } else {
+                        desc = String.format("Subfield #%-2d: %s", subfield.number,
+                                Strings.abbreviate(bitsPresence.description, MAX_WIDTH - 14));
+                    }
+
+                    out.append(String.format(FMT_FIXED, prefix + '/' + bitsPresence.name, desc));
                     BitsFieldList.append(bitsPresence, out);
                 }
             }

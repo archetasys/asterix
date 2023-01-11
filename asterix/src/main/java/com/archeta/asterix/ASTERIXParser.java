@@ -44,8 +44,18 @@ public final class ASTERIXParser {
     public static final int ERR_PCAP_UDP_LENGTH = -35;
 
     private static final ImmutableLong2ObjectHashMap<ASTERIXCategory> CATEGORIES = createCategories(
-            Cat034V1Dot29.CAT034,
-            Cat048V1Dot30.CAT048);
+            Cat021V0Dot23.createCategory(),
+            Cat021V0Dot231.createCategory(),
+            Cat021V0Dot24.createCategory(),
+            Cat021V0Dot26.createCategory(),
+            Cat021V1Dot0.createCategory(),
+            Cat021V1Dot7.createCategory(),
+            Cat021V2Dot1.createCategory(),
+            Cat021V2Dot2.createCategory(),
+            Cat021V2Dot6.createCategory(),
+            Cat034V1Dot29.createCategory(),
+            Cat048V1Dot30.createCategory(),
+            Cat048V1Dot31.createCategory());
 
     private static ImmutableLong2ObjectHashMap<ASTERIXCategory> createCategories(final ASTERIXCategory... categories) {
         final int n = categories.length;

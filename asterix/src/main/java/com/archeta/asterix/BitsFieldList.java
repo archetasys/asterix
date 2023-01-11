@@ -13,15 +13,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.archeta.asterix.ASTERIXIds.*;
 import static com.archeta.asterix.ASTERIXConstants.FX;
 import static com.archeta.asterix.ASTERIXConstants.SPARE;
+import static com.archeta.asterix.ASTERIXIds.*;
 
 final class BitsFieldList {
     static final int MAX_WIDTH = 40;
     static final String FMT_FIXED = "%-24s %-" + MAX_WIDTH + "s   ";
     private static final String LF = System.lineSeparator();
-    private static final String FMT_BITS_FORMAT = "%2d %2d %-10s";
+    private static final String FMT_BITS_FORMAT = "%3d %3d %-10s";
     private static final String FX0 = "End of Data Item";
     private static final String FX1 = "Extension into next extent";
     private static final String NA = "N/A";
@@ -60,7 +60,7 @@ final class BitsFieldList {
     }
 
     private static byte[] createIdentBytes() {
-        final byte[] b = new byte[84];
+        final byte[] b = new byte[86];
         Arrays.fill(b, (byte) 0x20);
         return b;
     }
@@ -217,62 +217,53 @@ final class BitsFieldList {
         }
     }
 
-    static void append(final DataField field, final Appendable output) throws IOException {
+    static void append(final DataField field, final Appendable out) throws IOException {
         final BitsFieldEncoding encoding = field.encoding;
-        output.append(String.format(FMT_BITS_FORMAT, field.fromBitPosition, field.toBitPosition, encoding.getDisplayName()));
+        out.append(String.format(FMT_BITS_FORMAT, field.fromBitPosition, field.toBitPosition, encoding.getDisplayName()));
         switch (encoding) {
             case MEASURE_GRAYCODE:
             case MEASURE_SIGNED:
             case MEASURE_UNSIGNED: {
-                output.append("LSB = ").append(Double.toString(field.lsb));
-                final String symbol = field.unit.symbol();
-                final boolean hasSymbol = !symbol.isEmpty();
-                if (hasSymbol) {
-                    output.append(symbol);
-                }
+                out.append("LSB=").append(Double.toString(field.lsb))
+                        .append(',').append(' ')
+                        .append("Range=[").append(Double.toString(field.min)).append(',').append(' ')
+                        .append(Double.toString(field.max)).append("], Unit=")
+                        .append(field.unit.uname()).append(" (").append(field.unit.symbol()).append(')');
 
-                output.append(',').append(' ')
-                        .append("Range = [").append(Double.toString(field.min)).append(',').append(' ')
-                        .append(Double.toString(field.max)).append(']');
-
-                if (hasSymbol) {
-                    output.append(symbol);
-                }
                 break;
             }
             case VALUE: {
                 final BitsValue bv0 = field.getBitsValue(0);
                 final BitsValue bv1 = field.getBitsValue(1);
-                output.append(Integer.toString(bv0.value()))
-                        .append(' ').append(Strings.abbreviate(bv0.description(), MAX_WIDTH))
+                out.append(Integer.toString(bv0.value()))
+                        .append(' ').append(bv0.description())
                         .append(LF).append(INDENT).append(Integer.toString(bv1.value()))
-                        .append(' ').append(Strings.abbreviate(bv1.description(), MAX_WIDTH));
+                        .append(' ').append(bv1.description());
                 break;
             }
             case VALUES: {
                 for (int i = 0, sz = field.getNumBitsValue(); i < sz; i++) {
                     final BitsValue bv = field.getBitsValue(i);
                     if (i > 0) {
-                        output.append(LF).append(INDENT);
+                        out.append(LF).append(INDENT);
                     }
 
-                    output.append(Integer.toString(bv.value())).append(' ')
-                            .append(Strings.abbreviate(bv.description(), MAX_WIDTH));
+                    out.append(Integer.toString(bv.value())).append(' ').append(bv.description());
                 }
                 break;
             }
             case SPARE:
-                output.append(field.description);
+                out.append(field.description);
                 break;
             case FX:
-                output.append('0').append(' ').append(FX0).append(LF)
+                out.append('0').append(' ').append(FX0).append(LF)
                         .append(INDENT).append('1').append(' ').append(FX1);
                 break;
             default:
-                output.append(NA);
+                out.append(NA);
                 break;
         }
 
-        output.append(LF);
+        out.append(LF);
     }
 }

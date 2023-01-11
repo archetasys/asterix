@@ -104,8 +104,6 @@ public final class Cat034V1Dot29 {
     public static final long I034_RE;
     public static final long I034_SP;
 
-    static final ASTERIXCategory CAT034;
-
     private static final long I034_050_COM;
     private static final long I034_050_SP7;
     private static final long I034_050_SP6;
@@ -230,7 +228,9 @@ public final class Cat034V1Dot29 {
         I034_120_LON = bitsFieldId(I034_120, 24, BITS_FIELD_ENCODING_MEASURE_SIGNED);
         I034_RE = dataItemId(CAT034_ID, DATA_ITEM_RE, DATA_FORMAT_EXPLICIT);
         I034_SP = dataItemId(CAT034_ID, DATA_ITEM_SP, DATA_FORMAT_EXPLICIT);
+    }
 
+    static ASTERIXCategory createCategory() {
         final DataFormat f034_000 = fixed(I034_000, 1,
                 bits(I034_000_TYP, position(1, 8, 1), "TYP", "Message Type",
                         BitsValue.of(0, "Not defined; never used"),
@@ -375,7 +375,7 @@ public final class Cat034V1Dot29 {
                 Subfield.of(f034_050_SSR, 1, 5, "SSR", "Specific Status Information for SSR Sensor"),
                 Subfield.of(f034_050_MDS, 1, 6, "MDS", "Specific Status Information for Mode-S Sensor"),
                 Subfield.sp(I034_050_SP2, 1, 7),
-                Subfield.fx(I034_050_FX1, 1, 8));
+                Subfield.fx(I034_050_FX1, 1));
 
         final DataItem i034_050 = DataItem.from(f034_050, "System Configuration and Status", false,
                 "Information concerning the configuration and status of a System");
@@ -465,7 +465,7 @@ public final class Cat034V1Dot29 {
                 Subfield.of(f034_060_SSR, 1, 5, "SSR", "Specific Processing Mode Information for SSR Sensor"),
                 Subfield.of(f034_060_MDS, 1, 6, "MDS", "Specific Processing Mode Information for Mode-S Sensor"),
                 Subfield.sp(I034_060_SP2, 1, 7),
-                Subfield.fx(I034_060_FX1, 1, 8));
+                Subfield.fx(I034_060_FX1, 1));
 
         final DataItem i034_060 = DataItem.from(f034_060, "System Processing Mode", false,
                 "Status concerning the processing options, in use during the last antenna revolution, for the various Sensors, composing the System");
@@ -543,8 +543,7 @@ public final class Cat034V1Dot29 {
         final DataItem i034_SP_ = DataItem.sp(I034_SP);
         final DataItem i034_FX2 = DataItem.fx(CAT034_ID, 2, 1);
 
-        final UserApplicationProfile uap = new UserApplicationProfile(
-                CAT034_ID,
+        final UserApplicationProfile uap = new UserApplicationProfile(CAT034_ID,
                 i034_010, //16
                 i034_000, //15
                 i034_030, //14
@@ -562,7 +561,7 @@ public final class Cat034V1Dot29 {
                 i034_SP_, // 2
                 i034_FX2);// 1
 
-        CAT034 = new ASTERIXCategory("Transmission of Monoradar Service Messages", uap);
+        return new ASTERIXCategory("Transmission of Monoradar Service Messages", uap);
     }
 
     private Cat034V1Dot29() {

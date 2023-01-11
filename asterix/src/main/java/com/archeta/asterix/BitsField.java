@@ -165,20 +165,20 @@ final class BitsField {
         }
 
         final int numValues = 4 + values.length;
-        final int sz = 1 << pos.numBits;
-        if (numValues > sz) {
+        final int maxNumValues = 1 << pos.numBits;
+        if (numValues > maxNumValues) {
             throw new ASTERIXFormatException(Fmt.sprintf(
                     "%s `numValues` %s is not fit in %s bits",
                     getBitsFieldIdString(id, name), numValues, pos.numBits));
         }
 
-        final BitsValue[] vals = new BitsValue[sz];
+        final BitsValue[] vals = new BitsValue[maxNumValues];
         vals[0] = value0;
         vals[1] = value1;
         vals[2] = value2;
         vals[3] = value3;
         System.arraycopy(values, 0, vals, 4, numValues - 4);
-        for (int j = numValues; j < sz; j++) {
+        for (int j = numValues; j < maxNumValues; j++) {
             vals[j] = BitsValue.of(j, "Not Used");
         }
 

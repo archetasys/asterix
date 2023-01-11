@@ -1,4 +1,4 @@
-ASTERIX Category 048 Version 1.30 Transmission of Monoroadar Target Reports
+ASTERIX Category 048 Version 1.31 Transmission of Monoroadar Target Reports
 
 ==== Data Items:
 Data Item I048/010 Data Source Identifier
@@ -123,6 +123,21 @@ I048/020/FOEFRI          Mode-4 interrogation                         3   2 valu
                                                                                       3 No reply
 I048/020/FX              Field Extension                              1   1 fx        0 End of Data Item
                                                                                       1 Extension into next extent
+I048/020/ADSB_EP         ADS-B Element Populated Bit                  8   8 value     0 ADS-B not populated
+                                                                                      1 ADS-B populated
+I048/020/ADSB_VAL        On-Site ADS-B Information                    7   7 value     0 Not available
+                                                                                      1 Available
+I048/020/SCN_EP          SCN Element Populated Bit                    6   6 value     0 SCN not populated
+                                                                                      1 SCN populated
+I048/020/SCN_VAL         Surveillance Cluster Network Information     5   5 value     0 Not available
+                                                                                      1 Available
+I048/020/PAI_EP          PAI Element Populated Bit                    4   4 value     0 PAI not populated
+                                                                                      1 PAI populated
+I048/020/PAI_VAL         Passive Acquisition Interface Informa...     3   3 value     0 Not available
+                                                                                      1 Available
+I048/020/SPARE           Spare bit set to 0                           2   2 spare     Spare bit set to 0
+I048/020/FX              Field Extension                              1   1 fx        0 End of Data Item
+                                                                                      1 Extension into next extent
 I048/030/CODE            Warning/error condition value                8   2 values    0 Not defined; never used
                                                                                       1 Multipath Reply (Reflection)
                                                                                       2 Reply due to sidelobe interrogation/reception
@@ -158,6 +173,8 @@ I048/030/CODE            Warning/error condition value                8   2 valu
                                                                                       32 Wrong DF reply format detected
                                                                                       33 Transponder anomaly (MS XPD replies with Mode-A/C to Mode-A/C-only all-call
                                                                                       34 Transponder anomaly (SI capability report wrong)
+                                                                                      35 Potential IC Conflict
+                                                                                      36 IC Conflict detection possible - no conflict currently detected
 I048/030/FX              Field Extension                              1   1 fx        0 End of Data Item
                                                                                       1 Extension into next extent
 I048/040/RHO             Rho                                         32  17 umeasure  LSB=0.00390625, Range=[0.0, 255.99609375], Unit=Nautical Mile (NM)
@@ -463,9 +480,9 @@ I048/RE/RPC              Subitem #4 : Radar Plot Characteristics      5   5 valu
                                                                                       1 Presence of Subitem #4
 I048/RE/ERR              Subitem #5 : Extended Range Report           4   4 value     0 Absence of Subitem #5
                                                                                       1 Presence of Subitem #5
-I048/RE/SPARE            Subitem #6 : Spare Subitem                   3   3 value     0 Absence of Subitem #6
+I048/RE/RTC              Subitem #6 : Radar Track Characteris...      3   3 value     0 Absence of Subitem #6
                                                                                       1 Presence of Subitem #6
-I048/RE/SPARE            Subitem #7 : Spare Subitem                   2   2 value     0 Absence of Subitem #7
+I048/RE/CPC              Subitem #7 : Common and Plot Charact...      2   2 value     0 Absence of Subitem #7
                                                                                       1 Presence of Subitem #7
 I048/RE/SPARE            Subitem #8 : Spare Subitem                   1   1 value     0 Absence of Subitem #8
                                                                                       1 Presence of Subitem #8
@@ -662,6 +679,171 @@ I048/RE/RPC/SCR/SCR      Signal to Clutter Ratio                     16   1 umea
 I048/RE/RPC/RW/RW        Range Width                                 16   1 umeasure  LSB=0.00390625, Range=[0.0, 255.99609375], Unit=Nautical Mile (NM)
 I048/RE/RPC/AR/AR        Ambiguous Range                             16   1 umeasure  LSB=0.00390625, Range=[0.0, 255.99609375], Unit=Nautical Mile (NM)
 I048/RE/ERR/RHO          Rho                                         24   1 umeasure  LSB=0.00390625, Range=[0.0, 65535.99609375], Unit=Nautical Mile (NM)
+I048/RE/RTC/PTL          Subfield #1 : Plot/Track Link               16  16 value     0 Absence of Subfield #1
+                                                                                      1 Presence of Subfield #1
+I048/RE/RTC/ATL          Subfield #2 : ADS-B/Track Link              15  15 value     0 Absence of Subfield #2
+                                                                                      1 Presence of Subfield #2
+I048/RE/RTC/TRN          Subfield #3 : Turn State                    14  14 value     0 Absence of Subfield #3
+                                                                                      1 Presence of Subfield #3
+I048/RE/RTC/NPP          Subfield #4 : Next Predicted Position       13  13 value     0 Absence of Subfield #4
+                                                                                      1 Presence of Subfield #4
+I048/RE/RTC/DLK          Subfield #5 : Data Link Characteristics     12  12 value     0 Absence of Subfield #5
+                                                                                      1 Presence of Subfield #5
+I048/RE/RTC/LCK          Subfield #6 : Lockout Characteristics       11  11 value     0 Absence of Subfield #6
+                                                                                      1 Presence of Subfield #6
+I048/RE/RTC/TC           Subfield #7 : Transition Code               10  10 value     0 Absence of Subfield #7
+                                                                                      1 Presence of Subfield #7
+I048/RE/RTC/FX           FX                                           9   9 value     0 End of Primary Subfield
+                                                                                      1 Extension of Primary Subfield into next octet
+I048/RE/RTC/TC           Subfield #8 : Track Life Cycle               8   8 value     0 Absence of Subfield #8
+                                                                                      1 Presence of Subfield #8
+I048/RE/RTC/AC           Subfield #9 : Adjacent Sensor                7   7 value     0 Absence of Subfield #9
+                                                                                      1 Presence of Subfield #9
+I048/RE/RTC/TES          Subfield #10: Track Extrapolation Source     6   6 value     0 Absence of Subfield #10
+                                                                                      1 Presence of Subfield #10
+I048/RE/RTC/IR           Subfield #11: Identity Requested             5   5 value     0 Absence of Subfield #11
+                                                                                      1 Presence of Subfield #11
+I048/RE/RTC/SPARE        Subfield #12: Spare Subfield                 4   4 value     0 Absence of Subfield #12
+                                                                                      1 Presence of Subfield #12
+I048/RE/RTC/SPARE        Subfield #13: Spare Subfield                 3   3 value     0 Absence of Subfield #13
+                                                                                      1 Presence of Subfield #13
+I048/RE/RTC/SPARE        Subfield #14: Spare Subfield                 2   2 value     0 Absence of Subfield #14
+                                                                                      1 Presence of Subfield #14
+I048/RE/RTC/FX           FX                                           1   1 value     0 End of Primary Subfield
+                                                                                      1 Extension of Primary Subfield into next octet
+I048/RE/RTC/PTL/SPARE    Spare bit set to 0                          24  24 spare     Spare bit set to 0
+I048/RE/RTC/PTL/SPARE    Spare bit set to 0                          23  23 spare     Spare bit set to 0
+I048/RE/RTC/PTL/SPARE    Spare bit set to 0                          22  22 spare     Spare bit set to 0
+I048/RE/RTC/PTL/SCN      Track/SCN Association                       21  21 value     0 Track is not associated with an SCN Plot
+                                                                                      1 Track is associated with an SCN Plot
+I048/RE/RTC/PTL/RC       Roll Call Component                         20  20 value     0 Associated Plot does not contain an Roll Call component
+                                                                                      1 Associated Plot contains at least an Roll Call component
+I048/RE/RTC/PTL/AC       All Call Component                          19  19 value     0 Associated Plot does not contain an All Call component
+                                                                                      1 Associated Plot contains at least an All Call component
+I048/RE/RTC/PTL/SSR      SSR Component                               18  18 value     0 Associated Plot does not contain an SSR component
+                                                                                      1 Associated Plot contains at least an SSR component
+I048/RE/RTC/PTL/PSR      PSR Component                               17  17 value     0 Associated Plot does not contain an SSR component
+                                                                                      1 Associated Plot contains at least an SSR component
+I048/RE/RTC/PTL/PLOTNBR  Unique reference to the associated pl...    16   1 unsigned  N/A
+I048/RE/RTC/ATL/ADSBNBR  Reference to an ADS-B Report                16   1 unsigned  N/A
+I048/RE/RTC/TRN/PROB     Turn State with probability with rega...     8   1 umeasure  LSB=1.0, Range=[0.0, 255.0], Unit=percentage (%)
+I048/RE/RTC/NPP/PRHO     Predicted Range                            176 161 umeasure  LSB=0.0078125, Range=[0.0, 511.9921875], Unit=Nautical Mile (NM)
+I048/RE/RTC/NPP/PTHETA   Predicted Azimuth                          160 145 umeasure  LSB=0.0054931640625, Range=[0.0, 359.9945068359375], Unit=degrees (°)
+I048/RE/RTC/NPP/ERHOS    Predicted Closest Range                    144 129 umeasure  LSB=0.0078125, Range=[0.0, 511.9921875], Unit=Nautical Mile (NM)
+I048/RE/RTC/NPP/ERHOE    Predicted Largest Range                    128 113 umeasure  LSB=0.0078125, Range=[0.0, 511.9921875], Unit=Nautical Mile (NM)
+I048/RE/RTC/NPP/ETHETAS  Predicted Smallest Azimuth                 112  97 umeasure  LSB=0.0054931640625, Range=[0.0, 359.9945068359375], Unit=degrees (°)
+I048/RE/RTC/NPP/ETHETAE  Predicted Largest Azimuth                   96  81 umeasure  LSB=0.0054931640625, Range=[0.0, 359.9945068359375], Unit=degrees (°)
+I048/RE/RTC/NPP/NRHOS    Predicted Closest Range                     80  65 umeasure  LSB=0.0078125, Range=[0.0, 511.9921875], Unit=Nautical Mile (NM)
+I048/RE/RTC/NPP/NRHOE    Predicted Largest Range                     64  49 umeasure  LSB=0.0078125, Range=[0.0, 511.9921875], Unit=Nautical Mile (NM)
+I048/RE/RTC/NPP/NTHETAS  Predicted Smallest Azimuth                  48  33 umeasure  LSB=0.0054931640625, Range=[0.0, 359.9945068359375], Unit=degrees (°)
+I048/RE/RTC/NPP/NTHETAE  Predicted Largest Azimuth                   32  17 umeasure  LSB=0.0054931640625, Range=[0.0, 359.9945068359375], Unit=degrees (°)
+I048/RE/RTC/NPP/PREDTIME Predicted Detection Time                    16   1 umeasure  LSB=0.0078125, Range=[0.0, 511.9921875], Unit=seconds (s)
+I048/RE/RTC/DLK/TYPE     Type of Message Protocol                     8   5 values    0 Surveillance Mode A (alert bit or periodic)
+                                                                                      1 Comm-A
+                                                                                      2 Ground Initiated Comm-B
+                                                                                      3 Air Initiated Comm-B
+                                                                                      4 Broadcast Comm-B
+                                                                                      5 Comm-C
+                                                                                      6 Comm-D
+                                                                                      7 Reserved
+                                                                                      8 Reserved
+                                                                                      9 Reserved
+                                                                                      10 Reserved
+                                                                                      11 Reserved
+                                                                                      12 Reserved
+                                                                                      13 Reserved
+                                                                                      14 Reserved
+                                                                                      15 Reserved
+I048/RE/RTC/DLK/ORIGIN   Frame Detection                              4   3 values    0 From previous scan
+                                                                                      1 New in current scan
+                                                                                      2 Requested in the beam by transponder
+                                                                                      3 Invalid ASTERIX value
+I048/RE/RTC/DLK/STATE    Frame state at aircraft release              2   1 values    0 In progress
+                                                                                      1 Completed
+                                                                                      2 Cancelled
+                                                                                      3 Invalid ASTERIX value
+I048/RE/RTC/LCK/LS       Lockout state                               16  16 value     0 Target not locked out by this radar
+                                                                                      1 Target locked out by this radar
+I048/RE/RTC/LCK/LOCTIM   Lockout Time                                15   1 umeasure  LSB=1.0, Range=[0.0, 32767.0], Unit=milliseconds (ms)
+I048/RE/RTC/TC/SPARE     Spare bit set to 0                          48  48 spare     Spare bit set to 0
+I048/RE/RTC/TC/SPARE     Spare bit set to 0                          47  47 spare     Spare bit set to 0
+I048/RE/RTC/TC/SPARE     Spare bit set to 0                          46  46 spare     Spare bit set to 0
+I048/RE/RTC/TC/SPARE     Spare bit set to 0                          45  45 spare     Spare bit set to 0
+I048/RE/RTC/TC/SPARE     Spare bit set to 0                          44  44 spare     Spare bit set to 0
+I048/RE/RTC/TC/SPARE     Spare bit set to 0                          43  43 spare     Spare bit set to 0
+I048/RE/RTC/TC/SPARE     Spare bit set to 0                          42  42 spare     Spare bit set to 0
+I048/RE/RTC/TC/TCOUNT1   Number of scans with transient Mode-1...    41  38 unsigned  N/A
+I048/RE/RTC/TC/TCODE1    Transient Mode-1 Code                       37  33 octal     N/A
+I048/RE/RTC/TC/TCOUNT2   Number of scans with transient Mode-2...    32  29 unsigned  N/A
+I048/RE/RTC/TC/TCODE2    Transient Mode-2 Code                       28  17 octal     N/A
+I048/RE/RTC/TC/TCOUNT3   Number of scans with transient Mode-3...    16  13 unsigned  N/A
+I048/RE/RTC/TC/TCODE3    Transient Mode-3/A Code                     12   1 octal     N/A
+I048/RE/RTC/TC/ACQI      Acquisition Status Indicator                32  31 values    0 Tentative Track with One Plot
+                                                                                      1 Tentative Track with at least Two Plots
+                                                                                      2 Pre-Confirmed Track
+                                                                                      3 Confirmed Track
+I048/RE/RTC/TC/COUNTER   Track Update Counter                        30  17 unsigned  N/A
+I048/RE/RTC/TC/LASTUPD   Time since last Track Update                16   1 umeasure  LSB=1.0, Range=[0.0, 65535.0], Unit=milliseconds (ms)
+I048/RE/RTC/AC/SACADJS   SAC of the Adjacent Sensor                  64  57 unsigned  N/A
+I048/RE/RTC/AC/SICADJS   SIC of the Adjacent Sensor                  56  49 unsigned  N/A
+I048/RE/RTC/AC/TODSCN    Absolute Timestamp in UTC provided by...    48  25 umeasure  LSB=0.0078125, Range=[0.0, 131071.9921875], Unit=seconds (s)
+I048/RE/RTC/AC/DATAUSE   Use of Adjacent Sensor Data                 24  18 values    0 Data used by Tracker
+                                                                                      1 Data not used by Tracker
+                                                                                      2 Reserved
+                                                                                      3 Reserved
+                                                                                      4 Reserved
+                                                                                      5 Reserved
+                                                                                      6 Reserved
+                                                                                      7 Reserved
+I048/RE/RTC/AC/DRNA      DRN Availability                            17  17 value     0 DRN not available
+                                                                                      1 DRN available
+I048/RE/RTC/AC/DRN       Duplicate Address Reference Number un...    16   1 unsigned  N/A
+I048/RE/RTC/TES/TES      Track Extrapolation Source                   8   1 values    0 Radar tracker calculation
+                                                                                      1 Integrated ADS-B
+                                                                                      2 External ADS-B
+                                                                                      3 SCN
+                                                                                      4 Reserved
+                                                                                      5 Reserved
+                                                                                      6 Reserved
+                                                                                      7 Reserved
+I048/RE/RTC/IR/IR        Identity Requested during latest scan        8   8 value     0 Identity not requested
+                                                                                      1 Identity requester
+I048/RE/RTC/IR/M3A       Age of Mode-3/A Code (I048/070)              7   1 umeasure  LSB=1.0, Range=[0.0, 127.0], Unit=seconds (s)
+I048/RE/CPC/PNB          Subfield #1 : Plot Number                    8   8 value     0 Absence of Subfield #1
+                                                                                      1 Presence of Subfield #1
+I048/RE/CPC/RPL          Subfield #2 : Replies/Plot Link              7   7 value     0 Absence of Subfield #2
+                                                                                      1 Presence of Subfield #2
+I048/RE/CPC/SNB          Subfield #3 : Scan Number                    6   6 value     0 Absence of Subfield #3
+                                                                                      1 Presence of Subfield #3
+I048/RE/CPC/DATE         Subfield #4 : Date                           5   5 value     0 Absence of Subfield #4
+                                                                                      1 Presence of Subfield #4
+I048/RE/CPC/SPARE        Subfield #5 : Spare Subfield                 4   4 value     0 Absence of Subfield #5
+                                                                                      1 Presence of Subfield #5
+I048/RE/CPC/SPARE        Subfield #6 : Spare Subfield                 3   3 value     0 Absence of Subfield #6
+                                                                                      1 Presence of Subfield #6
+I048/RE/CPC/SPARE        Subfield #7 : Spare Subfield                 2   2 value     0 Absence of Subfield #7
+                                                                                      1 Presence of Subfield #7
+I048/RE/CPC/FX           FX                                           1   1 value     0 End of Primary Subfield
+                                                                                      1 Extension of Primary Subfield into next octet
+I048/RE/CPC/PNB/PLOTNBR  Unique Identification of a Plot Record      16   1 unsigned  N/A
+I048/RE/CPC/RPL/TYPE     Reply Type                                  24  17 values    0 PSR Echo
+                                                                                      1 SSR Reply
+                                                                                      2 All Call Reply
+                                                                                      3 Roll Call Reply
+                                                                                      4 Reserved
+                                                                                      5 Reserved
+                                                                                      6 Reserved
+                                                                                      7 Reserved
+I048/RE/CPC/RPL/REPLYNBR Unique reference to a Plot Record           16   1 unsigned  N/A
+I048/RE/CPC/SNB/SCANNBR  Scan Number                                  8   1 unsigned  N/A
+I048/RE/CPC/DATE/Y1      First digit of year                         32  29 unsigned  N/A
+I048/RE/CPC/DATE/Y2      Second digit of year                        28  25 unsigned  N/A
+I048/RE/CPC/DATE/Y3      Third digit of year                         24  21 unsigned  N/A
+I048/RE/CPC/DATE/Y4      Fourth digit of year                        20  17 unsigned  N/A
+I048/RE/CPC/DATE/M1      First digit of month                        16  13 unsigned  N/A
+I048/RE/CPC/DATE/M2      Second digit of month                       12   9 unsigned  N/A
+I048/RE/CPC/DATE/D1      First digit of day                           8   5 unsigned  N/A
+I048/RE/CPC/DATE/D2      Second digit of day                          4   1 unsigned  N/A
 
 UAP
  1 I048/010 Data Source Identifier                              M 2

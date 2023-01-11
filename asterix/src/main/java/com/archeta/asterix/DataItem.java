@@ -17,12 +17,7 @@ public final class DataItem {
     private static final String SP = "Special Purpose Field";
     private static final String LF = System.lineSeparator();
 
-    static DataItem from(
-            final DataFormat format,
-            final String name,
-            final boolean mandatory,
-            final String definition) {
-
+    static DataItem from(final DataFormat format, final String name, final boolean mandatory, final String definition) {
         if (null == format) {
             throw new ASTERIXFormatException("`format` must not null");
         }
@@ -58,12 +53,12 @@ public final class DataItem {
         return new DataItem(DataFormat.explicit(id), SP, false, SP);
     }
 
-    static DataItem sp(final long categoryId, final int numOctets, final int bitPosition) {
-        return new DataItem(DataFormat.empty(UserApplicationProfile.sp(categoryId, numOctets, bitPosition)), SP, false, SP);
+    static DataItem sp(final long categoryId, final int numOctets, final int bit) {
+        return new DataItem(DataFormat.empty(UserApplicationProfile.sp(categoryId, numOctets, bit)), SP, false, SP);
     }
 
-    static DataItem fx(final long categoryId, final int numOctets, final int bitPosition) {
-        return new DataItem(DataFormat.empty(UserApplicationProfile.fx(categoryId, numOctets, bitPosition)), FX, false, FX);
+    static DataItem fx(final long categoryId, final int numOctets, final int bit) {
+        return new DataItem(DataFormat.empty(UserApplicationProfile.fx(categoryId, numOctets, bit)), FX, false, FX);
     }
 
     private static void checkFormatExplicit(final long id) {

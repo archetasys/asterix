@@ -24,17 +24,135 @@ final class ASTERIXParserTest {
     private static final Buffer CAT048_RECORD = new Buffer(HexDump.decode("300048ffff42321e1dce9ca81a1f24b5091f00c9e00a04c88a036b057478d35d200310010080e500001089c80030900000409c1987146004006000090a3d081c04163b60462020f5"));
 
     @Test
-    void shouldAppendCategory() throws Exception {
+    void shouldAppendCategory034V1Dot29() throws Exception {
         final long cat034 = categoryId(34, 1, 29);
-        final long cat048 = categoryId(48, 1, 30);
-        final ASTERIXParser parser = ASTERIXParser.create(cat034, cat048);
+        final ASTERIXParser parser = ASTERIXParser.create(cat034);
         final StringBuilder sb = new StringBuilder(8192);
-        parser.appendCategory(cat034, true, true, true, false, sb);
-        assertEquals(Files.readString(Paths.get(Resources.get("cat034_v1.29.txt").toURI())), sb.toString());
 
-        sb.setLength(0);
+        parser.appendCategory(cat034, true, true, true, false, sb);
+
+        assertEquals(Files.readString(Paths.get(Resources.get("cat034_v1.29.txt").toURI())), sb.toString());
+    }
+
+    @Test
+    void shouldAppendCategory048V1Dot30() throws Exception {
+        final long cat048 = categoryId(48, 1, 30);
+        final ASTERIXParser parser = ASTERIXParser.create(cat048);
+        final StringBuilder sb = new StringBuilder(8192);
+
         parser.appendCategory(cat048, true, true, true, false, sb);
+
         assertEquals(Files.readString(Paths.get(Resources.get("cat048_v1.30.txt").toURI())), sb.toString());
+    }
+
+    @Test
+    void shouldAppendCategory048V1Dot31() throws Exception {
+        final long cat048 = categoryId(48, 1, 31);
+        final ASTERIXParser parser = ASTERIXParser.create(cat048);
+        final StringBuilder sb = new StringBuilder(8192);
+
+        parser.appendCategory(cat048, true, true, true, false, sb);
+
+        assertEquals(Files.readString(Paths.get(Resources.get("cat048_v1.31.txt").toURI())), sb.toString());
+    }
+
+    @Test
+    void shouldAppendCategory021V0Dot23() throws Exception {
+        final long cat021 = categoryId(21, 0, 23);
+        final ASTERIXParser parser = ASTERIXParser.create(cat021);
+        final StringBuilder sb = new StringBuilder(8192);
+
+        parser.appendCategory(cat021, true, true, true, false, sb);
+
+        assertEquals(Files.readString(Paths.get(Resources.get("cat021_v0.23.txt").toURI())), sb.toString());
+    }
+
+    @Test
+    void shouldAppendCategory021V0Dot231() throws Exception {
+        final long cat021 = categoryId(21, 0, 231);
+        final ASTERIXParser parser = ASTERIXParser.create(cat021);
+        final StringBuilder sb = new StringBuilder(8192);
+
+        parser.appendCategory(cat021, true, true, true, false, sb);
+
+        assertEquals(Files.readString(Paths.get(Resources.get("cat021_v0.231.txt").toURI())), sb.toString());
+    }
+
+    @Test
+    void shouldAppendCategory021V0Dot24() throws Exception {
+        final long cat021 = categoryId(21, 0, 24);
+        final ASTERIXParser parser = ASTERIXParser.create(cat021);
+        final StringBuilder sb = new StringBuilder(8192);
+
+        parser.appendCategory(cat021, true, true, true, false, sb);
+
+        assertEquals(Files.readString(Paths.get(Resources.get("cat021_v0.24.txt").toURI())), sb.toString());
+    }
+
+    @Test
+    void shouldAppendCategory021V0Dot26() throws Exception {
+        final long cat021 = categoryId(21, 0, 26);
+        final ASTERIXParser parser = ASTERIXParser.create(cat021);
+        final StringBuilder sb = new StringBuilder(8192);
+
+        parser.appendCategory(cat021, true, true, true, false, sb);
+
+        assertEquals(Files.readString(Paths.get(Resources.get("cat021_v0.26.txt").toURI())), sb.toString());
+    }
+
+    @Test
+    void shouldAppendCategory021V1Dot0() throws Exception {
+        final long cat021 = categoryId(21, 1, 0);
+        final ASTERIXParser parser = ASTERIXParser.create(cat021);
+        final StringBuilder sb = new StringBuilder(8192);
+
+        parser.appendCategory(cat021, true, true, true, false, sb);
+
+        assertEquals(Files.readString(Paths.get(Resources.get("cat021_v1.0.txt").toURI())), sb.toString());
+    }
+
+    @Test
+    void shouldAppendCategory021V1Dot7() throws Exception {
+        final long cat021 = categoryId(21, 1, 7);
+        final ASTERIXParser parser = ASTERIXParser.create(cat021);
+        final StringBuilder sb = new StringBuilder(8192);
+
+        parser.appendCategory(cat021, true, true, true, false, sb);
+
+        assertEquals(Files.readString(Paths.get(Resources.get("cat021_v1.7.txt").toURI())), sb.toString());
+    }
+
+    @Test
+    void shouldAppendCategory021V2Dot1() throws Exception {
+        final long cat021 = categoryId(21, 2, 1);
+        final ASTERIXParser parser = ASTERIXParser.create(cat021);
+        final StringBuilder sb = new StringBuilder(8192);
+
+        parser.appendCategory(cat021, true, true, true, false, sb);
+
+        assertEquals(Files.readString(Paths.get(Resources.get("cat021_v2.1.txt").toURI())), sb.toString());
+    }
+
+    @Test
+    void shouldAppendCategory021V2Dot2() throws Exception {
+        final long cat021 = categoryId(21, 2, 2);
+        final ASTERIXParser parser = ASTERIXParser.create(cat021);
+        final StringBuilder sb = new StringBuilder(8192);
+
+        parser.appendCategory(cat021, true, true, true, false, sb);
+
+        assertEquals(Files.readString(Paths.get(Resources.get("cat021_v2.2.txt").toURI())), sb.toString());
+    }
+
+    @Test
+    void shouldAppendCategory021V2Dot6() throws Exception {
+        final long cat021 = categoryId(21, 2, 6);
+        final ASTERIXParser parser = ASTERIXParser.create(cat021);
+        final StringBuilder sb = new StringBuilder(8192);
+
+        parser.appendCategory(cat021, true, true, true, false, sb);
+
+        assertEquals(Files.readString(Paths.get(Resources.get("cat021_v2.6.txt").toURI())), sb.toString());
     }
 
     @Test
