@@ -273,17 +273,6 @@ final class DataFormat {
         }
     }
 
-    static void checkEmptyFormatId(final long id) {
-//        final int dataItemFormat = getDataItemFormat(id);
-//        if (dataItemFormat != DATA_FORMAT_EMPTY) {
-//            throw new ASTERIXFormatException(Fmt.sprintf(
-//                    "%s data item format must be %s, found: %s",
-//                    getDataFieldIdString(id),
-//                    getDataFormatString(DATA_FORMAT_EMPTY),
-//                    getDataFormatString(dataItemFormat)));
-//        }
-    }
-
     static void checkExplicitFormatId(final long id) {
         final int dataItemFormat = getDataItemFormat(id);
         if (dataItemFormat != DATA_FORMAT_EXPLICIT) {
@@ -309,6 +298,10 @@ final class DataFormat {
                     "%s `numOctets` for items indicator must be in range [1,%s], numOctets=%s",
                     getDataFieldIdString(id), ITEMS_INDICATOR_MAX_NUM_OCTETS, itemsIndicatorNumOctets));
         }
+    }
+
+    static void checkEmptyFormatId(final long id) {
+        // TODO
     }
 
     static void checkSubfieldFormat(final DataFormat format) {

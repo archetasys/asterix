@@ -522,14 +522,14 @@ public final class Cat021V0Dot26 {
                 umeasure(I021_110_TID_TTR, position(15, 16, 1), "TTR", 0.01, UnitOfMeasure.DISTANCE_NM, 655.35, "TCP Turn Radius"));
 
         final DataFormat f021_110 = compound(I021_110,
-                Subfield.of(f021_110_TIS, 1, 1, "TIS", "Trajectory Intent Status"),
-                Subfield.of(f021_110_TID, 1, 2, "TID", "Trajectory Intent Data validity"),
-                Subfield.sp(I021_110_SP6, 1, 3),
-                Subfield.sp(I021_110_SP5, 1, 4),
-                Subfield.sp(I021_110_SP4, 1, 5),
-                Subfield.sp(I021_110_SP3, 1, 6),
-                Subfield.sp(I021_110_SP2, 1, 7),
-                Subfield.fx(I021_110_FX1, 1));
+                Subfield.of(f021_110_TIS, 1, "TIS", "Trajectory Intent Status"),
+                Subfield.of(f021_110_TID, 2, "TID", "Trajectory Intent Data validity"),
+                Subfield.sp(I021_110_SP6, 3),
+                Subfield.sp(I021_110_SP5, 4),
+                Subfield.sp(I021_110_SP4, 5),
+                Subfield.sp(I021_110_SP3, 6),
+                Subfield.sp(I021_110_SP2, 7),
+                Subfield.fx(I021_110_FX1));
 
         final DataItem i021_110 = DataItem.from(f021_110, "Trajectory Intent", false,
                 "Reports indicating the 4D intended trajectory of the aircraft");
@@ -700,14 +700,14 @@ public final class Cat021V0Dot26 {
                 unsigned(I021_220_TRB_TRB, position(1, 8, 1), "TRB", "Turbulence"));
 
         final DataFormat f021_220 = compound(I021_220,
-                Subfield.of(f021_220_WS, 1, 1, "WS", "Wind Speed"),
-                Subfield.of(f021_220_WD, 1, 2, "WD", "Wind Direction"),
-                Subfield.of(f021_220_TMP, 1, 3, "TMP", "Temperature"),
-                Subfield.of(f021_220_TRB, 1, 4, "TRB", "Turbulence"),
-                Subfield.sp(I021_220_SP4, 1, 5),
-                Subfield.sp(I021_220_SP3, 1, 6),
-                Subfield.sp(I021_220_SP2, 1, 7),
-                Subfield.fx(I021_220_FX1, 1));
+                Subfield.of(f021_220_WS, 1, "WS", "Wind Speed"),
+                Subfield.of(f021_220_WD, 2, "WD", "Wind Direction"),
+                Subfield.of(f021_220_TMP, 3, "TMP", "Temperature"),
+                Subfield.of(f021_220_TRB, 4, "TRB", "Turbulence"),
+                Subfield.sp(I021_220_SP4, 5),
+                Subfield.sp(I021_220_SP3, 6),
+                Subfield.sp(I021_220_SP2, 7),
+                Subfield.fx(I021_220_FX1));
 
         final DataItem i021_220 = DataItem.from(f021_220, "Met Information", false,
                 "Meteorological information");

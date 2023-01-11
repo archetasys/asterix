@@ -1316,14 +1316,14 @@ public final class Cat048V1Dot31 {
                 umeasure(I048_120_RDS_FRQ, position(6, 16, 1), "FRQ", 1.0, UnitOfMeasure.FREQUENCY_MHZ, "Transmitter Frequency"));
 
         final DataFormat f048_120 = compound(I048_120,
-                Subfield.of(f048_120_CAL, 1, 1, "CAL", "Calculated Doppler Speed"),
-                Subfield.of(f048_120_RDS, 1, 2, "RDS", "Raw Doppler Speed"),
-                Subfield.sp(I048_120_SP6, 1, 3),
-                Subfield.sp(I048_120_SP5, 1, 4),
-                Subfield.sp(I048_120_SP4, 1, 5),
-                Subfield.sp(I048_120_SP3, 1, 6),
-                Subfield.sp(I048_120_SP2, 1, 7),
-                Subfield.fx(I048_120_FX1, 1));
+                Subfield.of(f048_120_CAL, 1, "CAL", "Calculated Doppler Speed"),
+                Subfield.of(f048_120_RDS, 2, "RDS", "Raw Doppler Speed"),
+                Subfield.sp(I048_120_SP6, 3),
+                Subfield.sp(I048_120_SP5, 4),
+                Subfield.sp(I048_120_SP4, 5),
+                Subfield.sp(I048_120_SP3, 6),
+                Subfield.sp(I048_120_SP2, 7),
+                Subfield.fx(I048_120_FX1));
 
         final DataItem i048_120 = DataItem.from(f048_120, "Radial Doppler Speed", false,
                 "Information on the Doppler Speed of the target report");
@@ -1344,14 +1344,14 @@ public final class Cat048V1Dot31 {
                 smeasure(I048_130_APD_APD, position(1, 8, 1), "APD", 360.0 / (1 << 14), UnitOfMeasure.ANGLE_DEGREE, "Difference in Azimuth between PSR and SSR plot"));
 
         final DataFormat f048_130 = compound(I048_130,
-                Subfield.of(f048_130_SRL, 1, 1, "SRL", "SSR Plot Runlength"),
-                Subfield.of(f048_130_SRR, 1, 2, "SRR", "Number of received replies for M(SSR)"),
-                Subfield.of(f048_130_SAM, 1, 3, "SAM", "Amplitude of received replies for M(SSR)"),
-                Subfield.of(f048_130_PRL, 1, 4, "PRL", "PSR Plot Runlength"),
-                Subfield.of(f048_130_PAM, 1, 5, "PAM", "PSR amplitude"),
-                Subfield.of(f048_130_RPD, 1, 6, "RPD", "Difference in Range"),
-                Subfield.of(f048_130_APD, 1, 7, "APD", "Difference in Azimuth"),
-                Subfield.fx(I048_130_FX1, 1));
+                Subfield.of(f048_130_SRL, 1, "SRL", "SSR Plot Runlength"),
+                Subfield.of(f048_130_SRR, 2, "SRR", "Number of received replies for M(SSR)"),
+                Subfield.of(f048_130_SAM, 3, "SAM", "Amplitude of received replies for M(SSR)"),
+                Subfield.of(f048_130_PRL, 4, "PRL", "PSR Plot Runlength"),
+                Subfield.of(f048_130_PAM, 5, "PAM", "PSR amplitude"),
+                Subfield.of(f048_130_RPD, 6, "RPD", "Difference in Range"),
+                Subfield.of(f048_130_APD, 7, "APD", "Difference in Azimuth"),
+                Subfield.fx(I048_130_FX1));
 
         final DataItem i048_130 = DataItem.from(f048_130, "Radar Plot Characteristics", false,
                 "Additional information on the quality of the target report");
@@ -1628,14 +1628,14 @@ public final class Cat048V1Dot31 {
                         BitsValue.of(1, "X-pulse set to one (present)")));
 
         final DataFormat f048_RE_MD5 = compound(I048_RE_MD5,
-                Subfield.of(f048_RE_MD5_SUM, 1, 1, "SUM", "Mode-5 Summary"),
-                Subfield.of(f048_RE_MD5_PMN, 1, 2, "PMN", "Mode-5 PIN/ National"),
-                Subfield.of(f048_RE_MD5_POS, 1, 3, "POS", "Mode-5 Reported Position"),
-                Subfield.of(f048_RE_MD5_GA, 1, 4, "GA", "Mode-5 GNSS-derived Altitude"),
-                Subfield.of(f048_RE_MD5_EM1, 1, 5, "EM1", "Extended Mode-1 Code in Octal Representation"),
-                Subfield.of(f048_RE_MD5_TOS, 1, 6, "TOS", "Time Offset for POS and GA"),
-                Subfield.of(f048_RE_MD5_XP, 1, 7, "XP", " Pulse Presence"),
-                Subfield.fx(I048_RE_MD5_FX1, 1));
+                Subfield.of(f048_RE_MD5_SUM, 1, "SUM", "Mode-5 Summary"),
+                Subfield.of(f048_RE_MD5_PMN, 2, "PMN", "Mode-5 PIN/ National"),
+                Subfield.of(f048_RE_MD5_POS, 3, "POS", "Mode-5 Reported Position"),
+                Subfield.of(f048_RE_MD5_GA, 4, "GA", "Mode-5 GNSS-derived Altitude"),
+                Subfield.of(f048_RE_MD5_EM1, 5, "EM1", "Extended Mode-1 Code in Octal Representation"),
+                Subfield.of(f048_RE_MD5_TOS, 6, "TOS", "Time Offset for POS and GA"),
+                Subfield.of(f048_RE_MD5_XP, 7, "XP", " Pulse Presence"),
+                Subfield.fx(I048_RE_MD5_FX1));
 
         final DataFormat f048_RE_M5N_SUM = fixed(I048_RE_M5N_SUM, 1,
                 bit(I048_RE_M5N_SUM_M5, position(1, 8, 8), "M5", "Mode-5 interrogation",
@@ -1728,23 +1728,24 @@ public final class Cat048V1Dot31 {
                 spare(I048_RE_M5N_FOM_SP7, position(1, 7, 7)),
                 spare(I048_RE_M5N_FOM_SP6, position(1, 6, 6)),
                 unsigned(I048_RE_M5N_FOM_FOM, position(1, 5, 1), "FOM", "Figure of Merit Position Accuracy as extracted and provided by a Mode-5 transponder"));
+
         final DataFormat f048_RE_M5N = compound(I048_RE_M5N,
-                Subfield.of(f048_RE_M5N_SUM, 2, 1, "SUM", "Mode-5 Summary"),
-                Subfield.of(f048_RE_M5N_PMN, 2, 2, "PMN", "Mode-5 PIN/ National"),
-                Subfield.of(f048_RE_M5N_POS, 2, 3, "POS", "Mode-5 Reported Position"),
-                Subfield.of(f048_RE_M5N_GA, 2, 4, "GA", "Mode-5 GNSS-derived Altitude"),
-                Subfield.of(f048_RE_M5N_EM1, 2, 5, "EM1", "Extended Mode-1 Code in Octal Representation"),
-                Subfield.of(f048_RE_M5N_TOS, 2, 6, "TOS", "Time Offset for POS and GA"),
-                Subfield.of(f048_RE_M5N_XP, 2, 7, "XP", " Pulse Presence"),
-                Subfield.fx(I048_RE_M5N_FX1, 2),
-                Subfield.of(f048_RE_M5N_FOM, 2, 8, "FOM", "Figure of Merit"),
-                Subfield.sp(I048_RE_M5N_SP7, 2, 9),
-                Subfield.sp(I048_RE_M5N_SP6, 2, 10),
-                Subfield.sp(I048_RE_M5N_SP5, 2, 11),
-                Subfield.sp(I048_RE_M5N_SP4, 2, 12),
-                Subfield.sp(I048_RE_M5N_SP3, 2, 13),
-                Subfield.sp(I048_RE_M5N_SP2, 2, 14),
-                Subfield.fx(I048_RE_M5N_FX2, 2));
+                Subfield.of(f048_RE_M5N_SUM, 1, "SUM", "Mode-5 Summary"),
+                Subfield.of(f048_RE_M5N_PMN, 2, "PMN", "Mode-5 PIN/ National"),
+                Subfield.of(f048_RE_M5N_POS, 3, "POS", "Mode-5 Reported Position"),
+                Subfield.of(f048_RE_M5N_GA, 4, "GA", "Mode-5 GNSS-derived Altitude"),
+                Subfield.of(f048_RE_M5N_EM1, 5, "EM1", "Extended Mode-1 Code in Octal Representation"),
+                Subfield.of(f048_RE_M5N_TOS, 6, "TOS", "Time Offset for POS and GA"),
+                Subfield.of(f048_RE_M5N_XP, 7, "XP", " Pulse Presence"),
+                Subfield.fx(I048_RE_M5N_FX1),
+                Subfield.of(f048_RE_M5N_FOM, 8, "FOM", "Figure of Merit"),
+                Subfield.sp(I048_RE_M5N_SP7, 9),
+                Subfield.sp(I048_RE_M5N_SP6, 10),
+                Subfield.sp(I048_RE_M5N_SP5, 11),
+                Subfield.sp(I048_RE_M5N_SP4, 12),
+                Subfield.sp(I048_RE_M5N_SP3, 13),
+                Subfield.sp(I048_RE_M5N_SP2, 14),
+                Subfield.fx(I048_RE_M5N_FX2));
 
         final DataFormat f048_RE_M4E = extended(I048_RE_M4E,
                 Part.of(I048_RE_M4E_FP, 1,
@@ -1773,14 +1774,14 @@ public final class Cat048V1Dot31 {
                 umeasure(I048_RE_RPC_AR_AR, position(2, 16, 1), "AR", 1.0 / 256.0, UnitOfMeasure.DISTANCE_NM, "Ambiguous Range"));
 
         final DataFormat f048_RE_RPC = compound(I048_RE_RPC,
-                Subfield.of(f048_RE_RPC_SCO, 1, 1, "SCO", "Score"),
-                Subfield.of(f048_RE_RPC_SCR, 1, 2, "SCR", "Signal/Clutter Ratio"),
-                Subfield.of(f048_RE_RPC_RW, 1, 3, "RW", "Range Width"),
-                Subfield.of(f048_RE_RPC_AR, 1, 4, "AR", "Ambiguous Range"),
-                Subfield.sp(I048_RE_RPC_SP4, 1, 5),
-                Subfield.sp(I048_RE_RPC_SP3, 1, 6),
-                Subfield.sp(I048_RE_RPC_SP2, 1, 7),
-                Subfield.fx(I048_RE_RPC_FX1, 1));
+                Subfield.of(f048_RE_RPC_SCO, 1, "SCO", "Score"),
+                Subfield.of(f048_RE_RPC_SCR, 2, "SCR", "Signal/Clutter Ratio"),
+                Subfield.of(f048_RE_RPC_RW, 3, "RW", "Range Width"),
+                Subfield.of(f048_RE_RPC_AR, 4, "AR", "Ambiguous Range"),
+                Subfield.sp(I048_RE_RPC_SP4, 5),
+                Subfield.sp(I048_RE_RPC_SP3, 6),
+                Subfield.sp(I048_RE_RPC_SP2, 7),
+                Subfield.fx(I048_RE_RPC_FX1));
 
         final DataFormat f048_RE_ERR = fixed(I048_RE_ERR, 3,
                 umeasure(I048_RE_ERR_RHO, position(3, 24, 1), "RHO", 1.0 / 256.0, UnitOfMeasure.DISTANCE_NM, "Rho"));
@@ -1923,22 +1924,22 @@ public final class Cat048V1Dot31 {
                 umeasure(I048_RE_RTC_IR_M3A, position(1, 7, 1), "M3A", 1, UnitOfMeasure.TIME_SECONDS, "Age of Mode-3/A Code (I048/070)"));
 
         final DataFormat f048_RE_RTC = compound(I048_RE_RTC,
-                Subfield.of(f048_RE_RTC_PTL, 2, 1, "PTL", "Plot/Track Link"),
-                Subfield.of(f048_RE_RTC_ATL, 2, 2, "ATL", "ADS-B/Track Link"),
-                Subfield.of(f048_RE_RTC_TRN, 2, 3, "TRN", "Turn State"),
-                Subfield.of(f048_RE_RTC_NPP, 2, 4, "NPP", "Next Predicted Position"),
-                Subfield.of(f048_RE_RTC_DLK, 2, 5, "DLK", "Data Link Characteristics"),
-                Subfield.of(f048_RE_RTC_LCK, 2, 6, "LCK", "Lockout Characteristics"),
-                Subfield.of(f048_RE_RTC_TC, 2, 7, "TC", "Transition Code"),
-                Subfield.fx(I048_RE_RTC_FX1, 2),
-                Subfield.of(f048_RE_RTC_TLC, 2, 8, "TC", "Track Life Cycle"),
-                Subfield.of(f048_RE_RTC_ASI, 2, 9, "AC", "Adjacent Sensor"),
-                Subfield.of(f048_RE_RTC_TES, 2, 10, "TES", "Track Extrapolation Source"),
-                Subfield.of(f048_RE_RTC_IR, 2, 11, "IR", "Identity Requested"),
-                Subfield.sp(I048_RE_RTC_SP4, 2, 12),
-                Subfield.sp(I048_RE_RTC_SP3, 2, 13),
-                Subfield.sp(I048_RE_RTC_SP2, 2, 14),
-                Subfield.fx(I048_RE_RTC_FX2, 2));
+                Subfield.of(f048_RE_RTC_PTL, 1, "PTL", "Plot/Track Link"),
+                Subfield.of(f048_RE_RTC_ATL, 2, "ATL", "ADS-B/Track Link"),
+                Subfield.of(f048_RE_RTC_TRN, 3, "TRN", "Turn State"),
+                Subfield.of(f048_RE_RTC_NPP, 4, "NPP", "Next Predicted Position"),
+                Subfield.of(f048_RE_RTC_DLK, 5, "DLK", "Data Link Characteristics"),
+                Subfield.of(f048_RE_RTC_LCK, 6, "LCK", "Lockout Characteristics"),
+                Subfield.of(f048_RE_RTC_TC, 7, "TC", "Transition Code"),
+                Subfield.fx(I048_RE_RTC_FX1),
+                Subfield.of(f048_RE_RTC_TLC, 8, "TC", "Track Life Cycle"),
+                Subfield.of(f048_RE_RTC_ASI, 9, "AC", "Adjacent Sensor"),
+                Subfield.of(f048_RE_RTC_TES, 10, "TES", "Track Extrapolation Source"),
+                Subfield.of(f048_RE_RTC_IR, 11, "IR", "Identity Requested"),
+                Subfield.sp(I048_RE_RTC_SP4, 12),
+                Subfield.sp(I048_RE_RTC_SP3, 13),
+                Subfield.sp(I048_RE_RTC_SP2, 14),
+                Subfield.fx(I048_RE_RTC_FX2));
 
         final DataFormat f048_RE_CPC_PNB = fixed(I048_RE_CPC_PNB, 2,
                 unsigned(I048_RE_CPC_PNB_NBR, position(2, 16, 1), "PLOTNBR", "Unique Identification of a Plot Record"));
@@ -1970,24 +1971,24 @@ public final class Cat048V1Dot31 {
                 unsigned(I048_RE_CPC_DATE_D2, position(4, 4, 1), "D2", "Second digit of day"));
 
         final DataFormat f048_RE_CPC = compound(I048_RE_CPC,
-                Subfield.of(f048_RE_CPC_PNB, 1, 1, "PNB", "Plot Number"),
-                Subfield.of(f048_RE_CPC_RPL, 1, 2, "RPL", "Replies/Plot Link"),
-                Subfield.of(f048_RE_CPC_SNB, 1, 3, "SNB", "Scan Number"),
-                Subfield.of(f048_RE_CPC_DATE, 1, 4, "DATE", "Date"),
-                Subfield.sp(I048_RE_CPC_SP4, 1, 5),
-                Subfield.sp(I048_RE_CPC_SP3, 1, 6),
-                Subfield.sp(I048_RE_CPC_SP2, 1, 7),
-                Subfield.fx(I048_RE_CPC_FX1, 1));
+                Subfield.of(f048_RE_CPC_PNB, 1, "PNB", "Plot Number"),
+                Subfield.of(f048_RE_CPC_RPL, 2, "RPL", "Replies/Plot Link"),
+                Subfield.of(f048_RE_CPC_SNB, 3, "SNB", "Scan Number"),
+                Subfield.of(f048_RE_CPC_DATE, 4, "DATE", "Date"),
+                Subfield.sp(I048_RE_CPC_SP4, 5),
+                Subfield.sp(I048_RE_CPC_SP3, 6),
+                Subfield.sp(I048_RE_CPC_SP2, 7),
+                Subfield.fx(I048_RE_CPC_FX1));
 
         final DataFormat f048_RE = explicit(I048_RE, 1, 10,
-                Subitem.of(f048_RE_MD5, 1, 1, "MD5", "Mode-5 Reports"),
-                Subitem.of(f048_RE_M5N, 1, 2, "M5N", "Mode-5 Reports New Format"),
-                Subitem.of(f048_RE_M4E, 1, 3, "M4E", "Extended Mode-4 Report"),
-                Subitem.of(f048_RE_RPC, 1, 4, "RPC", "Radar Plot Characteristics"),
-                Subitem.of(f048_RE_ERR, 1, 5, "ERR", "Extended Range Report"),
-                Subitem.of(f048_RE_RTC, 1, 6, "RTC", "Radar Track Characteristics"),
-                Subitem.of(f048_RE_CPC, 1, 7, "CPC", "Common and Plot Characteristics"),
-                Subitem.sp(I048_RE_SP1, 1, 8));
+                Subitem.of(f048_RE_MD5, 1, "MD5", "Mode-5 Reports"),
+                Subitem.of(f048_RE_M5N, 2, "M5N", "Mode-5 Reports New Format"),
+                Subitem.of(f048_RE_M4E, 3, "M4E", "Extended Mode-4 Report"),
+                Subitem.of(f048_RE_RPC, 4, "RPC", "Radar Plot Characteristics"),
+                Subitem.of(f048_RE_ERR, 5, "ERR", "Extended Range Report"),
+                Subitem.of(f048_RE_RTC, 6, "RTC", "Radar Track Characteristics"),
+                Subitem.of(f048_RE_CPC, 7, "CPC", "Common and Plot Characteristics"),
+                Subitem.sp(I048_RE_SP1, 8));
 
         final DataItem i048_RE_ = DataItem.re(f048_RE);
         final DataItem i048_SP_ = DataItem.sp(I048_SP);

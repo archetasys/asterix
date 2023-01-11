@@ -368,14 +368,14 @@ public final class Cat034V1Dot29 {
                 spare(I034_050_MDS_SP1, position(2, 1, 1)));
 
         final DataFormat f034_050 = compound(I034_050,
-                Subfield.of(f034_050_COM, 1, 1, "COM", "Common Part"),
-                Subfield.sp(I034_050_SP7, 1, 2),
-                Subfield.sp(I034_050_SP6, 1, 3),
-                Subfield.of(f034_050_PSR, 1, 4, "PSR", "Specific Status Information for PSR Sensor"),
-                Subfield.of(f034_050_SSR, 1, 5, "SSR", "Specific Status Information for SSR Sensor"),
-                Subfield.of(f034_050_MDS, 1, 6, "MDS", "Specific Status Information for Mode-S Sensor"),
-                Subfield.sp(I034_050_SP2, 1, 7),
-                Subfield.fx(I034_050_FX1, 1));
+                Subfield.of(f034_050_COM, 1, "COM", "Common Part"),
+                Subfield.sp(I034_050_SP7, 2),
+                Subfield.sp(I034_050_SP6, 3),
+                Subfield.of(f034_050_PSR, 4, "PSR", "Specific Status Information for PSR Sensor"),
+                Subfield.of(f034_050_SSR, 5, "SSR", "Specific Status Information for SSR Sensor"),
+                Subfield.of(f034_050_MDS, 6, "MDS", "Specific Status Information for Mode-S Sensor"),
+                Subfield.sp(I034_050_SP2, 7),
+                Subfield.fx(I034_050_FX1));
 
         final DataItem i034_050 = DataItem.from(f034_050, "System Configuration and Status", false,
                 "Information concerning the configuration and status of a System");
@@ -458,14 +458,14 @@ public final class Cat034V1Dot29 {
                 spare(I034_060_MDS_SP1, position(1, 1, 1)));
 
         final DataFormat f034_060 = compound(I034_060,
-                Subfield.of(f034_060_COM, 1, 1, "COM", "Common Part"),
-                Subfield.sp(I034_060_SP7, 1, 2),
-                Subfield.sp(I034_060_SP6, 1, 3),
-                Subfield.of(f034_060_PSR, 1, 4, "PSR", "Specific Processing Mode Information for PSR Sensor"),
-                Subfield.of(f034_060_SSR, 1, 5, "SSR", "Specific Processing Mode Information for SSR Sensor"),
-                Subfield.of(f034_060_MDS, 1, 6, "MDS", "Specific Processing Mode Information for Mode-S Sensor"),
-                Subfield.sp(I034_060_SP2, 1, 7),
-                Subfield.fx(I034_060_FX1, 1));
+                Subfield.of(f034_060_COM, 1, "COM", "Common Part"),
+                Subfield.sp(I034_060_SP7, 2),
+                Subfield.sp(I034_060_SP6, 3),
+                Subfield.of(f034_060_PSR, 4, "PSR", "Specific Processing Mode Information for PSR Sensor"),
+                Subfield.of(f034_060_SSR, 5, "SSR", "Specific Processing Mode Information for SSR Sensor"),
+                Subfield.of(f034_060_MDS, 6, "MDS", "Specific Processing Mode Information for Mode-S Sensor"),
+                Subfield.sp(I034_060_SP2, 7),
+                Subfield.fx(I034_060_FX1));
 
         final DataItem i034_060 = DataItem.from(f034_060, "System Processing Mode", false,
                 "Status concerning the processing options, in use during the last antenna revolution, for the various Sensors, composing the System");

@@ -14,16 +14,9 @@ import static com.archeta.asterix.DataFormat.*;
 public final class Subfield {
     private static final String SPARE_DESCRIPTION = "Spare Subfield";
 
-    static Subfield of(
-            final DataFormat format,
-            final int numOctets,
-            final int number,
-            final String name,
-            final String description) {
-
+    static Subfield of(final DataFormat format, final int number, final String name, final String description) {
         final long id = format.id;
         checkCompoundFormatId(id);
-        checkPrimarySubfieldNumOctets(numOctets, id);
         checkName(name, id, true);
         checkSubfieldFormat(format);
         checkNumber(number, name, id);
@@ -36,16 +29,14 @@ public final class Subfield {
         return new Subfield(number, name, description, format);
     }
 
-    static Subfield sp(final long id, final int numOctets, final int number) {
+    static Subfield sp(final long id, final int number) {
         checkCompoundFormatId(id);
-        checkPrimarySubfieldNumOctets(numOctets, id);
         checkNumber(number, SPARE, id);
         return new Subfield(number, SPARE, SPARE_DESCRIPTION, empty(id));
     }
 
-    static Subfield fx(final long id, final int numOctets) {
+    static Subfield fx(final long id) {
         checkCompoundFormatId(id);
-        checkPrimarySubfieldNumOctets(numOctets, id);
         return new Subfield(0, FX, FX, empty(id));
     }
 

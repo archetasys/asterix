@@ -15,16 +15,9 @@ import static com.archeta.asterix.DataFormat.*;
 public final class Subitem {
     private static final String SPARE_DESCRIPTION = "Spare Subitem";
 
-    static Subitem of(
-            final DataFormat format,
-            final int numOctets,
-            final int number,
-            final String name,
-            final String description) {
-
+    static Subitem of(final DataFormat format, final int number, final String name, final String description) {
         final long id = format.id;
         checkExplicitFormatId(id);
-        checkItemsIndicatorNumOctets(numOctets, id);
         checkName(name, id, true);
         checkSubitemFormat(format);
         if (Strings.isBlank(description)) {
@@ -36,9 +29,8 @@ public final class Subitem {
         return new Subitem(number, name, description, format);
     }
 
-    static Subitem sp(final long id, final int numOctets, final int number) {
+    static Subitem sp(final long id, final int number) {
         checkExplicitFormatId(id);
-        checkItemsIndicatorNumOctets(numOctets, id);
         return new Subitem(number, SPARE, SPARE_DESCRIPTION, DataFormat.empty(id));
     }
 
